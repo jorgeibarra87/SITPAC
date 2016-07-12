@@ -1,0 +1,96 @@
+{% extends '::frontendg.html.twig' %}
+
+{% block title %}Portada Gerente{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li class="active ">Portada Gerente</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+    <div class="row">
+            
+            <div class="col-xs-12 bg-primary" >
+            <h2>PAQUETES RECIENTES CLIENTE :</h2>
+            </div>                              
+              
+              {% if paquetesp %}
+              <div class="row">
+
+
+              	  <div class="col-xs-12 bg-info">
+                  <h3>Paquetes pendientes de aprobacion recientes - cliente: <a href="{{ path('paquetespendientescliete') }}" class="btn btn-md btn-success "> Ver todos los paquetes pendientes </a></h3>
+                  </div> 
+                 
+                  {% for paquetesp in paquetesp %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                              <h6><strong>{{ paquetesp.nombre }}</strong></h6>
+                              <h6>Duracion: {{ paquetesp.duracion }}</h6>
+                              <h6>Fecha de Inicio: {{ paquetesp.fechaInicio|date("d/m/Y") }}</h6>
+                              <h6>Fecha de Cierre: {{ paquetesp.fechaCierre|date("d/m/Y") }}</h6>
+                              <h6>Precio: ${{ paquetesp.preciototal|number_format( 0,'', '.') }}</h6>
+                              <h6>Estado: {{ paquetesp.estado }}</h6>
+                            <p>
+                            <a href="{{ path('paquete_verdetallesgerente', { 'id': paquetesp.idpaqueteTuristico }) }}" class="btn btn-sm btn-primary"> Ver Detalles </a>
+                            <a href="{{ path('paquete_aprobar', { 'id': paquetesp.idpaqueteTuristico }) }}" class="btn btn-sm btn-success" onclick="return confirm('¿Esta seguro que desea cambiar el estado del paquete?');"> Aprobar Paquete </a>         
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+
+
+              {% if paquetesa %}
+              <div class="row">
+
+
+              	  <div class="col-xs-12 bg-info">
+                  <h3>Paquetes aprobados recientes - cliente: <a href="{{ path('paquetesaprobadoscliete') }}" class="btn btn-md btn-success "> Ver todos los paquetes aprobados </a></h3>
+                  </div> 
+                  
+                  {% for paquetesa in paquetesa %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                              <h6><strong>{{ paquetesa.nombre }}</strong></h6>
+                              <h6>Duracion: {{ paquetesa.duracion }}</h6>
+                              <h6>Fecha de Inicio: {{ paquetesa.fechaInicio|date("d/m/Y") }}</h6>
+                              <h6>Fecha de Cierre: {{ paquetesa.fechaCierre|date("d/m/Y") }}</h6>
+                              <h6>Precio: ${{ paquetesa.preciototal|number_format( 0,'', '.') }}</h6>
+                              <h6>Estado: {{ paquetesa.estado }}</h6>
+                            <p>
+                            <a href="{{ path('paquete_verdetallesgerente', { 'id': paquetesa.idpaqueteTuristico }) }}" class="btn btn-sm btn-primary"> Ver Detalles </a>         
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+
+
+
+              
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,52 @@
+{% extends '::frontenda.html.twig' %}
+
+
+{% block title %}{{ accion == 'crear'? 'Añadir un nuevo paquete': 'Modificar el paquete ' ~ paquete.nombre }}{% endblock %}
+
+
+
+{% block article %}
+
+
+
+
+<div class="container sha well text-center ">
+
+  <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portada') }}">Paquetes Recientes</a></li>
+    <li class="active">{{ accion == 'crear'? 'Añadir un nuevo Paquete': 'Modificar el Paquete ' ~ paquete.nombre }}</li>
+  </ol>
+
+
+<br>
+<div class="col-sm-12 bg-primary">
+<h2> <span class="glyphicon glyphicon-plus"></span> Añadir un Nuevo Paquete :</h2>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br> 
+
+<div class="col-sm-12 ">
+<form class="form-horizontal" action="{{ accion == 'crear' ? path('nuevo_Paqueteadmin') : 
+path('paquete_editar', { 'id': paquete.idpaquete }) }}" method="post" {{ form_enctype(formulario) }}>
+
+    {{ form_errors(formulario) }}
+
+
+    {{ form_widget(formulario) }}
+    <br>
+
+   <input class="btn btn-lg btn-primary " type="submit" name="" value="Crear nuevo Paquete" />
+
+
+  {{ form_rest(formulario) }}
+
+</form>
+</div>
+
+</div>
+
+{% endblock %}
+

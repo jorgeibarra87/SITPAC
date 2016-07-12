@@ -1,0 +1,187 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Portada{% endblock %}
+
+
+
+{% block article %} 
+
+
+<div class="container sha well ">
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+
+
+{% if paquetes %}
+              <div class="row">
+                  <div class="col-xs-12 bg-primary">
+                  <h1><strong><i class="fa fa-search"></i> Buscar Paquetes:</strong></h1>
+                  <h4>
+                  <form class="form-inline" action="{{ path('portada') }}" method="post" {{ form_enctype(formulario) }}>
+                  
+                  <div class="form-group">
+                    <div class="bg-danger">{{ form_errors(formulario.municipiomunicipio) }}</div>
+                    <div class="col-sm-5 control-label" >{{ form_label(formulario.municipiomunicipio, 'Municipio:') }}</div>
+                    <div class="col-sm-6">
+                       {{ form_widget(formulario.municipiomunicipio, {'attr': {'class': 'form-control', 'placeholder': 'Elija un municipio'}})  }}
+                    </div>
+                  </div>
+
+                  <div class="form-group ">
+                    <div class="bg-danger">{{ form_errors(formulario.rangoPrecios) }}</div>
+                    <div class="col-sm-6 control-label text-right" >{{ form_label(formulario.rangoPrecios, 'Rango de Precios:') }}</div>
+                    <div class="col-sm-3 text-left">
+                       {{ form_widget(formulario.rangoPrecios, {'attr': {'class': 'form-control', 'placeholder': 'Elija un rango de precios'}})  }}
+                    </div>
+                  </div>
+                    
+                    <div class="form-group">
+                      <div class="col-sm-offset-6 col-sm-6">
+                    <button type="submit" class="btn btn-md btn-success "><i class="fa fa-search"></i> Buscar Paquetes</button>
+                        </div>
+                    </div>
+                    {{ form_rest(formulario) }}
+                  </form>
+                </h4>
+                  </div>
+
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                <div class="col-xs-12 bg-info">
+                  <h1>Informacion Turistica General : </h1>
+                </div>
+                
+                <div class="text-center">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/zbokauGV2b0" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="col-xs-12">
+                <a data-toggle="modal" class="btn btn-info col-xs-12 col-sm-3" href="{{ asset('bundles/frontend/estaticas/agenciasdeviaje.php') }}" data-target="#agenciasdeviaje"><i class="fa fa-map-marker"></i> Agencias de Viajes</a>
+
+                <a data-toggle="modal" class="btn btn-primary col-xs-12 col-sm-3" href="{{ asset('bundles/frontend/estaticas/sitiosdeinteres.php') }}" data-target="#sitiosdeinteres"><i class="fa fa-map-marker"></i> Sitios de interés</a>
+
+                <a data-toggle="modal" class="btn btn-info col-xs-12 col-sm-3" href="{{ asset('bundles/frontend/estaticas/iglesias.php') }}" data-target="#iglesias"><i class="fa fa-map-marker"></i> Iglesias</a>
+
+                <a data-toggle="modal" class="btn btn-primary col-xs-12 col-sm-3" href="{{ asset('bundles/frontend/estaticas/museos.php') }}" data-target="#museos"><i class="fa fa-map-marker"></i> Museos</a>
+                <br>
+                <br>
+                <a data-toggle="modal" class="btn btn-info col-xs-12 col-sm-3" href="{{ asset('bundles/frontend/estaticas/hoteles.php') }}" data-target="#hoteles"><i class="fa fa-map-marker"></i> Hoteles</a>
+
+                <a data-toggle="modal" class="btn btn-primary col-xs-12 col-sm-3" href="{{ asset('bundles/frontend/estaticas/restaurantes.php') }}" data-target="#restaurantes"><i class="fa fa-map-marker"></i> Restaurantes</a>
+
+                <a data-toggle="modal" class="btn btn-info col-xs-12 col-sm-3" href="{{ asset('bundles/frontend/estaticas/comidastipicas.php') }}" data-target="#comidastipicas"><i class="fa fa-map-marker"></i> Comidas Típicas</a>
+
+                <a data-toggle="modal" class="btn btn-primary col-xs-12 col-sm-3" href="{{ asset('bundles/frontend/estaticas/centroscomerciales.php') }}" data-target="#centroscomerciales"><i class="fa fa-map-marker"></i> Centros Comerciales</a>
+                </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="agenciasdeviaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- /.modal-dialog -->
+                </div> <!-- /.modal -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="sitiosdeinteres" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- /.modal-dialog -->
+                </div> <!-- /.modal -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="iglesias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- /.modal-dialog -->
+                </div> <!-- /.modal -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="museos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- /.modal-dialog -->
+                </div> <!-- /.modal -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="hoteles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- /.modal-dialog -->
+                </div> <!-- /.modal -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="restaurantes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- /.modal-dialog -->
+                </div> <!-- /.modal -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="comidastipicas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- /.modal-dialog -->
+                </div> <!-- /.modal -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="centroscomerciales" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div> <!-- /.modal-content -->
+                    </div> <!-- /.modal-dialog -->
+                </div> <!-- /.modal -->
+                  
+
+                  <div class="col-xs-12 bg-info">
+                  <h1>Paquetes Recientes : <a href="{{ path('vermas_paquetesr') }}" class="btn btn-md btn-success "><span class="glyphicon glyphicon-eye-open"></span> Ver Mas </a>
+                  
+                  {#<a href="{{ path('prueba_reporte') }}"  class="btn btn-md btn-warning "><span class="glyphicon glyphicon-eye-open"></span> Prueba Reporte </a>#}
+
+                  </h1>
+                  </div> 
+        
+                  {% for paquetes in paquetes %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/paquetes/' ~ paquetes.foto) }}" alt="imagen" class="thumbnail" style="height: 150px;">
+                        <div class="caption">
+                              <h3>{{ paquetes.nombre }}</h3>
+                              <p>Descripcion: {{ paquetes.descripcion[0:100] }}...</p>
+                            <p>
+                            <a href="{{ path('paquete_verdetalles_cliente', { 'id': paquetes.idpaqueteTuristico }) }}" class="btn btn-primary"> Detalles </a>
+                            <a href="{{ path('reserva_nueva', { 'paquete': paquetes.idpaqueteTuristico }) }}" class="btn btn-success"> Reservar </a>         
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+              </div>
+              {% endif %}
+
+
+
+</div>
+ {% endblock %}
+
+	

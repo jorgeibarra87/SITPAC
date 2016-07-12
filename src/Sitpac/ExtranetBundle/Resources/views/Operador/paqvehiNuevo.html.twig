@@ -1,0 +1,231 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/frontend/css/bootstrap.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/css/misestilos.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css') }}" type="text/css" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}Añadir un nuevo Servicio Vehiculo{% endblock %}
+
+
+
+{% block article %}
+
+
+
+
+<div class="container sha well text-center ">
+
+  <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadao') }}">Portada Operador</a></li>
+    <li><a href="{{ path('mis_Paquetesso') }}">Paquetes Solicitados Operador</a></li>
+    <li><a href="{{ path('servicios_addo',{'id':paquete}) }}">Añadir Servicios al Paquete</a></li>
+    <li><a href="javascript:history.go(-1)">Regresar</a></li>
+    <li class="active">Añadir un nuevo Servicio Vehiculo</li>
+  </ol>
+
+<div class="col-sm-12 bg-primary">
+<h2> <span class="glyphicon glyphicon-plus"></span> Añadir un Nuevo Servicio Vehiculo :</h2>
+</div>
+ 
+
+<div class="row col-sm-12 ">
+<form class="form-horizontal" action="{{ path('paqvehiadd', { 'paquete': paquete, 'vehiculo': vehiculo }) }}" method="post" {{ form_enctype(formulario) }}>
+
+    {{ form_errors(formulario) }}
+
+
+    <fieldset>
+
+    <div class="row col-sm-6 ">
+
+    <div class="col-sm-12 bg-info">
+    <div class="thumbnail" >
+    <h1><strong>Mi Paquete:</strong></h1>
+    <h4> Nombre : {{paquet.nombre}} </h4> <h4> Precio : ${{paquet.preciototal|number_format( 0,'', '.')}} </h4>
+    <h5>Fecha de inicio del paquete: {{paquet.fechaInicio|date("m/d/Y")}}</h5>
+    <h5>Fecha de cierre del paquete: {{paquet.fechaCierre|date("m/d/Y")}}</h5>
+    </div>
+    </div>
+
+    <div class="col-sm-12 bg-info">
+      <div class="thumbnail" >
+    <h1><strong>Servicio:</strong></h1>
+    <div class="col-sm-2 thumbnail" ><img src="{{ asset('uploads/images/vehiculo/' ~ vehi.foto) }}" /></div>
+    <h4> Tipo: {{vehi.tipo}}</h4> <h4>Origen: {{vehi.origen}} | Destino: {{vehi.destino}}</h4> <h4> Precio : ${{vehi.precio|number_format( 0,'', '.')}} </h4>
+    </div>
+    </div>
+
+    </div>
+
+    <div class="row col-sm-6 text-center">
+
+<div class="alert alert-warning" role="alert"><strong>Informacion : </strong> Las fechas estan deshabilitadas en base a la duracion del paquete y a la disponibilidad del servicio</div>
+
+   <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.duracion) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.duracion, 'Duracion en Días:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.duracion, {'attr': {'class': 'form-control', 'placeholder': 'Numero de Días'}})  }}
+      </div>
+    </div>
+
+   <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.fechaInicio) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.fechaInicio, 'Fecha de Inicio:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.fechaInicio, {'attr': {'class': 'form-control', 'placeholder': 'Dia en base a la duracion del paquete'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.fechaFin) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.fechaFin, 'Fecha de Fin:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.fechaFin, {'attr': {'class': 'form-control', 'placeholder': 'Dias en base a la duracion del paquete'}})  }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.descuento) }}</div>
+      <div class="col-sm-5 control-label" >{{ form_label(formulario.descuento, 'Porcentaje Descuento:') }}</div>
+      <div class="col-sm-7">
+         {{ form_widget(formulario.descuento, {'attr': {'class': 'form-control', 'placeholder': 'Descuento promocional'}})  }}
+      </div>
+    </div>
+
+    
+    </fieldset>
+   
+    <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-md btn-primary " type="submit" name="" value=" Agregar nuevo Servicio Vehiculo " />
+    </div>
+  </div>
+
+  {{ form_rest(formulario) }}
+
+</form>
+</div>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/jquery-1.11.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('//code.jquery.com/jquery-1.10.2.js') }}"></script>
+<script type="text/javascript" src="{{ asset('//code.jquery.com/ui/1.11.4/jquery-ui.js') }}"></script>
+
+<script>
+
+
+var desde = {{ desde|json_encode|raw }};
+var hasta = {{ hasta|json_encode|raw }};
+var arreglofechas;
+for(var i in desde){
+   arreglofechas='"'+desde[0] +','+ hasta[0];
+   arreglofechas2='"'+desde[1] +','+ hasta[1];
+   arreglofechas3='"'+desde[2] +','+ hasta[2];
+   arreglofechas4='"'+desde[3] +','+ hasta[3];
+   arreglofechas5='"'+desde[4] +','+ hasta[4];
+   arreglofechas6='"'+desde[5] +','+ hasta[5];
+   arreglofechas7='"'+desde[6] +','+ hasta[6];
+   arreglofechas8='"'+desde[7] +','+ hasta[7];
+   arreglofechas9='"'+desde[8] +','+ hasta[8];
+   arreglofechas10='"'+desde[9] +','+ hasta[9];
+   arreglofechas11='"'+desde[10] +','+ hasta[10];
+   arreglofechas12='"'+desde[11] +','+ hasta[11];
+   arreglofechas13='"'+desde[12] +','+ hasta[12];
+   arreglofechas14='"'+desde[13] +','+ hasta[13];
+   arreglofechas15='"'+desde[14] +','+ hasta[14];
+   arreglofechas16='"'+desde[15] +','+ hasta[15];
+   arreglofechas17=arreglofechas+','+arreglofechas2+','+arreglofechas3+','+arreglofechas4+','+arreglofechas5+','+arreglofechas6+','+arreglofechas7+','+arreglofechas8+','+arreglofechas9+','+arreglofechas10+','+arreglofechas11+','+arreglofechas12+','+arreglofechas13+','+arreglofechas14+','+arreglofechas15+','+arreglofechas16;
+
+var array=arreglofechas17.split('"');
+
+}
+
+
+var RangeDates = array;
+var RangeDatesIsDisable = true;
+function DisableDays(date) {
+    var isd = RangeDatesIsDisable;
+    var rd = RangeDates;
+    var m = date.getMonth();
+    var d = date.getDate();
+    var y = date.getFullYear();
+    for (i = 0; i < rd.length; i++) {
+        var ds = rd[i].split(',');
+        var di, df;
+        var m1, d1, y1, m2, d2, y2;
+
+        if (ds.length == 1) {
+            di = ds[0].split('/');
+            m1 = parseInt(di[0]);
+            d1 = parseInt(di[1]);
+            y1 = parseInt(di[2]);
+            if (y1 == y && m1 == (m + 1) && d1 == d) return [!isd];
+        } else if (ds.length > 1) {
+            di = ds[0].split('/');
+            df = ds[1].split('/');
+            m1 = parseInt(di[0]);
+            d1 = parseInt(di[1]);
+            y1 = parseInt(di[2]);
+            m2 = parseInt(df[0]);
+            d2 = parseInt(df[1]);
+            y2 = parseInt(df[2]);
+
+            if (y1 >= y || y <= y2) {
+                if ((m + 1) >= m1 && (m + 1) <= m2) {
+                    if (m1 == m2) {
+                        if (d >= d1 && d <= d2) return [!isd];
+                    } else if (m1 == (m + 1)) {
+                        if (d >= d1) return [!isd];
+                    } else if (m2 == (m + 1)) {
+                        if (d <= d2) return [!isd];
+                    } else return [!isd];
+                }
+            }
+        }
+    }
+    return [isd];
+}
+ 
+
+</script>
+
+<script>
+var minimo = {{ paquet.fechaInicio|date("Y/m/d")|json_encode|raw }};
+var maximo = {{ paquet.fechaCierre|date("Y/m/d")|json_encode|raw }};
+
+
+$('#sitpac_frontendbundle_serviciopaqvehitype_fechaInicio').datepicker({
+    dateFormat: 'yy-mm-dd',
+    maxDate: new Date(maximo),
+    minDate: new Date(minimo),
+    beforeShowDay: DisableDays
+});
+</script>
+
+<script>
+var minimo = {{ paquet.fechaInicio|date("Y/m/d")|json_encode|raw }};
+var maximo = {{ paquet.fechaCierre|date("Y/m/d")|json_encode|raw }};
+
+$('#sitpac_frontendbundle_serviciopaqvehitype_fechaFin').datepicker({
+    dateFormat: 'yy-mm-dd',
+    maxDate: new Date(maximo),
+    minDate: new Date(minimo),
+    beforeShowDay: DisableDays
+});
+</script>
+
+{% endblock %}

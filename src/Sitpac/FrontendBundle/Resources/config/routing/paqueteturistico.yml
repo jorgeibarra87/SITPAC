@@ -1,0 +1,30 @@
+paquete:
+    pattern:  /
+    defaults: { _controller: "FrontendBundle:PaqueteTuristico:index" }
+
+paquete_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "FrontendBundle:PaqueteTuristico:show" }
+
+paquete_new:
+    pattern:  /new
+    defaults: { _controller: "FrontendBundle:PaqueteTuristico:new" }
+
+paquete_create:
+    pattern:  /create
+    defaults: { _controller: "FrontendBundle:PaqueteTuristico:create" }
+    requirements: { _method: post }
+
+paquete_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "FrontendBundle:PaqueteTuristico:edit" }
+
+paquete_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "FrontendBundle:PaqueteTuristico:update" }
+    requirements: { _method: post }
+
+paquete_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "FrontendBundle:PaqueteTuristico:delete" }
+    requirements: { _method: post }

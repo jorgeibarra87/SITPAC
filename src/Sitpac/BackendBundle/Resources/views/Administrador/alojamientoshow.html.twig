@@ -1,0 +1,84 @@
+{% extends '::frontenda.html.twig' %}
+{% block title %}Portada{% endblock %}
+
+
+
+{% block article %} 
+
+
+<div class="container sha well ">
+
+
+        <a href="{{ path('todoslosserviciosalojamiento') }}" class="col-sm-2 btn btn-sm btn-success">
+            Lista de Alojamientos
+        </a>
+
+        <a href="{{ path('alojamiento_edit', { 'id': entity.idservicioAlojamiento }) }}" class="col-sm-2 btn btn-sm btn-primary">
+            Editar
+        </a>
+
+        <form action="{{ path('alojamiento_delete', { 'id': entity.idservicioAlojamiento }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="col-sm-2 btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Esta seguro que desea borrar este alojamiento?');">Borrar</button>
+        </form>
+ 
+
+<h1 class="col-sm-12 bg-primary">Alojamiento</h1>
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.idservicioAlojamiento }}</td>
+        </tr>
+        <tr>
+            <th>Codigo Alojamiento</th>
+            <td>{{ entity.codigoAlojamiento }}</td>
+        </tr>
+        <tr>
+            <th>Tipo Alojamiento</th>
+            <td>{{ entity.tipoAlojamiento }}</td>
+        </tr>
+        <tr>
+            <th>Precio</th>
+            <td>{{ entity.precio }}</td>
+        </tr>
+        <tr>
+            <th>Foto</th>
+            <td>{{ entity.foto }}</td>
+        </tr>
+        <tr>
+            <th>Detalles</th>
+            <td>{{ entity.detalles }}</td>
+        </tr>
+        <tr>
+            <th>Fechacreacion</th>
+            <td>{{ entity.fechaCreacion|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Estado</th>
+            <td>{{ entity.estado }}</td>
+        </tr>
+        <tr>
+            <th>Producto</th>
+            <td>{{ entity.productoproducto }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+        <a href="{{ path('todoslosserviciosalojamiento') }}" class="col-sm-2 btn btn-sm btn-success">
+            Lista de Alojamientos
+        </a>
+   
+        <a href="{{ path('alojamiento_edit', { 'id': entity.idservicioAlojamiento }) }}" class="col-sm-2 btn btn-sm btn-primary">
+            Editar
+        </a>
+   
+        <form action="{{ path('alojamiento_delete', { 'id': entity.idservicioAlojamiento }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="col-sm-2 btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Esta seguro que desea borrar este alojamiento?');">Borrar</button>
+        </form>
+ 
+</div>
+{% endblock %}

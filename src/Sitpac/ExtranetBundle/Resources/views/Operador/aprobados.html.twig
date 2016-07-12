@@ -1,0 +1,59 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Paquetes aprobados cliente{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadao') }}">Portada Operador</a></li>
+        <li class="active ">Paquetes aprobados cliente</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>TODOS LOS PAQUETES APROBADOS CLIENTE:</h2>
+            </div>
+                                           
+              {% if paquetesa %}
+              <div class="row">                
+
+                  {% for paquetesa in paquetesa %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <div class="caption">
+                              <h6><strong>{{ paquetesa.nombre }}</strong></h6>
+                              <h6>Duracion: {{ paquetesa.duracion }}</h6>
+                              <h6>Fecha de Inicio: {{ paquetesa.fechaInicio|date("d/m/Y") }}</h6>
+                              <h6>Fecha de Cierre: {{ paquetesa.fechaCierre|date("d/m/Y") }}</h6>
+                              <h6>Precio: ${{ paquetesa.preciototal|number_format( 0,'', '.') }}</h6>
+                              <h6>Estado: {{ paquetesa.estado }}</h6>
+                            <p>
+                            <a href="{{ path('paquete_verdetalles', { 'id': paquetesa.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Detalles </a>          
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagpaquetesa) }}
+                  </div>
+              </div>
+              {% endif %}                     
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}

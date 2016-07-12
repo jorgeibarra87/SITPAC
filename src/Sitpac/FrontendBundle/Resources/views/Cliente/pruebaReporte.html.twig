@@ -1,0 +1,67 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/frontend/css/bootstrap.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/frontend/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+{#<link href="{{ asset('/resources/demos/style.css') }}" type="text/css" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container-fluid ">
+
+              <div class="row">
+
+                <div class="col-xs-12 ">
+                  <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/frontend/img/logo.jpg') }}" alt="imagen" class="thumbnail" >
+                  </div>
+
+                  {% if paquetes == null %}
+                  <div class="col-xs-12 alert alert-warning text-justify">
+                    <h2><strong>No se obtuvieron  Paquetes.</strong> </h2>
+                  </div> 
+                  {% endif %} 
+
+                  {% if paquetes %}
+ 
+                  <div class="col-xs-12 bg-info">
+                  <h1>Paquetes Recientes: </h1>
+                  </div> 
+                 
+                  {% for paquetes in paquetes %}
+                  <div class="col-xs-6 ">
+                     <div class="thumbnail" >
+                        <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('uploads/images/paquetes/' ~ paquetes.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                        <div class="caption">
+                              <h3>{{ paquetes.nombre }}</h3>
+                              <p>Descripcion: {{ paquetes.descripcion[0:150] }}...</p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+              </div>
+              {% endif %}
+
+
+
+</div>
+ {% endblock %}
+
+
+
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/frontend/js/jquery-1.11.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/frontend/js/bootstrap.js') }}"></script>
+{% endblock %}
+
+	

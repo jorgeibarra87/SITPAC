@@ -1,0 +1,62 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Paquetes solicitados cliente{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadao') }}">Portada Operador</a></li>
+        <li class="active ">Paquetes solicitados cliente</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>TODOS LOS PAQUETES SOLICITADOS CLIENTE:</h2>
+            </div>
+ 
+                                           
+              {% if paquetess %}
+              <div class="row">                
+
+                  {% for paquetess in pagpaquetess %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <div class="caption">
+                              <h6><strong>{{ paquetess.nombre }}</strong></h6>
+                              <h6>Duracion: {{ paquetess.duracion }}</h6>
+                              <h6>Fecha de Inicio: {{ paquetess.fechaInicio|date("d/m/Y") }}</h6>
+                              <h6>Fecha de Cierre: {{ paquetess.fechaCierre|date("d/m/Y") }}</h6>
+                              <h6>Precio: ${{ paquetess.preciototal|number_format( 0,'', '.') }}</h6>
+                              <h6>Estado: {{ paquetess.estado }}</h6>
+                            <p>
+                            <a href="{{ path('paquete_verdetalles', { 'id': paquetess.idpaqueteTuristico }) }}" class="btn btn-sm btn-primary"> Ver Detalles </a>
+                            <a href="{{ path('paquete_apendiente', { 'id': paquetess.idpaqueteTuristico }) }}" class="btn btn-sm btn-success" onclick="return confirm('¿Esta seguro que desea cambiar el estado del paquete?');"> Cambiar Estado a Pendiente </a>          
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagpaquetess) }}
+                  </div>
+              </div>
+              {% endif %}                     
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

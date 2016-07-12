@@ -1,0 +1,58 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Zona Gerentes{% endblock %}
+
+
+
+{% block article %}
+
+
+
+
+
+<div class="container sha well text-center ">
+
+  <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portada') }}">Portada</a></li>
+    <li><a href="{{ path('zona_admin') }}">Zona Administracion</a></li>
+    <li class="active">Zona Gerente</li>
+  </ol> 
+
+<fieldset>
+<legend><div class="alert alert-danger"><h1><i class="fa fa-exclamation-triangle"></i> ZONA GERENTE:</h1></div></legend>
+
+<h3><span class="glyphicon glyphicon-user "></span> INICIAR SESION:</h3>  
+
+{% if error %}
+<div>{{ error.message }}</div>
+{% endif %}
+
+<form class="form-horizontal" action="{{ path('gerente_login_check') }}" method="post">
+  <div class="form-group">
+    <label for="username" class="col-sm-3 control-label" >Usuario:</label>
+    <div class="col-sm-6">
+      <input  class="form-control" id="username" name="_username"
+          value="{{ last_username }}" placeholder="Login" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-3 control-label">Contraseña:</label>
+    <div class="col-sm-6">
+      <input type="password" class="form-control" id="password" name="_password" placeholder="Password" />
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-lg btn-danger " type="submit" name="login" value="   Acceder  " />
+    </div>
+  </div>
+</form>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+</fieldset>
+
+
+
+{% endblock %}
+

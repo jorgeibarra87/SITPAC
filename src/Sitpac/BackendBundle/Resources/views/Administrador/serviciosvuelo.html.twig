@@ -1,0 +1,78 @@
+{% extends '::frontenda.html.twig' %}
+
+{% block title %}Administracion Servicios Vuelo{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadaa') }}">Home</a></li>
+        <li class="active ">Administracion Servicios Vuelo </li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>Administracion Servicios Vuelo:</h2> 
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                                          
+              {% if serviciosvuelo %}
+              <div class="row">                
+
+                  <a href="{{ path('vuelo_new') }}" class="btn btn-lg btn-success"> Crear Nuevo</a>
+                  <br>
+                  <br>
+                  <br>
+
+                    
+                    <table class="table table-striped">
+
+                      <thead>
+                        <tr class="info">
+                          <th>Compañia Vuelo</th>
+                          <th>Precio Servicio</th>
+                          <th>Detalles</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for serviciosvuelo in serviciosvuelo %}
+                        <tr>
+                          <td>{{ serviciosvuelo.compania }}</td>
+                          <td>${{ serviciosvuelo.precio|number_format( 0,'', '.') }}</td>
+                          <td>{{ serviciosvuelo.detalles[0:100] }}...</td>
+                          
+                          <td>
+                           <a href="{{ path('vuelo_show', { 'id': serviciosvuelo.idservicioVuelo }) }}" class="btn btn-sm btn-success"> Ver </a>
+                           
+                           <a href="{{ path('vuelo_edit', { 'id': serviciosvuelo.idservicioVuelo }) }}" class="btn btn-sm btn-primary">Editar
+                           </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %}                     
+
+</div>
+
+
+
+
+{% endblock %}

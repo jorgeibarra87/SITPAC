@@ -1,0 +1,144 @@
+
+{% extends '::frontenda.html.twig' %}
+{% block title %}Portada{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+
+<ul class="record_actions">
+ 		<div class="col-sm-12 text-right">   
+        <a class="btn btn-sm btn-success" href="{{ path('portadaa') }}">
+            Lista de Paquetes
+        </a>
+        </div>
+</ul> 
+
+<h1 class="col-xs-12 bg-primary">Crear Paquete Turistico</h1>
+
+<div class="col-sm-12 ">
+<form class="form-horizontal" action="{{ path('paquete_create') }}" method="post" {{ form_enctype(form) }}>
+     {{ form_errors(form) }}
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.nombre) }}</div>
+        <div class="bg-danger">{{ form_errors(form.nombre) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.nombre) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.foto) }}</div>
+        <div class="bg-danger">{{ form_errors(form.foto) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.foto) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.preciototal) }}</div>
+        <div class="bg-danger">{{ form_errors(form.preciototal) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.preciototal) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.creadocliente) }}</div>
+        <div class="bg-danger">{{ form_errors(form.creadocliente) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.creadocliente) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.creador) }}</div>
+        <div class="bg-danger">{{ form_errors(form.creador) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.creador) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.descripcion) }}</div>
+        <div class="bg-danger">{{ form_errors(form.descripcion) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.descripcion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.detalles) }}</div>
+        <div class="bg-danger">{{ form_errors(form.detalles) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.detalles) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.duracion) }}</div>
+        <div class="bg-danger">{{ form_errors(form.duracion) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.duracion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.fechaInicio) }}</div>
+        <div class="bg-danger">{{ form_errors(form.fechaInicio) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.fechaInicio) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.estado) }}</div>
+        <div class="bg-danger">{{ form_errors(form.estado) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.estado) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.plazas) }}</div>
+        <div class="bg-danger">{{ form_errors(form.plazas) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.plazas) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.reservas) }}</div>
+        <div class="bg-danger">{{ form_errors(form.reservas) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.reservas) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.fechaCreacion) }}</div>
+        <div class="bg-danger">{{ form_errors(form.fechaCreacion) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.fechaCreacion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.fechaCierre) }}</div>
+        <div class="bg-danger">{{ form_errors(form.fechaCierre) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.fechaCierre) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.fechaExpiracion) }}</div>
+        <div class="bg-danger">{{ form_errors(form.fechaExpiracion) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.fechaExpiracion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.observaciones) }}</div>
+        <div class="bg-danger">{{ form_errors(form.observaciones) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.observaciones) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.municipiomunicipio) }}</div>
+        <div class="bg-danger">{{ form_errors(form.municipiomunicipio) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.municipiomunicipio) }}</div>
+    </div>
+
+
+    <p>
+        <div class="col-sm-12 text-center"><button class="btn btn-lg btn-primary" type="submit">Crear</button></div>
+    </p>
+{{ form_rest(form) }}
+</form>
+</div>
+
+<ul class="record_actions">
+ 		<div class="col-sm-12 text-right">   
+        <a class="btn btn-sm btn-success" href="{{ path('portadaa') }}">
+            Lista de Paquetes
+        </a>
+        </div>
+</ul>
+
+</div>
+{% endblock %}

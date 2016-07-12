@@ -1,0 +1,94 @@
+{% extends '::frontendg.html.twig' %}
+
+{% block title %}Detalles Reserva{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadag') }}">Portada Gerente</a></li>
+        <li class="active ">Detalles Reserva</li>
+        <a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+<div class="col-sm-12 bg-primary">
+<h2><strong>DETALLES RESERVA:</strong></h2>
+</div>
+     
+ <div class="row col-sm-6 ">
+<div class="thumbnail">
+<p><B>Nombre del Paquete:</B>{{ reserva.nombrePaquete }}</p>
+<p><B>Descripcion Paquete:</B> {{ reserva.descripcion }}</p>
+<p><B>Fecha de Inicio del Paquete:</B> {{ reserva.fechaInicio|date("m/d/Y") }}</p>
+<p><B>Fecha de Cierre del Paquete:</B> {{ reserva.fechaCierre|date("m/d/Y") }}</p>
+<p><B>Precio del Paquete:</B> ${{ reserva.precioPaquete|number_format( 0,'', '.') }} </p>             
+</div>
+</div>
+
+<div class="row col-sm-6 text-center">
+<div class="thumbnail">
+<p><B>Cliente:</B> {{ reserva.nombreCliente }}</p>
+<p><B>Origen:</B> {{ reserva.origen }}</p>
+<p><B>Numero Adultos:</B> {{ reserva.adultos }}</p>
+<p><B>Numero Niños:</B> {{ reserva.ninos }}</p>
+<p><B>Duracion:</B> {{ reserva.duracion }} días</p>
+<p><B>Fecha de Reserva:</B> {{ reserva.fechaReservado|date("m/d/Y") }}</p>
+<p><B>Fecha de Expiracion:</B> {{ reserva.fechaExpiracion|date("m/d/Y") }}</p>
+<p><B>Precio Total Reserva:</B> ${{ reserva.precioTotal|number_format( 0,'', '.') }} </p>
+<p><B>Estado:</B> {{ reserva.estado }}</p>   
+</div>
+</div>
+
+<div class="row col-sm-12 ">
+
+<div class="col-sm-12 bg-primary" >
+<h2>INTINERARIO DE SERVICIOS:</h2> 
+</div>
+<table class="table table-striped">
+
+  <thead>
+    <tr class="success">
+      <th>Nombre Producto</th>
+      <th>Nombre Servicio</th>
+      <th>Detalles Servicio</th>
+      <th>Duracion</th>
+      <th>Fecha Inicio</th>
+      <th>Fecha Fin</th>
+      <th>Descuento</th>
+      <th>Precio Servicio</th>
+    </tr>
+   </thead>
+
+  <tbody>
+    {% for intinerario in intinerario %}
+    <tr>
+      <td>{{ intinerario.nombreProducto }}</td>
+      <td>{{ intinerario.nombreServicio }}</td>
+      <td  align="justify">{{ intinerario.detalles }}</td>
+      <td>{{ intinerario.duracion }}</td>
+      <td>{{ intinerario.fechaInicio|date("m/d/Y") }}</td>
+      <td>{{ intinerario.fechaFin|date("m/d/Y") }}</td>
+      <td>{{ intinerario.descuento }}</td>
+      <td>${{ intinerario.precioServicio|number_format( 0,'', '.') }}</td>    
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+
+</div> 
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+
+</div>
+
+{% endblock %}

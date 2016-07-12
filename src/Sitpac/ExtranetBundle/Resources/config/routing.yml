@@ -1,0 +1,547 @@
+proveedor_login:
+    pattern: proveedor/login
+    defaults: { _controller: ExtranetBundle:Proveedor:login }
+
+proveedor_login_check:
+    pattern: proveedor/login_check
+
+proveedor_logout:
+    pattern: proveedor/logout
+
+
+proveedor_registro:
+    pattern: proveedor/registro
+    defaults: { _controller: ExtranetBundle:Proveedor:registro }
+
+
+proveedor_perfil:
+    pattern: proveedor/perfil
+    defaults: { _controller: ExtranetBundle:Proveedor:perfil }
+
+proveedor_login:
+    pattern: proveedor/login
+    defaults: { _controller: ExtranetBundle:Proveedor:login }
+
+
+reservas_servicios:
+    pattern: proveedor/reservasservicios
+    defaults: { _controller: ExtranetBundle:Proveedor:reservasservicios}
+
+detalles_reservaservicios:
+    pattern: proveedor/detallesreservaservicios/{id}
+    defaults: { _controller: ExtranetBundle:Proveedor:detallesreservaservicios}
+
+ventas_servicios:
+    pattern: proveedor/ventasservicios
+    defaults: { _controller: ExtranetBundle:Proveedor:ventasservicios}
+
+detalles_ventasservicios:
+    pattern: proveedor/detallesventasservicios/{id}
+    defaults: { _controller: ExtranetBundle:Proveedor:detallesventasservicios}
+
+
+retirar_proveedor:
+    pattern: proveedor/retirar
+    defaults: { _controller: ExtranetBundle:Proveedor:retirar }
+
+actualizar_retirar_producto:
+    pattern: proveedor/producto/actualizaretira
+    defaults: { _controller: ExtranetBundle:Producto:actualizaRetira }
+
+
+actualizar_retirar_servicios:
+    pattern: proveedor/servicios/actualizaretira/{id}
+    defaults: { _controller: ExtranetBundle:Producto:actualizaRetiraServicio }
+
+actualizar_producto:
+    pattern: proveedor/actualizar/producto/{id}
+    defaults: { _controller: ExtranetBundle:Producto:actualizarProducto }
+
+retirar_producto:
+    pattern: proveedor/retirar/producto/{id}
+    defaults: { _controller: ExtranetBundle:Producto:retirarProducto }
+
+
+actualizar_alojamiento:
+    pattern: proveedor/actualizar/alojamiento/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:actualizarAlojamiento }
+
+retirar_alojamiento:
+    pattern: proveedor/retirar/alojamiento/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:retirarAlojamiento }
+
+actualizar_alimentacion:
+    pattern: proveedor/actualizar/alimentacion/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:actualizarAlimentacion }
+
+retirar_alimentacion:
+    pattern: proveedor/retirar/alimentacion/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:retirarAlimentacion }
+
+actualizar_excursion:
+    pattern: proveedor/actualizar/excursion/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:actualizarExcursion }
+
+retirar_excursion:
+    pattern: proveedor/retirar/excursion/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:retirarExcursion }
+
+actualizar_vehiculo:
+    pattern: proveedor/actualizar/vehiculo/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:actualizarVehiculo }
+
+retirar_vehiculo:
+    pattern: proveedor/retirar/vehiculo/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:retirarVehiculo }
+
+actualizar_vuelo:
+    pattern: proveedor/actualizar/vuelo/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:actualizarVuelo }
+
+retirar_vuelo:
+    pattern: proveedor/retirar/vuelo/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:retirarVuelo }
+
+
+portadap:
+    pattern: proveedor/producto
+    defaults: { _controller: ExtranetBundle:Producto:ver }
+
+producto_verdetalles:
+    pattern: proveedor/producto/detalles/{id}
+    defaults: { _controller: ExtranetBundle:Producto:detalles }
+
+producto_vermasaloj:
+    pattern: proveedor/producto/vermasalojamiento/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasAlojamiento }
+
+producto_vermasalim:
+    pattern: proveedor/producto/vermasalimentacion/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasAlimentacion }
+
+producto_vermasexcu:
+    pattern: proveedor/producto/vermasexcursion/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasExcursion }
+
+producto_vermasvehi:
+    pattern: proveedor/producto/vermasvehiculo/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasVehiculo }
+
+producto_vermasvuel:
+    pattern: proveedor/producto/vermasvuelo/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasVuelo }
+
+
+
+producto_vermasalojs:
+    pattern: proveedor/producto/vermasalojamientos/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasAlojamientos }
+
+producto_vermasalims:
+    pattern: proveedor/producto/vermasalimentacions/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasAlimentacions }
+
+producto_vermasexcus:
+    pattern: proveedor/producto/vermasexcursions/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasExcursions }
+
+producto_vermasvehis:
+    pattern: proveedor/producto/vermasvehiculos/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasVehiculos }
+
+producto_vermasvuels:
+    pattern: proveedor/producto/vermasvuelos/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vermasVuelos }
+
+
+
+
+producto_nuevo:
+    pattern: proveedor/producto/nuevo
+    defaults: { _controller: ExtranetBundle:Producto:productoNuevo }
+
+producto_editar:
+    pattern: proveedor/producto/editar/{id}
+    defaults: { _controller: ExtranetBundle:Producto:productoEditar }
+
+producto_enviar_solicitud:
+    pattern: proveedor/producto/enviar/{id}
+    defaults: { _controller: ExtranetBundle:Producto:productoEnviarSolicitud }
+
+
+ver_todassolicitudes:
+    pattern: proveedor/producto/versolicitudes
+    defaults: { _controller: ExtranetBundle:Producto:verTodasSolicitudes }
+
+
+vermas_solicitudes:
+    pattern: proveedor/producto/vermassolicitudes/{id}
+    defaults: { _controller: ExtranetBundle:Producto:vermasSolicitudes }
+
+
+
+limpiar_disponibilidad:
+    pattern: proveedor/producto/limpiardisponiblilidad/{id}/{tipo}
+    defaults: { _controller: ExtranetBundle:Producto:LimpiarDisponibilidad }
+
+
+disponible_Alojamiento:
+    pattern: proveedor/producto/disponible/alojamiento/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:alojamientoDisponible }
+
+disponible_Alimentacion:
+    pattern: proveedor/producto/disponible/alimentacion/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:alimentacionDisponible }
+
+disponible_Excursion:
+    pattern: proveedor/producto/disponible/excursion/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:excursionDisponible }
+
+disponible_Vehiculo:
+    pattern: proveedor/producto/disponible/vehiculo/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vehiculoDisponible }
+
+disponible_Vuelo:
+    pattern: proveedor/producto/disponible/vuelo/{id}/{producto}
+    defaults: { _controller: ExtranetBundle:Producto:vueloDisponible }
+
+
+
+
+nuevo_Alojamiento:
+    pattern: proveedor/producto/alojamiento/{id}
+    defaults: { _controller: ExtranetBundle:Producto:alojamientoNuevo }
+
+nuevo_Alimentacion:
+    pattern: proveedor/producto/alimentacion/{id}
+    defaults: { _controller: ExtranetBundle:Producto:alimentacionNuevo }
+
+nuevo_Excursion:
+    pattern: proveedor/producto/excursion/{id}
+    defaults: { _controller: ExtranetBundle:Producto:excursionNuevo }
+
+nuevo_Vehiculo:
+    pattern: proveedor/producto/vehiculo/{id}
+    defaults: { _controller: ExtranetBundle:Producto:vehiculoNuevo }
+
+nuevo_Vuelo:
+    pattern: proveedor/producto/vuelo/{id}
+    defaults: { _controller: ExtranetBundle:Producto:vueloNuevo }
+
+
+quitar_servicioalojamiento:
+    pattern: proveedor/producto/quitaralojamiento/{id}
+    defaults: { _controller: ExtranetBundle:Producto:quitarServicioAlojamiento }
+
+quitar_servicioalimentacion:
+    pattern: proveedor/producto/quitaralimentacion/{id}
+    defaults: { _controller: ExtranetBundle:Producto:quitarServicioAlimentacion }
+
+quitar_servicioexcursion:
+    pattern: proveedor/producto/quitarexcursion/{id}
+    defaults: { _controller: ExtranetBundle:Producto:quitarServicioExcursion }
+
+quitar_serviciovehiculo:
+    pattern: proveedor/producto/quitarvehiculo/{id}
+    defaults: { _controller: ExtranetBundle:Producto:quitarServicioVehiculo }
+
+quitar_serviciovuelo:
+    pattern: proveedor/producto/quitarvuelo/{id}
+    defaults: { _controller: ExtranetBundle:Producto:quitarServicioVuelo }
+
+
+
+reiniciar_disponibilidadaloj:
+    pattern: proveedor/producto/reiniciardispaloj/{id}
+    defaults: { _controller: ExtranetBundle:Producto:reiniciarDispAloj }
+
+
+reiniciar_disponibilidadalim:
+    pattern: proveedor/producto/reiniciardispalim/{id}
+    defaults: { _controller: ExtranetBundle:Producto:reiniciarDispAlim }
+
+
+reiniciar_disponibilidadexcu:
+    pattern: proveedor/producto/reiniciardispexcu/{id}
+    defaults: { _controller: ExtranetBundle:Producto:reiniciarDispExcu }
+
+
+reiniciar_disponibilidadvehi:
+    pattern: proveedor/producto/reiniciardispvehi/{id}
+    defaults: { _controller: ExtranetBundle:Producto:reiniciarDispVehi }
+
+
+reiniciar_disponibilidadvuel:
+    pattern: proveedor/producto/reiniciardispvuel/{id}
+    defaults: { _controller: ExtranetBundle:Producto:reiniciarDispVuel }
+
+
+producto_ventas:
+    pattern: /oferta/ventas/{id}
+    defaults: { _controller: ExtranetBundle:Producto:productoVentas }
+
+
+
+operador_login:
+    pattern: operador/login
+    defaults: { _controller: ExtranetBundle:Operador:login }
+
+operador_login_check:
+    pattern: operador/login_check
+
+operador_logout:
+    pattern: operador/logout
+
+portadao:
+    pattern: operador/portada
+    defaults: { _controller: ExtranetBundle:Operador:portadaOperador }
+
+paquete_verdetalles:
+    pattern: operador/paquete/detalles/{id}
+    defaults: { _controller: ExtranetBundle:Operador:detallesPaquetes }
+
+paquete_verdetalleso:
+    pattern: operador/paquete/detalleso/{id}
+    defaults: { _controller: ExtranetBundle:Operador:detallesPaqueteso }
+
+todos_solicitados:
+    pattern: operador/todossolicitados
+    defaults: { _controller: ExtranetBundle:Operador:solicitados }
+
+todos_pendientes:
+    pattern: operador/todospendientes
+    defaults: { _controller: ExtranetBundle:Operador:pendientes }
+
+todos_aprobados:
+    pattern: operador/todosaprobados
+    defaults: { _controller: ExtranetBundle:Operador:aprobados }
+
+
+paquete_apendiente:
+    pattern: operador/paquete/apendiente/{id}
+    defaults: { _controller: ExtranetBundle:Operador:cambiarpaqaPendiente }
+
+
+proveedores_solicitados:
+    pattern: operador/proveedores/solicitados
+    defaults: { _controller: ExtranetBundle:Operador:provsolicitados }
+
+proveedores_pendientes:
+    pattern: operador/proveedores/pendientes
+    defaults: { _controller: ExtranetBundle:Operador:provpendientes }
+
+proveedores_aprobados:
+    pattern: operador/proveedores/aprobados
+    defaults: { _controller: ExtranetBundle:Operador:provaprobados }
+
+proveedor_apendiente:
+    pattern: operador/proveedores/proveedorapendiente/{id}
+    defaults: { _controller: ExtranetBundle:Operador:cambiaraPendiente }
+
+
+productos_solicitados:
+    pattern: operador/productos/solicitados
+    defaults: { _controller: ExtranetBundle:Operador:prodsolicitados }
+
+productos_pendientes:
+    pattern: operador/productos/pendientes
+    defaults: { _controller: ExtranetBundle:Operador:prodpendientes }
+
+productos_aprobados:
+    pattern: operador/productos/aprobados
+    defaults: { _controller: ExtranetBundle:Operador:prodaprobados }
+
+producto_apendiente:
+    pattern: operador/producto/apendiente/{id}
+    defaults: { _controller: ExtranetBundle:Operador:cambiaraprodaPendiente }
+
+
+producto_operador_verdetalles:
+    pattern: operador/producto/detalles/{id}
+    defaults: { _controller: ExtranetBundle:Operador:detallesproducto }
+
+
+ver_servicioaloj:
+    pattern: operador/paquete/servicioaloj/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verservicioaloj }
+
+ver_servicioalim:
+    pattern: operador/paquete/servicioalim/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verservicioalim }
+
+ver_servicioexcu:
+    pattern: operador/paquete/servicioexcu/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verservicioexcu }
+
+ver_serviciovehi:
+    pattern: operador/paquete/serviciovehi/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verserviciovehi }
+
+ver_serviciovuel:
+    pattern: operador/paquete/serviciovuel/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verserviciovuel }
+
+
+
+
+verservicioaloj:
+    pattern: operador/paqueteo/servicioaloj/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verservicioalojoperador }
+
+verservicioalim:
+    pattern: operador/paqueteo/servicioalim/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verservicioalimoperador }
+
+verservicioexcu:
+    pattern: operador/paqueteo/servicioexcu/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verservicioexcuoperador }
+
+verserviciovehi:
+    pattern: operador/paqueteo/serviciovehi/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verserviciovehioperador }
+
+verserviciovuel:
+    pattern: operador/paqueteo/serviciovuel/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: ExtranetBundle:Operador:verserviciovueloperador }
+
+
+
+
+alojamiento_operador_vermas:
+    pattern: operador/alojamiento/vermas/{id}
+    defaults: { _controller: ExtranetBundle:Operador:vermasAlojamiento }
+
+
+alimentacion_operador_vermas:
+    pattern: operador/alimentacion/vermas/{id}
+    defaults: { _controller: ExtranetBundle:Operador:vermasAlimentacion }
+
+
+excursion_operador_vermas:
+    pattern: operador/excursion/vermas/{id}
+    defaults: { _controller: ExtranetBundle:Operador:vermasExcursion }
+
+
+vehiculo_operador_vermas:
+    pattern: operador/vehiculo/vermas/{id}
+    defaults: { _controller: ExtranetBundle:Operador:vermasVehiculo }
+
+
+vuelo_operador_vermas:
+    pattern: operador/vuelo/vermas/{id}
+    defaults: { _controller: ExtranetBundle:Operador:vermasVuelo }
+
+
+nuevo_Paqueteoperador:
+    pattern: operador/paquete/nuevo
+    defaults: { _controller: ExtranetBundle:Operador:paqueteNuevo }
+
+
+mis_Paquetesso:
+    pattern: operador/paquete/mispaquetesso
+    defaults: { _controller: ExtranetBundle:Operador:mispaquetesso }
+
+mis_Paquetespo:
+    pattern: operador/paquete/mispaquetespo
+    defaults: { _controller: ExtranetBundle:Operador:mispaquetespo }
+
+mis_Paquetesao:
+    pattern: operador/paquete/mispaquetesao
+    defaults: { _controller: ExtranetBundle:Operador:mispaquetesao }
+
+
+
+
+servicios_addo:
+    pattern: operador/paquete/adicionarservicioso/{id}
+    defaults: { _controller: ExtranetBundle:Operador:serviciosAddo }
+
+servicios_vero:
+    pattern: operador/paquete/verservicioso/{id}/{prod}
+    defaults: { _controller: ExtranetBundle:Operador:serviciosVero}
+
+
+paqaloadd:
+    pattern: operador/paquete/alojamientos/{paquete}/{alojamiento}
+    defaults: { _controller: ExtranetBundle:Operador:paqaloadd }
+
+
+paqaliadd:
+    pattern: operador/paquete/alimentos/{paquete}/{alimento}
+    defaults: { _controller: ExtranetBundle:Operador:paqaliadd }
+
+
+paqexcuadd:
+    pattern: operador/paquete/excursiones/{paquete}/{excursion}
+    defaults: { _controller: ExtranetBundle:Operador:paqexcuadd }
+
+
+paqvehiadd:
+    pattern: operador/paquete/vehiculos/{paquete}/{vehiculo}
+    defaults: { _controller: ExtranetBundle:Operador:paqvehiadd }
+
+
+paqvueladd:
+    pattern: operador/paquete/vuelos/{paquete}/{vuelo}
+    defaults: { _controller: ExtranetBundle:Operador:paqvueladd }
+
+ver_solicitudess:
+    pattern: operador/producto/versolicitudess
+    defaults: { _controller: ExtranetBundle:Operador:verTodasSolicitudess }
+
+ver_solicitudesp:
+    pattern: operador/producto/versolicitudesp
+    defaults: { _controller: ExtranetBundle:Operador:verTodasSolicitudesp }
+
+ver_solicitudesa:
+    pattern: operador/producto/versolicitudesa
+    defaults: { _controller: ExtranetBundle:Operador:verTodasSolicitudesa }
+
+vermas_solicitudeso:
+    pattern: operador/producto/vermassolicitudeso/{id}
+    defaults: { _controller: ExtranetBundle:Operador:vermasSolicitudeso }
+
+respuesta_solicitud:
+    pattern: operador/producto/respuestasolicitud/{id}
+    defaults: { _controller: ExtranetBundle:Operador:respuestasolicitud }
+
+
+ver_todaspqrss:
+    pattern: operador/producto/vertodaspqrss
+    defaults: { _controller: ExtranetBundle:Operador:vertodaspqrss }
+
+ver_todaspqrsp:
+    pattern: operador/producto/vertodaspqrsp
+    defaults: { _controller: ExtranetBundle:Operador:vertodaspqrsp }
+
+ver_todaspqrsa:
+    pattern: operador/producto/vertodaspqrsa
+    defaults: { _controller: ExtranetBundle:Operador:vertodaspqrsa }
+
+vermas_pqro:
+    pattern: operador/producto/vermaspqro/{id}
+    defaults: { _controller: ExtranetBundle:Operador:vermaspqro }
+
+respuesta_pqr:
+    pattern: operador/producto/respuestapqr/{id}
+    defaults: { _controller: ExtranetBundle:Operador:respuestapqr }
+
+ver_todosclientes:
+    pattern: operador/producto/vertodosclientes
+    defaults: { _controller: ExtranetBundle:Operador:vertodosclientes }
+
+vertodas_reservas:
+    pattern: operador/producto/vertodasreservas
+    defaults: { _controller: ExtranetBundle:Operador:vertodasreservas}
+
+detalles_reservao:
+    pattern: operador/producto/detallesreservao/{id}
+    defaults: { _controller: ExtranetBundle:Operador:detallesreservao}
+
+reservas_pagadaso:
+    pattern: operador/producto/reservaspagadaso
+    defaults: { _controller: ExtranetBundle:Operador:reservaspagadaso}
+
+detalles_comprao:
+    pattern: operador/producto/detallescomprao/{id}
+    defaults: { _controller: ExtranetBundle:Operador:detallescomprao}

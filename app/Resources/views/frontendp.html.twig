@@ -1,0 +1,194 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/frontend/css/bootstrap.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/css/misestilos.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+
+        <header>
+                <!--Primer Contenerdor logo y botón Crear cuenta-->
+    <div class="navbar-fixed-top">              
+        <div class="container-fluid navmenu  ">
+
+                <div class="row">
+
+                    <!--Columna logo con imágen responsive-->
+                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-4">
+                        <h4><div class="pull-left "><a href="{{ path('portadap') }}" ><p style="color: #FFF;"><i class="fa fa-cubes hidden-xs"></i>SITPAC </p></a></div>
+                          <div class="menuheader hidden-xs small "> <p style="color: #FFF;"> Zona-Proveedores <span class="glyphicon glyphicon-briefcase"></span></p></div></h4>
+                    </div>
+                    
+
+
+                    {% if is_granted('ROLE_PROVEEDOR') %}
+                        
+                        <div class="clearfix visible-xs"></div>
+
+                        <div class="col-lg-3 col-md-2 col-sm-2 col-xs-8">
+                          <div class="text-center"><h6 style="color: #FFF;">Conectado: {{ app.user.nombres ~ ' ' ~ app.user.apellidos  }}</h6></div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                          <div class="pull-right"><a href="{{ path('proveedor_perfil') }}" class="btn btn-success" ><span class="glyphicon glyphicon-user "></span> Mi perfil</a></div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                          <div class=" pull-left pull-left-xs"><a href="{{ path('proveedor_logout') }}" class="btn btn-success" ><i class="fa fa-times-circle"></i> Cerrar Sesion</a></div>
+                        </div>
+                                         
+                    {% else %}
+
+                    <div class="clearfix visible-xs"></div>
+
+                    <!--columna link iniciar sesión solo es visible en xs-->
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                        <div class="pull-right pull-left-xs"><a href="{{ path('proveedor_login') }}" class="btn btn-success" ><span class="glyphicon glyphicon-user "></span> Iniciar Sesion</a></div>
+                    </div>
+
+                    <!--columna botón crear cuenta solo es visibl e en xs-->
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                        <div class="pull-left"><a href="{{ path('proveedor_registro') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrarse</a></div>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+        </div>
+            <!--Fin del primer contenedor-->
+
+            <div class="container-fluid-contenedor  ">
+                
+                
+                
+
+                <nav class="navbar navbar-default menu_bottom" role="navigation">
+                  <!-- El logotipo y el icono que despliega el menú se agrupan
+                       para mostrarlos mejor en los dispositivos móviles -->
+                        <div class="navbar-header ">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                              data-target=".navbar-ex1-collapse">
+                              <span class="sr-only">Desplegar navegación</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand visible-xs" href="#">Menu</a>
+                         </div>
+                 
+                            <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+                           otro elemento que se pueda ocultar al minimizar la barra -->
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav">
+                              <li><a href="{{ path('portadap') }}"> <i class="fa fa-home"></i>  Inicio  </a></li>
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                       <span class="glyphicon glyphicon-briefcase"></span> Productos <b class="caret"></b>
+                                    </a>
+                                        <ul class="dropdown-menu">
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('portadap') }}"> <span class="glyphicon glyphicon-briefcase"></span> Mis Productos</a></li>
+                                          <li class="divider"></li>
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('producto_nuevo') }}"> <span class="glyphicon glyphicon-briefcase"></span> Añadir Producto</a></li>
+                                          <li class="divider"></li>
+                                        </ul>
+                                </li>
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                       <i class="fa fa-archive"></i> Solicitudes <b class="caret"></b>
+                                    </a>
+                                        <ul class="dropdown-menu">
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('ver_todassolicitudes') }}"> <i class="fa fa-eye"></i> Ver Todas Mis Solicitudes</a></li>
+                                          <li class="divider"></li>
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('proveedor_perfil') }}"> <i class="fa fa-pencil-square-o"></i> Actualizar Proveedor</a></li>
+                                          <li class="divider"></li>
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('retirar_proveedor') }}"> <i class="fa fa-trash-o"></i>Solicitud Retirar Proveedor</a></li>
+                                          <li class="divider"></li>
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('actualizar_retirar_producto') }}"> <i class="fa fa-pencil-square-o"></i>/<i class="fa fa-trash-o"></i> Actualizar/Retirar - Producto/Servicio</a></li>
+                                          <li class="divider"></li>
+                                        </ul>
+                                </li>
+                                <li><a href="{{ path('reservas_servicios') }}"> <i class="fa fa-check-square-o"></i> Ver Reservas de Servicios</a></li>
+                              <li><a href="{{ path('ventas_servicios') }}"> <i class="fa fa-cart-plus"></i> Ver Ventas de Servicios</a></li>
+                            </ul>                 
+                   
+                  </div>
+                </nav>
+            </div>
+        </header>
+          </div>
+        {% block article %}  {% endblock %}
+        {% block aside %}  {% endblock %}
+
+         <footer>
+          <div class="container-fluid navmenu1 well footer_topbottom ">
+            
+             <div class="row">
+              <div class="col-xs-12 ">
+
+              <div class="row">
+
+               <div class="col-xs-4 text-left">
+                 <a href="{{ path('proveedor_login') }}" class=" full-right small"><p style="color: #FFF;"> <span class="glyphicon glyphicon-briefcase"></span> Zona de proveedores </p></a>
+                  <a href="{{ path('operador_login') }}" class=" full-right small"><p style="color: #FFF;"> <i class="fa fa-info-circle"></i> Zona de operadores </p></a>
+                  <a href="#" class=" full-right small"><p style="color: #FFF;"> <i class="fa fa-exclamation-triangle"></i> Zona administracion </p></a>
+               </div> 
+
+              <div class="col-xs-5 text-right">
+                  
+                  <p style=" font-size: 25px;color: #FFF;">Síguenos en:</p>
+                  
+              </div>
+
+              <div class="col-xs-3 ">
+                  
+                  <p style=" font-size: 40px;"><a href="https://www.facebook.com/corpomixturcauca" TARGET="_BLANK"><i class="fa fa-facebook-square"></i></a> <a href="#" ><i class="fa fa-twitter-square"></i></a> <a href="#" ><i class="fa fa-instagram" ></i></a> <a href="#" ><i class="fa fa-youtube-square" ></i></a></p>
+
+              </div>
+
+              </div>
+
+            
+             
+                  
+              </div>
+              </div>
+
+          
+          </div>
+
+           <div class="container-fluid navmenu well footer_top2 ">
+             
+              <div class="col-lg-9 col-md-6 col-sm-6 col-xs-12">
+                  <br>
+                  <br>
+                  <br>
+                  <p style="color: #FFF;" class="text-center">&copy; {{ 'now' | date('Y') }} - Todos los derechos reservados - SITPAC</p>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  
+              </div>
+           </div>
+
+         </footer>   
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/jquery-1.11.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/bootstrap.js') }}"></script>
+
+{% endblock %}

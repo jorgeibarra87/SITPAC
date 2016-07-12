@@ -1,0 +1,72 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Reservas {% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portada') }}">Portada</a></li>
+        <li class="active ">Reservas </li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>RESERVAS:</h2>
+            </div>
+
+            {% if reservas == null %}
+
+            <div class="col-xs-12 bg-info" >
+            <h2>No se encontraron reservas.</h2>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+                                           
+              {% if reservas %}
+              <div class="row">                
+
+                  {% for reservas in pagreservas %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <div class="caption">
+                              <h3>{{ reservas.nombrePaquete }}</h3>
+                              <p><B>Numero Adultos:</B> {{ reservas.adultos }}</p>
+                              <p><B>Numero Niños:</B> {{ reservas.ninos }}</p>
+                              <p><B>Duracion:</B> {{ reservas.duracion }} días</p>
+                              <p><B>Inicio del Paquete:</B> {{ reservas.fechaInicio|date("d/m/Y") }}</p>
+                              <p><B>Cierre del Paquete:</B> {{ reservas.fechaCierre|date("d/m/Y") }}</p>
+                              <p><B>Precio del Paquete:</B> ${{ reservas.precioPaquete|number_format( 0,'', '.') }} </p>
+                              <p><B>Precio Total Reserva:</B>$ {{ reservas.precioTotal|number_format( 0,'', '.') }} </p>
+                              <p><B>Expiracion de Pago:</B> {{ reservas.fechaExpiracion|date("d/m/Y") }}</p>
+                              <p><B>Estado:</B> {{ reservas.estado }}</p>
+                            <p>
+                            <div class="btn-group btn-group" role="group" >
+                            <a href="{{ path('detalles_reservao', { 'id': reservas.idreserva }) }}" class="btn btn-md btn-primary">Detalles </a></div>
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagreservas) }}
+                  </div>
+              </div>
+              {% endif %}     
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block title %}{{ accion == 'crear'? 'Añadir un nuevo producto': 'Modificar el producto ' ~ producto.nombre }}{% endblock %}
+
+
+
+{% block article %}
+
+
+
+
+<div class="container sha well text-center ">
+
+  <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+    <li class="active">{{ accion == 'crear'? 'Añadir un nuevo producto': 'Modificar el producto ' ~ producto.nombre }}</li>
+  </ol>
+
+
+<div class="col-sm-12 bg-primary">
+<h2> <span class="glyphicon glyphicon-plus"></span> {{ accion == 'crear'? 'Añadir un nuevo producto': 'Modificar el producto ' ~ producto.nombre }}</h2>
+</div>
+
+
+<div class="row col-sm-12 ">
+<form class="form-horizontal" action="{{ accion == 'crear' ? path('producto_nuevo') : 
+path('producto_editar', { 'id': producto.idproducto }) }}" method="post" {{ form_enctype(formulario) }}>
+
+    {{ form_errors(formulario) }}
+
+
+    <fieldset>
+    <div class=" col-sm-12 alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Informacion:</strong> Su producto pasara por un proceso de estudio, para su posterior aprobacion, podra consultar cual es el estado de su producto, una vez creado, podra añadir los servicios que ofrece en dicho producto.
+    </div>
+
+    <div class="row col-sm-6" >
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.nombre) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.nombre, 'Nombre del Producto:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.nombre, {'attr': {'class': 'form-control', 'placeholder': 'Nombre del producto'}})  }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.foto) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.foto, 'Foto del Producto:') }}</div>
+      <div class="col-sm-8">
+      
+         {% if accion == 'editar' %}
+          <div class="col-sm-4 thumbnail" ><img src="{{ asset('uploads/images/' ~ producto.foto) }}" /></div>
+          <div class="col-sm-4 control-label" >{{ form_label(formulario.foto, 'Modificar foto') }}</div>
+        {% endif %}
+
+         {{ form_widget(formulario.foto, {'attr': {'class': 'form-control'}})  }}
+         <p class="bg-info small">{{ accion == 'crear'? 'Imagen en formato jpg del producto (maximo 10mb)': 'Si desea modificar la foto agregue la nueva foto (maximo 10mb)' }}</p>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.descripcion) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.descripcion, 'Descripcion:') }}</div>
+      <div class="col-sm-9">
+         {{ form_widget(formulario.descripcion, {'attr': {'class': 'form-control', 'placeholder': 'Describa su producto'}})  }}
+      </div>
+    </div>
+       
+       
+    </div>
+
+    <div class="row col-sm-6" >
+    
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.tipoProducto) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.tipoProducto, 'Tipo de Producto:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.tipoProducto, {'attr': {'class': 'form-control', 'placeholder': 'tipo de producto'}})  }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.categoria) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.categoria, 'Categoria:') }}</div>
+      <div class="col-sm-8">     
+         {{ form_widget(formulario.categoria, {'attr': {'class': 'form-control', 'placeholder': 'Categoria (1-5)'}})  }}
+         <p class="bg-info small">{{ accion == 'crear'? 'Categoria de su producto': 'Categoria de su producto' }}</p>
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.detalles) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.detalles, 'Detalles:') }}</div>
+      <div class="col-sm-9">
+
+         {{ form_widget(formulario.detalles, {'attr': {'class': 'form-control', 'placeholder': 'Si desea agregar detalles de su producto'}})  }}
+      </div>
+    </div>
+ 
+    </div>
+    </fieldset>
+    <br>
+
+   
+    <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-lg btn-primary " type="submit" name="" value=" {{ accion == 'crear' ? 'Crear nuevo Producto' : 'Guardar cambios' }} " />
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+  </div>
+
+  {{ form_rest(formulario) }}
+    
+</form>
+</div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+

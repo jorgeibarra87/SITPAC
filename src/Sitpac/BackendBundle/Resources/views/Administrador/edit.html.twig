@@ -1,0 +1,142 @@
+{% extends '::frontenda.html.twig' %}
+{% block title %}Portada{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+<div class="col-sm-12 text-right"><a href="{{ path('portadaa') }}" class="btn btn-sm btn-success">Lista de Paquetes</a></div> 
+
+<h1 class="col-xs-12 bg-primary">Editar Paquete Turistico</h1>
+
+<div class="col-sm-12 ">
+<form class="form-horizontal" action="{{ path('paquete_update', { 'id': entity.idpaqueteTuristico }) }}" method="post" {{ form_enctype(edit_form) }}>
+
+    {{ form_errors(edit_form) }}
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.nombre) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.nombre) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.nombre) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.foto) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.foto) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.foto) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.preciototal) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.preciototal) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.preciototal) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.creadocliente) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.creadocliente) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.creadocliente) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.creador) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.creador) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.creador) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.descripcion) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.descripcion) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.descripcion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.detalles) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.detalles) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.detalles) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.duracion) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.duracion) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.duracion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.fechaInicio) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.fechaInicio) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.fechaInicio) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.estado) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.estado) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.estado) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.plazas) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.plazas) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.plazas) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.reservas) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.reservas) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.reservas) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.fechaCreacion) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.fechaCreacion) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.fechaCreacion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.fechaCierre) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.fechaCierre) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.fechaCierre) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.fechaExpiracion) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.fechaExpiracion) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.fechaExpiracion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.observaciones) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.observaciones) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.observaciones) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.municipiomunicipio) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.municipiomunicipio) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.municipiomunicipio) }}</div>
+    </div>
+
+
+    <p>
+        <div class="col-sm-12 text-center"><button class="btn btn-md btn-success" type="submit">Guardar Cambios</button></div>
+    </p>
+{{ form_rest(edit_form) }}
+</form>
+</div>
+
+<ul class="record_actions">
+    
+        <div class="col-sm-12 text-right"><a href="{{ path('portadaa') }}" class="btn btn-md btn-success">Lista de Paquetes</a></div>
+       
+        <div class="col-sm-12 text-right">
+        <form action="{{ path('paquete_delete', { 'id': entity.idpaqueteTuristico }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="btn btn-md btn-danger" type="submit" onclick="return confirm('¿Esta seguro que desea borrar este paquete?');">Borrar</button>
+        </form>
+        </div>
+    
+</ul>
+
+</div>
+{% endblock %}

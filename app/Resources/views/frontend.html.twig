@@ -1,0 +1,267 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/frontend/css/bootstrap.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/css/misestilos.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css') }}" type="text/css" rel="stylesheet">
+{#<link href="{{ asset('/resources/demos/style.css') }}" type="text/css" rel="stylesheet">#}
+
+{% endblock %}
+
+{% block body %}
+
+
+        <header>
+                <!--Primer Contenerdor logo y botón Crear cuenta--> 
+    <div class="navbar-fixed-top"> 
+        <div class="container-fluid navmenu ">
+
+                <div class="row col-sm-12 ">
+
+                    <!--Columna logo con imágen responsive-->
+                    <div class="col-lg-5 col-md-4 col-sm-5 col-xs-4">
+                        <h4><div class="pull-left "><a href="{{ path('portada') }}" ><p style="color: #FFF;"> <i class="fa fa-cubes hidden-xs"></i>SITPAC</p></a></div>
+                          <div class="menuheader hidden-xs hidden-sm small "><p style="color: #FFF;">Sistema de Informacion Turistica de Paquetes del Cauca</p></div>
+                          <div class="menuheader2 hidden-xs visible-sm small"><p style="color: #FFF;">Sistema de Informacion Turistica de Paquetes del Cauca</p></div></h4>
+
+                    </div>
+
+                    {% if is_granted('ROLE_CLIENTE') %}
+                        
+                        <div class="clearfix visible-xs"></div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-3 col-xs-8">
+                          <div class="text-center"><h6 style="color: #FFF;">Conectado: {{ app.user.nombres ~ ' ' ~ app.user.apellidos  }}</h6></div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                          <div class="pull-right"><a href="{{ path('cliente_perfil') }}" class="btn btn-success" ><span class="glyphicon glyphicon-user "></span>  Mi perfil  </a></div>
+                        </div>
+
+
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                          <div class=" pull-left "><a href="{{ path('cliente_logout') }}" class="btn btn-success" ><i class="fa fa-times-circle"></i> Cerrar Sesion</a></div>
+                        </div>
+                                         
+                    {% else %}
+
+                    <div class="clearfix visible-xs"></div>
+
+                    <!--columna link iniciar sesión solo es visible en xs-->
+                    <div class="col-lg-4 col-md-2 col-sm-3 col-xs-6">
+                        <div class="pull-right pull-left-xs"><a href="{{ path('cliente_login') }}" class="btn btn-success" ><span class="glyphicon glyphicon-user "></span> Iniciar Sesion</a></div>
+                    </div>
+
+                    <!--columna botón crear cuenta solo es visibl e en xs-->
+                    <div class="col-lg-3 col-md-2 col-sm-3 col-xs-6">
+                        <div class="pull-left"><a href="{{ path('cliente_registro') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrarse</a></div>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+        </div>
+            <!--Fin del primer contenedor-->
+
+            <div class="container-fluid-contenedor  ">
+                
+                
+                
+
+                <nav class="navbar navbar-default menu_bottom" role="navigation">
+                  <!-- El logotipo y el icono que despliega el menú se agrupan
+                       para mostrarlos mejor en los dispositivos móviles -->
+                        <div class="navbar-header ">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                              data-target=".navbar-ex1-collapse">
+                              <span class="sr-only">Desplegar navegación</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand visible-xs" href="#">Menu</a>
+                         </div>
+                 
+                            <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+                           otro elemento que se pueda ocultar al minimizar la barra -->
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            <ul class="nav navbar-nav">
+                              <li><a href="{{ path('portada') }}"> <i class="fa fa-home"></i>  Inicio  </a></li>
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                       <i class="fa fa-cube"></i> Paquetes <b class="caret"></b>
+                                    </a>
+                                        <ul class="dropdown-menu">
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('busqueda_paquetes', { 'lugar': '1', 'preciouno': '50000', 'preciodos': '100000' }) }}"> <i class="fa fa-search"></i> Buscar Paquetes Turisticos</a></li>
+                                          <li class="divider"></li>
+                                        </ul>
+                              </li>
+                              {% if is_granted('ROLE_CLIENTE') %}
+                              <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                       <i class="fa fa-pencil-square-o"></i> Paquetes Personalizados <b class="caret"></b>
+                                    </a>
+                                        <ul class="dropdown-menu">
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('nuevo_Paquetecliente') }}"><i class="fa fa-pencil"></i> Crear Paquetes</a></li>
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('mis_Paquetesscliente') }}"><span class="glyphicon glyphicon-eye-open"></span> Mis Paquetes Creados</a></li>
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('mis_Paquetespccliente') }}"><span class="glyphicon glyphicon-eye-open"></span> Mis Paquetes en Estudio</a></li>
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('mis_Paquetesaccliente') }}"><span class="glyphicon glyphicon-eye-open"></span> Mis Paquetes Aprobados</a></li>
+                                          <li class="divider"></li>
+                                        </ul>
+                              </li>
+                              <li><a href="{{ path('reservas_realizadas') }}"> <i class="fa fa-check-square-o"></i> Mis Reservas</a></li>
+                              <li><a href="{{ path('reservas_pagadas') }}"> <i class="fa fa-cart-plus"></i> Mis Compras</a></li>
+                              <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                       <i class="fa fa-users"></i> PQR <b class="caret"></b>
+                                    </a>
+                                        <ul class="dropdown-menu">
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('pqr_nueva') }}"><i class="fa fa-pencil"></i> Hacer una PQR</a></li>
+                                          <li class="divider"></li>
+                                          <li><a href="{{ path('ver_todaspqr') }}"><span class="glyphicon glyphicon-eye-open"></span> Mis PQR</a></li>
+                                          <li class="divider"></li>
+                                        </ul>
+                              </li>
+                              {% endif %}
+                              
+                            </ul>                
+                   
+                  </div>
+                </nav>
+            </div>
+        </header>
+        </div>
+        {% block article %}  {% endblock %}
+        {% block aside %}  {% endblock %}
+
+         <footer>
+          <div class="container-fluid navmenu1 well footer_topbottom ">
+            
+             <div class="row">
+              <div class="col-xs-12 ">
+
+              <div class="row">
+
+               <div class="col-xs-4 text-left">
+                 <a href="{{ path('proveedor_login') }}" class=" full-right small "><p style="color: #FFF;"> <span class="glyphicon glyphicon-briefcase"></span> Zona de proveedores </p></a>
+                  <a href="{{ path('operador_login') }}" class=" full-right small"><p style="color: #FFF;"> <i class="fa fa-info-circle"></i> Zona de operadores </p></a>
+                  <a href="{{ path('zona_admin') }}" class=" full-right small"><p style="color: #FFF;"> <i class="fa fa-exclamation-triangle"></i> Zona administracion </p></a>
+               </div> 
+
+              <div class="col-xs-5 text-right">
+                  
+                  <p style=" font-size: 25px;color: #FFF;">Síguenos en:</p>
+                  
+              </div>
+
+              <div class="col-xs-3 ">
+                  
+                  <p style=" font-size: 40px;"><a href="https://www.facebook.com/corpomixturcauca" TARGET="_BLANK"><i class="fa fa-facebook-square"></i></a> <a href="#" ><i class="fa fa-twitter-square" TARGET="_BLANK"></i></a> <a href="#" ><i class="fa fa-instagram" ></i></a> <a href="#" ><i class="fa fa-youtube-square" TARGET="_BLANK"></i></a></p>
+
+              </div>
+
+              </div>
+
+            
+             
+                  
+              </div>
+              </div>
+
+          
+          </div>
+
+           <div class="container-fluid navmenu well footer_top2 ">
+             
+              <div class="col-lg-9 col-md-6 col-sm-6 col-xs-12">
+                  <br>
+                  <br>
+                  <br>
+                  <p style="color: #FFF;" class="text-center">&copy; {{ 'now' | date('Y') }} - Todos los derechos reservados - SITPAC</p>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <li><a href="{{ path('cliente_registro') }}" style="color: #FFF;"><i class="fa fa-user-plus"></i> Registrate gratis</a></li>
+                <li><a href="#" style="color: #FFF;"> <span class="glyphicon glyphicon-envelope"></span> Contactenos</a></li>
+                <li><a href="#" style="color: #FFF;"> <i class="fa fa-question"></i> Ayuda</a></li>
+                  
+              </div>
+           </div>
+
+         </footer>   
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/jquery-1.11.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('//code.jquery.com/jquery-1.10.2.js') }}"></script>
+<script type="text/javascript" src="{{ asset('//code.jquery.com/ui/1.11.4/jquery-ui.js') }}"></script>
+
+<script>
+
+var RangeDates =["9/30/2015, 9/30/2015", "9/28/2015, 9/28/2015", "9/26/2015, 9/26/2015", "9/24/2015"];
+var RangeDatesIsDisable = true;
+function DisableDays(date) {
+    var isd = RangeDatesIsDisable;
+    var rd = RangeDates;
+    var m = date.getMonth();
+    var d = date.getDate();
+    var y = date.getFullYear();
+    for (i = 0; i < rd.length; i++) {
+        var ds = rd[i].split(',');
+        var di, df;
+        var m1, d1, y1, m2, d2, y2;
+
+        if (ds.length == 1) {
+            di = ds[0].split('/');
+            m1 = parseInt(di[0]);
+            d1 = parseInt(di[1]);
+            y1 = parseInt(di[2]);
+            if (y1 == y && m1 == (m + 1) && d1 == d) return [!isd];
+        } else if (ds.length > 1) {
+            di = ds[0].split('/');
+            df = ds[1].split('/');
+            m1 = parseInt(di[0]);
+            d1 = parseInt(di[1]);
+            y1 = parseInt(di[2]);
+            m2 = parseInt(df[0]);
+            d2 = parseInt(df[1]);
+            y2 = parseInt(df[2]);
+
+            if (y1 >= y || y <= y2) {
+                if ((m + 1) >= m1 && (m + 1) <= m2) {
+                    if (m1 == m2) {
+                        if (d >= d1 && d <= d2) return [!isd];
+                    } else if (m1 == (m + 1)) {
+                        if (d >= d1) return [!isd];
+                    } else if (m2 == (m + 1)) {
+                        if (d <= d2) return [!isd];
+                    } else return [!isd];
+                }
+            }
+        }
+    }
+    return [isd];
+}
+ 
+
+</script>
+
+<script>
+$('#sitpac_frontendbundle_paqueteturisticoctype_fechaCierre').datepicker({
+    maxDate:  '+3M',
+    minDate: new Date(),
+    beforeShowDay: DisableDays
+});
+</script>
+{% endblock %}

@@ -1,0 +1,299 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block title %}Detalles Productos{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+        <li class="active ">Detalles Productos</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="alert alert-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+
+
+    <div class="row">
+            
+            <div class="col-xs-12 bg-primary" >
+            <h2>DETALLES DEL PRODUCTO:</h2>
+            </div>
+            <br>
+            <div class="col-xs-12 bg-info">
+            <h3>PRODUCTO:</h3>
+            </div>
+            <div class="col-xs-12  ">
+               <div class="thumbnail">
+                  <img src="{{ asset('uploads/images/' ~ producto.foto) }}" alt="imagen" class="img-thumbnail col-xs-12 col-sm-2" >
+                        <h4><B>{{ producto.nombre }}</B></h4>
+                        <p><B>DESCRIPCION:<br></B> {{ producto.descripcion }}</p>
+                        <p><B>Tipo de Producto:</B> {{ producto.tipoProducto }}</p>
+                        {% if producto.detalles %}
+                        <p><B>Detales:</B> {{ producto.detalles }}</p>
+                        {% endif %}
+                        <p><B>Estado:</B> {{ producto.estado }}</p>
+                        <p><B>Fecha de Crecion:</B> {{ producto.fechaCreacion|date("d/m/Y") }}</p>
+                        <p><B>Categoria:</B>
+                        {% if producto.categoria == '1' %}
+                         <i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.categoria == '2' %}
+                         <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.categoria == '3' %}
+                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.categoria == '4' %}
+                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.categoria == '5' %}
+                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.observaciones %}
+                        <p><B>Observaciones:</B> {{ producto.observaciones }}</p>
+                        {% endif %}
+                      <p> 
+
+                      {% if producto.estado == 'Creando' %}
+                      <p>
+                      <div class="btn-group">
+                        <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                          Añadir Servicios
+                          <span class="caret"></span>
+                          </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                              {% if producto.tipoProducto == 'Alojamiento' %}
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('nuevo_Alojamiento', {'id': producto.idproducto }) }}">Servicio Alojamiento</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('nuevo_Alimentacion', {'id': producto.idproducto }) }}">Servicio Alimentacion</a></li>
+                              {% endif %}
+
+                              {% if producto.tipoProducto == 'Alimentacion' %}
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('nuevo_Alimentacion', {'id': producto.idproducto }) }}">Servicio Alimentacion</a></li>
+                              {% endif %}
+
+                              {% if producto.tipoProducto == 'Excursion' %}
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('nuevo_Excursion', {'id': producto.idproducto }) }}">Servicio Excursion</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('nuevo_Alojamiento', {'id': producto.idproducto }) }}">Servicio Alojamiento</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('nuevo_Alimentacion', {'id': producto.idproducto }) }}">Servicio Alimentacion</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('nuevo_Vehiculo', {'id': producto.idproducto }) }}">Servicio Vehiculo</a></li>
+                              {% endif %}
+
+                              {% if producto.tipoProducto == 'Vehiculo' %}
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('nuevo_Vehiculo', {'id': producto.idproducto }) }}">Servicio Vehiculo</a></li>
+                              {% endif %}
+                              
+                              {% if producto.tipoProducto == 'Vuelo' %}
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('nuevo_Vuelo', {'id': producto.idproducto }) }}">Servicio Vuelo</a></li>
+                              {% endif %}
+                            </ul>                        
+                        </div>
+                       </div>
+                      {% endif %}
+                      {% if producto.estado == 'Creando' %}
+                      <a href="{{ path('producto_editar', {'id': producto.idproducto }) }}" class="btn btn-default"> Editar </a>
+                      <a href="{{ path('producto_enviar_solicitud', {'id': producto.idproducto }) }}" class="btn btn-warning" onclick="return confirm('¿Esta seguro que desea enviar a registro el producto?');"> Enviar Solicitud Registro Producto </a>
+                      {#<a class="btn btn-md btn-warning text-left" href="{{ path('limpiar_disponibilidad', {'id': producto.idproducto,'tipo':producto.tipoProducto }) }}" onclick="return confirm('¿Esta seguro que desea reiniciar la disponibilidad?');">Reiniciar la Disponibilidad de este Producto</a>#}
+                      <div class="col-sm-6 alert alert-warning" role="alert"><strong>Informacion : </strong> Una vez enviada la solicitud, no prodra editar el producto</div>
+                      </p>
+                      {% endif %}
+                                           
+                      </p>
+               </div>
+             </div>
+              
+              {% if alojamiento %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS ALOJAMIENTO:</h3>
+                  </div> 
+                  
+
+
+                  {% for alojamiento in pagalojamiento %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/alojamiento/' ~ alojamiento.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                              <h4>{{ alojamiento.tipoAlojamiento }}</h4>
+                              <p>Precio: ${{ alojamiento.precio }}</p>
+                            <p>
+                            <a href="{{ path('producto_vermasaloj', {'id': alojamiento.idservicioAlojamiento,'producto': producto.idproducto }) }}" class="btn btn-primary"> Ver Mas </a>                          
+                            <a href="{{ path('disponible_Alojamiento', {'id': alojamiento.idservicioAlojamiento,'producto': producto.idproducto }) }}" class="btn btn-success"> Disponibilidad </a>
+                            {% if alojamiento.estado == 'Creando' %}   
+                            <a href="{{ path('quitar_servicioalojamiento', {'id': alojamiento.idservicioAlojamiento }) }}" class="btn btn-danger" onclick="return confirm('¿Esta seguro que desea quitar este servicio?');"> Quitar Servicio </a>
+                            {% endif %}
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagalojamiento) }}
+                  </div>
+              </div>
+              {% endif %}
+              
+              {% if alimentacion %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS ALIMENTACION:</h3>
+                  </div> 
+                  
+
+            
+                  {% for alimentacion in pagalimentacion %}
+                  <div class="col-xs-12 col-sm-3  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/alimentacion/' ~ alimentacion.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                              <h4>{{ alimentacion.nombre }}</h4>
+                              <p>Tipo: {{ alimentacion.tipo }}</p>
+                              <p>Precio: ${{ alimentacion.precio }}</p>
+                            <p>
+                            <a href="{{ path('producto_vermasalim', {'id': alimentacion.idalimentacion,'producto': producto.idproducto }) }}" class="btn btn-primary" > Ver Mas </a>
+                            </p>
+                            <p>
+                            <a href="{{ path('disponible_Alimentacion', {'id': alimentacion.idalimentacion,'producto': producto.idproducto }) }}" class="btn btn-success"> Disponibilidad </a>  
+                            {% if alimentacion.estado == 'Creando' %} 
+                            <a href="{{ path('quitar_servicioalimentacion', {'id': alimentacion.idalimentacion }) }}" class="btn btn-danger" onclick="return confirm('¿Esta seguro que desea quitar este servicio?');"> Quitar Servicio </a>
+                            {% endif %}
+                            </p>
+                     </div>
+                   </div>
+
+                  {% endfor %}
+
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagalimentacion) }}
+                  </div>
+                  
+
+              </div>
+                
+
+
+              {% endif %}
+
+              {% if excursion %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS EXCURSION:</h3>
+                  </div> 
+                  
+
+            
+                  {% for excursion in pagexcursion %}
+                  <div class="col-xs-12 col-sm-3  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/excursion/' ~ excursion.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                              <h4>{{ excursion.nombre }}</h4>
+                              <p>Tipo: {{ excursion.tipo }}</p>
+                              <p>Precio: ${{ excursion.precio }}</p>
+                            <p>
+                            <a href="{{ path('producto_vermasexcu', {'id': excursion.idexcursiones,'producto': producto.idproducto }) }}" class="btn btn-primary" > Ver Mas </a>
+                            </p>
+                            <p>
+                            <a href="{{ path('disponible_Excursion', {'id': excursion.idexcursiones,'producto': producto.idproducto }) }}" class="btn btn-success"> Disponibilidad </a>  
+                            {% if excursion.estado == 'Creando' %} 
+                            <a href="{{ path('quitar_servicioexcursion', {'id': excursion.idexcursiones }) }}" class="btn btn-danger" onclick="return confirm('¿Esta seguro que desea quitar este servicio?');"> Quitar Servicio </a>
+                            {% endif %}
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagexcursion) }}
+                  </div>
+              </div>
+              {% endif %}
+
+
+              {% if vehiculo %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS VEHICULO:</h3>
+                  </div> 
+                  
+
+            
+                  {% for vehiculo in pagvehiculo %}
+                  <div class="col-xs-12 col-sm-3  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/vehiculo/' ~ vehiculo.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                              <h4>{{ vehiculo.tipo }}</h4>
+                              <p>Origen: {{ vehiculo.origen }}</p>
+                              <p>Destino: {{ vehiculo.destino }}</p>
+                              <p>Precio: ${{ vehiculo.precio }}</p>
+                            <p>
+                            <a href="{{ path('producto_vermasvehi', {'id': vehiculo.idservicioVehiculo,'producto': producto.idproducto }) }}" class="btn btn-primary"> Ver Mas </a>         
+                            </p>
+                            <p>
+                            <a href="{{ path('disponible_Vehiculo', {'id': vehiculo.idservicioVehiculo,'producto': producto.idproducto }) }}" class="btn btn-success"> Disponibilidad </a>  
+                            {% if vehiculo.estado == 'Creando' %} 
+                            <a href="{{ path('quitar_serviciovehiculo', {'id': vehiculo.idservicioVehiculo }) }}" class="btn btn-danger" onclick="return confirm('¿Esta seguro que desea quitar este servicio?');"> Quitar Servicio </a>
+                            {% endif %}
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagvehiculo) }}
+                  </div>
+              </div>
+              {% endif %}
+
+
+              {% if vuelo %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS VUELO:</h3>
+                  </div> 
+                  
+
+            
+                  {% for vuelo in pagvuelo %}
+                  <div class="col-xs-12 col-sm-3  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/vuelo/' ~ vuelo.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                              <h4>{{ vuelo.compania }}</h4>
+                              <p>Origen: {{ vuelo.origen }}</p>
+                              <p>Destino: {{ vuelo.destino }}</p>
+                              <p>Precio: ${{ vuelo.precio }}</p>
+                            <p>
+                            <a href="{{ path('producto_vermasvuel', {'id': vuelo.idservicioVuelo,'producto': producto.idproducto }) }}" class="btn btn-primary"> Ver Mas </a>         
+                            </p>
+                            <p>
+                            <a href="{{ path('disponible_Vuelo', {'id': vuelo.idservicioVuelo,'producto': producto.idproducto }) }}" class="btn btn-success"> Disponibilidad </a>  
+                            {% if vuelo.estado == 'Creando' %} 
+                            <a href="{{ path('quitar_serviciovuelo', {'id': vuelo.idservicioVuelo }) }}" class="btn btn-danger" onclick="return confirm('¿Esta seguro que desea quitar este servicio?');"> Quitar Servicio </a>
+                            {% endif %}
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagvuelo) }}
+                  </div>
+              </div>
+              {% endif %}
+
+    </div>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

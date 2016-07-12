@@ -1,0 +1,57 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block title %}Solicitud de retiro de proveedor{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+ <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+    <li class="active">Solicitud Retiro Proveedor</li>
+  </ol>
+
+
+<h2 class="bg-primary text-center"><i class="fa fa-trash-o"></i> Crear Solicitud de Retiro de Proveedor : {{proveedor.nombres ~ ' ' ~ proveedor.apellidos}}</h2>
+
+   
+<form class="form-horizontal" action="{{ path('retirar_proveedor') }}" method="post" {{ form_enctype(formulario) }}>
+    {{ form_errors(formulario) }}
+
+
+    <fieldset>
+    <legend class="text-center"> <i class="fa fa-trash-o"></i> Solicitud Nueva:</legend>
+    Campos Obligatorios: (*)
+    
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.descripcion) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.descripcion, '* Descripcion de Retiro:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.descripcion, {'attr': {'class': 'form-control', 'placeholder': 'describa detalladamente los motivos de su solicitud de retiro como proveedor.'}})  }}
+         <p class="bg-info small">describa detalladamente los motivos de su solicitud de retiro como proveedor.</p>
+      </div>
+    </div>
+    </fieldset>
+ 
+
+   
+    <div class="form-group">
+    <div class="col-sm-offset-7 col-sm-12">
+       <input class="btn btn-lg btn-primary " type="submit" name="" value="  Crear Solicitud  " />
+    </div>
+  </div>
+
+  {{ form_rest(formulario) }}
+
+</form>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+{% endblock %}
+
+
+

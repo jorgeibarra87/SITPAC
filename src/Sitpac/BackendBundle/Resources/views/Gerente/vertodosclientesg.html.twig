@@ -1,0 +1,56 @@
+{% extends '::frontendg.html.twig' %}
+
+{% block title %}Ver Todos los Clientes{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadag') }}">Portada Gerente</a></li>
+        <li class="active ">Ver Todos los Clientes</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>TODOS LOS CLIENTES:</h2>
+            </div>
+                                           
+              {% if clientes %}
+              <div class="row">                
+
+                  {% for clientes in pagclientes %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                              <h3>CLIENTE:<BR> {{ clientes.nombres }} {{ clientes.apellidos }}</h3>
+                              <p>Nacionalidad: {{ clientes.nacionalidad }}</p>
+                              <p>Empresa: {{ clientes.empresa }}</p>
+                              <p>Direccion: {{ clientes.direccion }}</p>
+                              <p>Telefono: {{ clientes.telefono }}</p>
+                              <p>Correo: {{ clientes.email }}</p>
+                              <p>Fecha de Registro: {{ clientes.fechaAlta|date("m/d/Y") }}</p>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagclientes) }}
+                  </div>
+              </div>
+              {% endif %}                     
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,214 @@
+{% extends '::frontendg.html.twig' %}
+
+{% block title %}Detalles Productos{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadag') }}">Portada Gerente</a></li>
+        <li><a href="{{ path('productospendientes') }}">Productos Pendientes</a></li>
+        <li class="active ">Detalles Productos</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+    <div class="row">
+            
+            <div class="col-xs-12 bg-primary" >
+            <h2>DETALLES DEL PRODUCTO:</h2>
+            </div>
+            <br>
+            <div class="col-xs-12 bg-info">
+            <h3>PRODUCTO:</h3>
+            </div>
+            <div class="col-xs-12  ">
+               <div class="thumbnail">
+                  <img src="{{ asset('uploads/images/' ~ producto.foto) }}" alt="imagen" class="img-thumbnail col-xs-12 col-sm-6" style="height: 400px;">
+                  <div class="caption">
+                        <h3><B>{{ producto.nombre }}</B></h3>
+                        <p><B>DESCRIPCION:<br></B> {{ producto.descripcion }}</p>
+                        <p><B>Tipo de Producto:</B> {{ producto.tipoProducto }}</p>
+                        {% if producto.detalles %}
+                        <p><B>Detales:</B> {{ producto.detalles }}</p>
+                        {% endif %}
+                        <p><B>Estado:</B> {{ producto.estado }}</p>
+                        <p><B>Fecha de Crecion:</B> {{ producto.fechaCreacion|date("m/d/Y") }}</p>
+                        <p><B>Categoria:</B>
+                        {% if producto.categoria == '1' %}
+                         <i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.categoria == '2' %}
+                         <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.categoria == '3' %}
+                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.categoria == '4' %}
+                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.categoria == '5' %}
+                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                        {% endif %}
+                        {% if producto.observaciones %}
+                        <p><B>Observaciones:</B> {{ producto.observaciones }}</p>
+                        {% endif %}                                     
+                      
+                  </div>
+               </div>
+             </div>
+              
+              {% if alojamiento %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS ALOJAMIENTO:</h3>
+                  </div> 
+                  
+                  {% for alojamiento in alojamiento %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/alojamiento/' ~ alojamiento.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                        <div class="caption">
+                              <h3>{{ alojamiento.tipoAlojamiento }}</h3>
+                              <p>Precio: ${{ alojamiento.precio }}</p>
+                            <p>
+                            <a href="{{ path('alojamiento_gerente_vermas', { 'id': alojamiento.idservicioAlojamiento }) }}" class="btn btn-primary"> Ver Mas </a>    
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+              
+              {% if alimentacion %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS ALIMENTACION:</h3>
+                  </div> 
+                  
+
+            
+                  {% for alimentacion in alimentacion %}
+                  <div class="col-xs-12 col-sm-3  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/alimentacion/' ~ alimentacion.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                        <div class="caption">
+                              <h3>{{ alimentacion.nombre }}</h3>
+                              <p>Tipo: {{ alimentacion.tipo }}</p>
+                              <p>Precio: ${{ alimentacion.precio }}</p>
+                            <p>
+                            <a href="{{ path('alimentacion_gerente_vermas', { 'id': alimentacion.idalimentacion }) }}" class="btn btn-primary"> Ver Mas </a>
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+              {% if excursion %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS EXCURSION:</h3>
+                  </div> 
+                  
+
+            
+                  {% for excursion in excursion %}
+                  <div class="col-xs-12 col-sm-3  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/excursion/' ~ excursion.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                        <div class="caption">
+                              <h3>{{ excursion.nombre }}</h3>
+                              <p>Tipo: {{ excursion.tipo }}</p>
+                              <p>Precio: ${{ excursion.precio }}</p>
+                            <p>
+                            <a href="{{ path('excursion_gerente_vermas', { 'id': excursion.idexcursiones }) }}" class="btn btn-primary"> Ver Mas </a>        
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+
+              {% if vehiculo %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS VEHICULO:</h3>
+                  </div> 
+                  
+
+            
+                  {% for vehiculo in vehiculo %}
+                  <div class="col-xs-12 col-sm-3  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/vehiculo/' ~ vehiculo.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                        <div class="caption">
+                              <h3>{{ vehiculo.tipo }}</h3>
+                              <p>Origen: {{ vehiculo.origen }}</p>
+                              <p>Destino: {{ vehiculo.destino }}</p>
+                              <p>Precio: ${{ vehiculo.precio }}</p>
+                            <p>
+                            <a href="{{ path('vehiculo_gerente_vermas', { 'id': vehiculo.idservicioVehiculo }) }}" class="btn btn-primary"> Ver Mas </a>
+         
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+
+              {% if vuelo %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS VUELO:</h3>
+                  </div> 
+                  
+
+            
+                  {% for vuelo in vuelo %}
+                  <div class="col-xs-12 col-sm-3  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/vuelo/' ~ vuelo.foto) }}" alt="imagen" class="thumbnail" style="height: 200px;">
+                        <div class="caption">
+                              <h3>{{ vuelo.compania }}</h3>
+                              <p>Origen: {{ vuelo.origen }}</p>
+                              <p>Destino: {{ vuelo.destino }}</p>
+                              <p>Precio: ${{ vuelo.precio }}</p>
+                            <p>
+                            <a href="{{ path('vuelo_gerente_vermas', { 'id': vuelo.idservicioVuelo }) }}" class="btn btn-primary"> Ver Mas </a>         
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+    </div>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

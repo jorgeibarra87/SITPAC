@@ -1,0 +1,94 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Busqueda Paquetes{% endblock %}
+
+
+
+{% block article %} 
+
+
+<div class="container sha well ">
+
+<ol class="breadcrumb text-left alert alert-success">
+  <li><a href="{{ path('portada') }}">Portada</a></li>
+  <li class="active ">Busqueda Paquetes</li>
+</ol>
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+
+
+
+              <div class="row">
+                  <div class="col-xs-12 bg-primary">
+                  <h1><strong><i class="fa fa-search"></i> Buscar Paquetes:</strong></h1>
+                  <h4>
+                  <form class="form-inline" action="{{ path('portada') }}" method="post" {{ form_enctype(formulario) }}>
+                  
+                  <div class="form-group">
+                    <div class="bg-danger">{{ form_errors(formulario.municipiomunicipio) }}</div>
+                    <div class="col-sm-5 control-label" >{{ form_label(formulario.municipiomunicipio, 'Municipio:') }}</div>
+                    <div class="col-sm-6">
+                       {{ form_widget(formulario.municipiomunicipio, {'attr': {'class': 'form-control', 'placeholder': 'Elija un municipio'}})  }}
+                    </div>
+                  </div>
+
+                  <div class="form-group ">
+                    <div class="bg-danger">{{ form_errors(formulario.rangoPrecios) }}</div>
+                    <div class="col-sm-6 control-label text-right" >{{ form_label(formulario.rangoPrecios, 'Rango de Precios:') }}</div>
+                    <div class="col-sm-3 text-left">
+                       {{ form_widget(formulario.rangoPrecios, {'attr': {'class': 'form-control', 'placeholder': 'Elija un rango de precios'}})  }}
+                    </div>
+                  </div>
+                    
+                    <div class="form-group">
+                      <div class="col-sm-offset-6 col-sm-6">
+                    <button type="submit" class="btn btn-md btn-success "><i class="fa fa-search"></i> Buscar Paquetes</button>
+                        </div>
+                    </div>
+                    {{ form_rest(formulario) }}
+                  </form>
+                </h4>
+                  </div>
+
+                  {% if paquetes == null %}
+                  <div class="col-xs-12 alert alert-warning text-justify">
+                    <h2><strong>No se obtuvieron resultados para su busqueda de Paquetes, intente valores diferentes.</strong> </h2>
+                  </div> 
+                  {% endif %} 
+
+                  {% if paquetes %}
+
+                  <div class="col-xs-12 bg-info">
+                  <h1>Resultados Paquetes: </h1>
+                  </div> 
+                 
+                  {% for paquetes in paquetes %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/paquetes/' ~ paquetes.foto) }}" alt="imagen" class="thumbnail" style="height: 180px;">
+                              <h3>{{ paquetes.nombre }}</h3>
+                              <p>Descripcion: {{ paquetes.descripcion[0:180] }}...</p>
+                            <p>
+                            <a href="{{ path('paquete_verdetalles_cliente', { 'id': paquetes.idpaqueteTuristico }) }}" class="btn btn-primary"> Detalles </a>
+                            <a href="#" class="btn btn-success"> Reservar </a>         
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+              </div>
+              {% endif %}
+
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+ {% endblock %}
+
+	

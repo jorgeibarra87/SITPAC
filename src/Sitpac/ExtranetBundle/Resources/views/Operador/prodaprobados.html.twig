@@ -1,0 +1,53 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Productos Aprobados{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadao') }}">Paquetes recientes</a></li>
+        <li class="active ">Productos Aprobados </li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>TODOS LOS PRODUCTOS APROBADOS:</h2>
+            </div>
+
+                                           
+              {% if proda %}
+              <div class="row">                
+
+                  {% for proda in proda %}
+                  <div class="col-xs-12 col-sm-3 ">
+                   <div class="thumbnail">
+                      <img src="{{ asset('uploads/images/' ~ proda.foto) }}" alt="imagen" class="img-thumbnail col-xs-12 " style="height: 180px;">
+                      <div class="caption">
+                            <h3>{{ proda.nombre }}</h3>
+                            <p>{{ proda.descripcion[0:150] }}...</p>
+                        <p> 
+                         <a href="{{ path('producto_operador_verdetalles', { 'id': proda.idproducto }) }}" class="btn btn-primary"> Ver Detalles </a>                                                          
+                        </p> 
+                      </div>
+                   </div>
+                 </div>
+                 {% endfor %}                     
+              </div>
+            {% endif %}
+
+</div>           
+
+
+{% endblock %}
+

@@ -1,0 +1,185 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/frontend/css/bootstrap.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/css/misestilos.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block title %}{{ accion == 'crear'? 'Añadir un nuevo paquete': 'Modificar el paquete ' ~ paquete.nombre }}{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well text-center ">
+
+  <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadao') }}">Portada</a></li>
+    <li class="active">{{ accion == 'crear'? 'Añadir un nuevo Paquete': 'Modificar el Paquete ' ~ paquete.nombre }}</li>
+  </ol>
+
+<div class="col-sm-12 bg-primary">
+{% if accion == 'crear' %}
+<h2> <span class="glyphicon glyphicon-plus"></span> Añadir un Nuevo Paquete :</h2>
+{% endif %}
+{% if accion == 'editar' %}
+<h2> <span class="glyphicon glyphicon-pencil"></span> Modificar el Paquete :</h2>
+{% endif %}
+</div>
+<BR><BR><BR><BR>
+
+<div class="col-sm-12 ">
+<form class="form-horizontal" action="{{ accion == 'crear' ? path('nuevo_Paqueteoperador') : 
+path('paquete_editar', { 'id': paquete.idpaquete }) }}" method="post" {{ form_enctype(formulario) }}>
+
+    {{ form_errors(formulario) }}
+    
+    <div class="row col-sm-12">
+      <div class="row col-sm-6">
+    <fieldset>
+ 
+   <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.nombre) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.nombre, 'Nombre del Paquete:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.nombre, {'attr': {'class': 'form-control', 'placeholder': 'Nombre del paquete'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.foto) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.foto, 'Foto del Paquete:') }}</div>
+      <div class="col-sm-8">
+
+
+        {% if accion == 'editar' %}
+          <div class="col-sm-6 thumbnail" ><img src="{{ asset('uploads/images/' ~ paquete.foto) }}" /></div>
+          <div class="col-sm-7 control-label pull-left" >{{ form_label(formulario.foto, 'Modificar foto:') }}</div>
+        {% endif %}
+
+         {{ form_widget(formulario.foto, {'attr': {'class': 'form-control'}})  }}
+         <p class="bg-info small">Imagen en formato jpg del paquete (maximo 10mb)</p>
+      </div>
+    </div>
+
+    
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.descripcion) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.descripcion, 'Descripcion:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.descripcion, {'attr': {'class': 'form-control', 'placeholder': 'Descripcion'}})  }}
+      </div>
+    </div>
+    
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.detalles) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.detalles, 'Detalles:') }}</div>
+      <div class="col-sm-8">
+
+         {{ form_widget(formulario.detalles, {'attr': {'class': 'form-control', 'placeholder': 'Detalles'}})  }}
+      </div>
+    </div>
+
+     <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.municipiomunicipio) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.municipiomunicipio, 'Municipio:') }}</div>
+      <div class="col-sm-8">     
+         {{ form_widget(formulario.municipiomunicipio, {'attr': {'class': 'form-control', 'placeholder': 'Municipio'}})  }}
+      </div>
+    </div> 
+    
+    </div>
+    <div class="row col-sm-6">
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.duracion) }}</div>
+      <div class="col-sm-5 control-label" >{{ form_label(formulario.duracion, 'Duracion:') }}</div>
+      <div class="col-sm-7">     
+         {{ form_widget(formulario.duracion, {'attr': {'class': 'form-control', 'placeholder': 'Duracion en días'}})  }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.fechaInicio) }}</div>
+      <div class="col-sm-5 control-label" >{{ form_label(formulario.fechaInicio, 'Fecha de Inicio:') }}</div>
+      <div class="col-sm-7">     
+         {{ form_widget(formulario.fechaInicio, {'attr': {'class': 'form-control', 'placeholder': 'fecha de inicio'}})  }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.fechaCierre) }}</div>
+      <div class="col-sm-5 control-label" >{{ form_label(formulario.fechaCierre, 'Fecha de Cierre:') }}</div>
+      <div class="col-sm-7">     
+         {{ form_widget(formulario.fechaCierre, {'attr': {'class': 'form-control', 'placeholder': 'fecha de cierre'}})  }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.fechaExpiracion) }}</div>
+      <div class="col-sm-5 control-label" >{{ form_label(formulario.fechaExpiracion, 'Fecha de Expiracion:') }}</div>
+      <div class="col-sm-7">     
+         {{ form_widget(formulario.fechaExpiracion, {'attr': {'class': 'form-control', 'placeholder': 'fecha de expiracion'}})  }}
+      </div>
+    </div>
+
+    </fieldset>
+      </div>
+    </div>
+
+   
+    <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-lg btn-primary " type="submit" name="" value=" {{ accion == 'crear' ? 'Crear nuevo Paquete' : 'Guardar cambios' }} " />
+    </div>
+  </div>
+
+  {{ form_rest(formulario) }}
+
+</form>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/jquery-1.11.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('//code.jquery.com/jquery-1.10.2.js') }}"></script>
+<script type="text/javascript" src="{{ asset('//code.jquery.com/ui/1.11.4/jquery-ui.js') }}"></script>
+
+
+<script>
+$('#sitpac_frontendbundle_paqueteturisticotype_fechaInicio').datepicker({
+    dateFormat: 'yy-mm-dd',
+    maxDate:  '+3M',
+    minDate: new Date(),
+});
+</script>
+
+<script>
+$('#sitpac_frontendbundle_paqueteturisticotype_fechaCierre').datepicker({
+    dateFormat: 'yy-mm-dd',
+    maxDate:  '+3M',
+    minDate: new Date(),
+});
+</script>
+
+<script>
+$('#sitpac_frontendbundle_paqueteturisticotype_fechaExpiracion').datepicker({
+    dateFormat: 'yy-mm-dd',
+    maxDate:  '+6M',
+    minDate: new Date(),
+});
+</script>
+
+{% endblock %}
+
+

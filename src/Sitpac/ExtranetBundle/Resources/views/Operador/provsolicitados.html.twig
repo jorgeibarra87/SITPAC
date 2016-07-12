@@ -1,0 +1,65 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Proveedores solicitados{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadao') }}">Paquetes recientes</a></li>
+        <li class="active ">Proveedores solicitados</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>TODOS LOS PROVEEDORES SOLICITADOS:</h2>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                                           
+              {% if provs %}
+              <div class="row">                
+
+                  {% for provs in provs %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <div class="caption">
+                              <h3>PROVEEDOR:<BR> {{ provs.nombres }} {{ provs.apellidos }}</h3>
+                              <p>Empresa: {{ provs.empresa }}</p>
+                              <p>Direccion: {{ provs.direccion }}</p>
+                              <p>Telefono: {{ provs.telefono }}</p>
+                              <p>Fax: {{ provs.fax }}</p>
+                              <p>Correo: {{ provs.email }}</p>
+                              <p>Fecha de Registro: {{ provs.fechaAlta|date("m/d/Y") }}</p>
+                              <p>Estado: {{ provs.estado }}</p>
+                            <p>
+                            <a href="{{ asset('uploads/docs/' ~ provs.documentos) }}" class="btn btn-primary">Descargar Documentacion</a>
+                            <a href="{{ path('proveedor_apendiente', {'id': provs.idproveedor }) }}" class="btn btn-success" onclick="return confirm('¿Esta seguro que desea cambiar el estado del proveedor a pendiente?');">Cambiar Estado a Pendiente</a>   
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}                     
+
+</div>
+
+
+
+
+{% endblock %}
+

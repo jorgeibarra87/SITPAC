@@ -1,0 +1,51 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}factura nueva{% endblock %}
+
+
+
+{% block article %}
+
+
+
+
+<div class="container sha well text-center ">
+
+  <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portada') }}">Portada</a></li>
+    <li class="active">factura</li>
+  </ol>
+
+
+<br>
+<div class="col-sm-12 bg-primary">
+<h2> <span class="glyphicon glyphicon-plus"></span> factura :</h2>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br> 
+
+<div class="col-sm-12 ">
+
+
+
+<form action="{{ path('factura_nueva') }}" method="post" {{ form_enctype(formulario) }}>
+    {{ form_widget(formulario) }}
+
+    <input type="submit" value="Pagar" />
+</form>
+
+
+
+</div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+

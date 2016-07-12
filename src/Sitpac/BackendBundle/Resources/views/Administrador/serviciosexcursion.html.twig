@@ -1,0 +1,77 @@
+{% extends '::frontenda.html.twig' %}
+
+{% block title %}Administracion Servicios Excursion{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadaa') }}">Home</a></li>
+        <li class="active ">Administracion Servicios Excursion </li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>Administracion Servicios Excursion:</h2> 
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+                                          
+              {% if serviciosexcursion %}
+              <div class="row">                
+
+                  <a href="{{ path('excursion_new') }}" class="btn btn-lg btn-success"> Crear Nuevo</a>
+                  <br>
+                  <br>
+                  <br>
+
+                    
+                    <table class="table table-striped">
+
+                      <thead>
+                        <tr class="info">
+                          <th>Nombre</th>
+                          <th>Precio Servicio</th>
+                          <th>Detalles</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for serviciosexcursion in serviciosexcursion %}
+                        <tr>
+                          <td>{{ serviciosexcursion.nombre }}</td>
+                          <td>${{ serviciosexcursion.precio|number_format( 0,'', '.') }}</td>
+                          <td>{{ serviciosexcursion.detalles[0:100] }}...</td>
+                          
+                          <td>
+                           <a href="{{ path('excursion_show', { 'id': serviciosexcursion.idexcursiones }) }}" class="btn btn-sm btn-success"> Ver </a>
+                           
+                           <a href="{{ path('excursion_edit', { 'id': serviciosexcursion.idexcursiones }) }}" class="btn btn-sm btn-primary">Editar
+                           </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %}                     
+
+</div>
+
+
+
+
+{% endblock %}

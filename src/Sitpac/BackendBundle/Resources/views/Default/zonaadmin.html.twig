@@ -1,0 +1,37 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Zona Administracion{% endblock %}
+
+
+
+{% block article %} 
+
+
+<div class="container sha well ">
+ 
+ <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portada') }}">Portada</a></li>
+    <li class="active">Zona Administracion</li>
+  </ol>
+
+
+<div class="text-center alert alert-danger">
+	<legend><h1><i class="fa fa-exclamation-triangle"></i> ZONA ADMINISTRACION:</h1></legend>
+</div>
+
+<div class="text-center alert alert-danger">
+	<legend><h4><i class="fa fa-exclamation-triangle"></i> Zona Gerente:</h4>
+	<a href="{{ path('gerente_login') }}" class="btn btn-danger btn-lg"><i class="fa fa-exclamation-triangle"></i> Ingresar zona gerente </a>
+	</legend>
+</div>
+
+<div class="text-center alert alert-danger">
+	<legend><h4><i class="fa fa-exclamation-triangle"></i> Zona Administrador:</h4>
+	<a href="{{ path('administrador_login') }}" class="btn btn-danger btn-lg"> <i class="fa fa-exclamation-triangle"></i> Ingresar zona administrador</a>
+	</legend>
+</div>
+
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+{% endblock %}

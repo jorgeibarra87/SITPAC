@@ -1,0 +1,84 @@
+{% extends '::frontenda.html.twig' %}
+{% block title %}Portada{% endblock %}
+
+
+
+{% block article %} 
+
+
+<div class="container sha well ">
+
+
+        <a href="{{ path('todoslosserviciosexcursion') }}" class="col-sm-2 btn btn-sm btn-success">
+            Lista de Excursiones
+        </a>
+
+        <a href="{{ path('excursion_edit', { 'id': entity.idexcursiones }) }}" class="col-sm-2 btn btn-sm btn-primary">
+            Editar
+        </a>
+
+        <form action="{{ path('excursion_delete', { 'id': entity.idexcursiones }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="col-sm-2 btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Esta seguro que desea borrar este servicio?');">Borrar</button>
+        </form>
+ 
+
+<h1 class="col-sm-12 bg-primary">Excursion</h1>
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.idexcursiones }}</td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ entity.nombre }}</td>
+        </tr>
+        <tr>
+            <th>Tipo </th>
+            <td>{{ entity.tipo }}</td>
+        </tr>
+        <tr>
+            <th>Foto</th>
+            <td>{{ entity.foto }}</td>
+        </tr>
+        <tr>
+            <th>Detalles</th>
+            <td>{{ entity.detalles }}</td>
+        </tr>
+        <tr>
+            <th>Precio</th>
+            <td>{{ entity.precio }}</td>
+        </tr>
+        <tr>
+            <th>Fechacreacion</th>
+            <td>{{ entity.fechaCreacion|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Estado</th>
+            <td>{{ entity.estado }}</td>
+        </tr>
+        <tr>
+            <th>Producto</th>
+            <td>{{ entity.productoproducto }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+        <a href="{{ path('todoslosserviciosexcursion') }}" class="col-sm-2 btn btn-sm btn-success">
+            Lista de Excursiones
+        </a>
+   
+        <a href="{{ path('excursion_edit', { 'id': entity.idexcursiones }) }}" class="col-sm-2 btn btn-sm btn-primary">
+            Editar
+        </a>
+   
+        <form action="{{ path('excursion_delete', { 'id': entity.idexcursiones }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="col-sm-2 btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Esta seguro que desea borrar este servicio?');">Borrar</button>
+        </form>
+ 
+</div>
+{% endblock %}

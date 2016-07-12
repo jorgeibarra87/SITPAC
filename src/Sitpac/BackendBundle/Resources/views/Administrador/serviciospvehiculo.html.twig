@@ -1,0 +1,79 @@
+{% extends '::frontenda.html.twig' %}
+
+{% block title %}Administracion Servicios Vehiculo{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadaa') }}">Home</a></li>
+        <li class="active ">Administracion Servicios Paquete Vehiculo </li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>Administracion Servicios Paquete Vehiculo:</h2> 
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                                          
+              {% if serviciospvehiculo %}
+              <div class="row">                
+
+                  <a href="#" class="btn btn-lg btn-success"> Crear Nuevo</a>
+                  <br>
+                  <br>
+                  <br>
+
+                    
+                    <table class="table table-striped">
+
+                      <thead>
+                        <tr class="info">
+                          <th>Tipo Servicio</th>
+                          <th>Precio Servicio</th>
+                          <th>Producto</th>
+                          <th>Duracion</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for serviciospvehiculo in serviciospvehiculo %}
+                        <tr>
+                          <td>{{ serviciospvehiculo.tiposervicio }}</td>
+                          <td>${{ serviciospvehiculo.precioservicio|number_format( 0,'', '.') }}</td>
+                          <td>{{ serviciospvehiculo.idproducto}}</td>
+                          <td>{{ serviciospvehiculo.duracion}}</td>
+                          
+                          <td>
+                           <a href="#" class="btn btn-sm btn-success"> Ver</a>
+                           <a href="#" class="btn btn-sm btn-primary"> Editar</a>
+                           <a href="#" class="btn btn-sm btn-danger"> Borrar</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %}                     
+
+</div>
+
+
+
+
+{% endblock %}

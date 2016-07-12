@@ -1,0 +1,194 @@
+cliente_login:
+    pattern: cliente/login
+    defaults: { _controller: FrontendBundle:Cliente:login }
+
+cliente_login_check:
+    pattern: cliente/login_check
+
+cliente_logout:
+    pattern: cliente/logout
+
+prueba_reporte:
+    pattern: /pruebareporte
+    defaults: { _controller: FrontendBundle:Cliente:pruebaReporte }
+
+portada:
+    pattern: /
+    defaults: { _controller: FrontendBundle:Cliente:portada }
+
+busqueda_paquetes:
+    pattern: /busquedapaquetes/{lugar}/{preciouno}/{preciodos}
+    defaults: { _controller: FrontendBundle:Cliente:busquedaPaquetes }
+
+vermas_paquetesr:
+    pattern: /vermaspaquetesr
+    defaults: { _controller: FrontendBundle:Cliente:vermasPaquetesr }
+
+
+cliente_registro:
+    pattern: cliente/registro
+    defaults: { _controller: FrontendBundle:Cliente:registro }
+
+
+cliente_perfil:
+    pattern: /perfil
+    defaults: { _controller: FrontendBundle:Cliente:perfil }
+
+
+
+paquete_verdetalles_cliente:
+    pattern: paquete/detalles/{id}
+    defaults: { _controller: FrontendBundle:Cliente:paqueteDetallesCliente }
+
+
+ver_servicioalojcliente:
+    pattern: paquete/servicioaloj/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verservicioaloj }
+
+ver_servicioalimcliente:
+    pattern: paquete/servicioalim/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verservicioalim }
+
+ver_servicioexcucliente:
+    pattern: paquete/servicioexcu/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verservicioexcu }
+
+ver_serviciovehicliente:
+    pattern: paquete/serviciovehi/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verserviciovehi }
+
+ver_serviciovuelcliente:
+    pattern: paquete/serviciovuel/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verserviciovuel }
+
+
+verservicioalojcliente:
+    pattern: paquete/verservicioaloj/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verservicioalojcliente }
+
+verservicioalimcliente:
+    pattern: paquete/verservicioalim/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verservicioalimcliente }
+
+verservicioexcucliente:
+    pattern: paquete/verservicioexcu/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verservicioexcucliente }
+
+verserviciovehicliente:
+    pattern: paquete/verserviciovehi/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verserviciovehicliente }
+
+verserviciovuelcliente:
+    pattern: paquete/verserviciovuel/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:verserviciovuelcliente }
+
+
+
+nuevo_Paquetecliente:
+    pattern: cliente/paquete/nuevo
+    defaults: { _controller: FrontendBundle:Cliente:paqueteNuevo }
+
+mis_Paquetesscliente:
+    pattern: cliente/paquete/mispaquetessc
+    defaults: { _controller: FrontendBundle:Cliente:mispaquetessc }
+
+mis_Paquetespccliente:
+    pattern: cliente/paquete/mispaquetespc
+    defaults: { _controller: FrontendBundle:Cliente:mispaquetespc }
+
+mis_Paquetesaccliente:
+    pattern: cliente/paquete/mispaquetesac
+    defaults: { _controller: FrontendBundle:Cliente:mispaquetesac }
+
+
+enviarsolicitud_paquetecliente:
+    pattern: cliente/paquete/solicitudpaquete/{id}
+    defaults: { _controller: FrontendBundle:Cliente:enviarSolicitudPaquete }
+
+
+servicios_add:
+    pattern: cliente/paquete/adicionarservicios/{id}
+    defaults: { _controller: FrontendBundle:Cliente:serviciosAdd }
+
+servicios_ver:
+    pattern: cliente/paquete/verservicios/{id}/{prod}
+    defaults: { _controller: FrontendBundle:Cliente:serviciosVer}
+
+
+paqaloaddcliente:
+    pattern: cliente/paquete/alojamientos/{paquete}/{alojamiento}
+    defaults: { _controller: FrontendBundle:Cliente:paqaloadd }
+
+
+paqaliaddcliente:
+    pattern: cliente/paquete/alimentos/{paquete}/{alimento}
+    defaults: { _controller: FrontendBundle:Cliente:paqaliadd }
+
+
+paqexcuaddcliente:
+    pattern: cliente/paquete/excursiones/{paquete}/{excursion}
+    defaults: { _controller: FrontendBundle:Cliente:paqexcuadd }
+
+
+paqvehiaddcliente:
+    pattern: cliente/paquete/vehiculos/{paquete}/{vehiculo}
+    defaults: { _controller: FrontendBundle:Cliente:paqvehiadd }
+
+
+paqvueladdcliente:
+    pattern: cliente/paquete/vuelos/{paquete}/{vuelo}
+    defaults: { _controller: FrontendBundle:Cliente:paqvueladd }
+
+
+reserva_nueva:
+    pattern: cliente/reserva/{paquete}
+    defaults: { _controller: FrontendBundle:Cliente:reservanueva}
+
+
+reservas_realizadas:
+    pattern: cliente/reservasrealizadas
+    defaults: { _controller: FrontendBundle:Cliente:reservasrealizadas}
+
+detalles_reserva:
+    pattern: cliente/detallesreserva/{id}
+    defaults: { _controller: FrontendBundle:Cliente:detallesreserva}
+
+reservas_pagadas:
+    pattern: cliente/reservaspagadas
+    defaults: { _controller: FrontendBundle:Cliente:reservaspagadas}
+
+detalles_compra:
+    pattern: cliente/detallescompra/{id}
+    defaults: { _controller: FrontendBundle:Cliente:detallescompra}
+
+
+confirmacion_pago:
+    pattern: /confirmacionpago
+    defaults: { _controller: FrontendBundle:Cliente:confirmacionpago }
+
+factura_nueva:
+    pattern: cliente/factura
+    defaults: { _controller: FrontendBundle:Cliente:facturanueva}
+
+
+facturas:
+    pattern: /facturas
+    defaults: { _controller: FrontendBundle:Cliente:facturas }
+
+pqr_nueva:
+    pattern: cliente/pqrnueva
+    defaults: { _controller: FrontendBundle:Cliente:pqrnueva}
+
+ver_todaspqr:
+    pattern: cliente/verpqr
+    defaults: { _controller: FrontendBundle:Cliente:vertodaspqr }
+
+vermas_pqr:
+    pattern: cliente/vermaspqr/{id}
+    defaults: { _controller: FrontendBundle:Cliente:vermaspqr }
+
+
+
+
+
+

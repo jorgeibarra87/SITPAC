@@ -1,0 +1,89 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Mis Paquetes en estudio{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portada') }}">Portada</a></li>
+        <li class="active ">Mis Paquetes en Estudio</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>MIS PAQUETES EN SOLICITUD:</h2>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                                           
+              {% if paquetess %}
+              <div class="row">                
+
+                  {% for paquetess in paquetess %}
+                  <div class="col-xs-12 col-sm-4">
+                     <div class="thumbnail" >
+                        <div class="caption">
+                              <h3>{{ paquetess.nombre }}</h3>
+                              <p  align="justify"><B>Descripcion:</B> {{ paquetess.descripcion[0:100] }}...</p>
+                              <p><B>Estado:</B> {{ paquetess.estado }}</p>
+                            <p>
+                            <a href="{{ path('paquete_verdetalles_cliente', { 'id': paquetess.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Detalles </a>
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %} 
+
+
+            <div class="col-xs-12 bg-primary" >
+            <h2>MIS PAQUETES PENDIENTES:</h2>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                                           
+              {% if paquetesp %}
+              <div class="row">                
+
+                  {% for paquetesp in paquetesp %}
+                  <div class="col-xs-12 col-sm-4">
+                     <div class="thumbnail" >
+                        <div class="caption">
+                              <h3>{{ paquetesp.nombre }}</h3>
+                              <p  align="justify"><B>Descripcion:</B> {{ paquetesp.descripcion[0:100] }}...</p>
+                              <p><B>Estado:</B> {{ paquetesp.estado }}</p>
+                            <p>
+                            <a href="{{ path('paquete_verdetalles_cliente', { 'id': paquetesp.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Detalles </a>
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}                     
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

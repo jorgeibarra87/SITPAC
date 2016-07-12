@@ -1,0 +1,103 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block title %}Servicios{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+ <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+    <li class="active">Nuevo Servicio Alojamiento</li>
+  </ol>
+
+
+<br>
+<h2 class="bg-primary text-center"><span class="glyphicon glyphicon-plus "></span> Añadir un Nuevo Servicio Alojamiento :</h2>
+<br>
+<br> 
+   
+<form class="form-horizontal" action="{{ path('nuevo_Alojamiento', { 'id': id }) }}" method="post" {{ form_enctype(formulario) }}>
+    {{ form_errors(formulario) }}
+
+
+    <fieldset>
+    <legend class="text-center"> <span class="glyphicon glyphicon-briefcase"></span> Servicio Alojamiento Nuevo:</legend>
+    <br>
+    
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.codigoAlojamiento) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.codigoAlojamiento, 'Codigo del Alojamiento:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.codigoAlojamiento, {'attr': {'class': 'form-control', 'placeholder': 'digite el codigo de su alojamiento'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.tipoAlojamiento) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.tipoAlojamiento, 'Tipo de Alojamiento:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.tipoAlojamiento, {'attr': {'class': 'form-control', 'placeholder': 'ejemplo(habitacion doble)-(habitacion sensilla) etc'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.precio) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.precio, 'Precio del Servicio:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.precio, {'attr': {'class': 'form-control', 'placeholder': 'Precio del Servicio'}})  }}
+         <div class="input-group-addon">$</div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.foto) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.foto, 'Foto del Servicio:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.foto, {'attr': {'class': 'form-control'}})  }}
+         <p class="bg-info small">Imagen en formato jpg del Servicio (maximo 10mb)</p>
+      </div>
+    </div>
+
+    
+    
+    
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.detalles) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.detalles, 'Detalles:') }}</div>
+      <div class="col-sm-6">
+
+         {{ form_widget(formulario.detalles, {'attr': {'class': 'form-control', 'placeholder': 'Detalles'}})  }}
+      </div>
+    </div>
+
+
+    </fieldset>
+    <br>
+
+   
+    <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-lg btn-primary " type="submit" name="" value="  Crear nuevo servicio  " />
+    </div>
+  </div>
+
+  {{ form_rest(formulario) }}
+
+</form>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+
+</div>
+
+{% endblock %}
+
+
+

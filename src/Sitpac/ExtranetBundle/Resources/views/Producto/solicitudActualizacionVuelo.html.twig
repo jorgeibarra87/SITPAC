@@ -1,0 +1,70 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block title %}Solicitud de actualizacion de vuelo{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+ <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+    <li><a href="{{  path('actualizar_retirar_producto') }}">Actualizar Retirar Producto</a></li>
+    <li><a href="{{  path('actualizar_retirar_servicios', {'id': producto.idproducto }) }}">Actualizar Retirar Servicios</a></li>
+    <li class="active">Solicitud Actualizacion Vuelo</li>
+  </ol>
+
+
+<div class="col-sm-12 text-left ">
+<div class="col-sm-2 thumbnail" ><img src="{{ asset('uploads/images/vuelo/' ~ servicio.foto) }}" /></div>
+<h4> Compañia : {{servicio.compania}} </h4> <h4> Precio : {{servicio.precio}} </h4> <h6> Detalles : {{servicio.detalles}} </h6>
+</div>
+
+<br>
+<div class="col-sm-12 ">
+<h2 class="bg-primary text-center"><i class="fa fa-pencil-square-o"></i> Crear Solicitud de Actualizacion de Vuelo:</h2>
+</div>
+<br>
+<br> 
+
+<div class="col-sm-12 ">
+<form class="form-horizontal" action="{{ path('actualizar_vuelo', {'id': servicio.idservicioVuelo, 'producto':producto.idproducto }) }}" method="post" {{ form_enctype(formulario) }}>
+    {{ form_errors(formulario) }}
+
+
+    <fieldset>
+    <legend class="text-center"> <i class="fa fa-pencil-square-o"></i> Solicitud Nueva:</legend>
+    <br>
+    
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.descripcion) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.descripcion, 'Descripcion de Actualizacion:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.descripcion, {'attr': {'class': 'form-control', 'placeholder': 'describa detalladamente lo que quiere actulizar en su servicio de vuelo.'}})  }}
+         <p class="bg-info ">describa detalladamente lo que quiere actualizar en su servicio de vuelo.</p>
+      </div>
+    </div>
+    </fieldset>
+    <br>
+
+   
+    <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-lg btn-primary " type="submit" name="" value="  Crear Solicitud  " />
+    </div>
+  </div>
+
+  {{ form_rest(formulario) }}
+
+</form>
+</div>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+{% endblock %}
+
+
+

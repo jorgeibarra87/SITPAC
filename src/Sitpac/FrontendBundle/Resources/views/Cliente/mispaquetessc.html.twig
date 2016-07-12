@@ -1,0 +1,67 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Mis Paquetes solicitados{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portada') }}">Portada</a></li>
+        <li class="active ">Mis Paquetes Creados</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>MIS PAQUETES CREADOS:</h2>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                                           
+              {% if paquetes %}
+              <div class="row">                
+
+                  {% for paquetes in pagpaquetes %}
+                  <div class="col-xs-12 col-sm-4">
+                     <div class="thumbnail" >
+                        <div class="caption">
+                              <h3>{{ paquetes.nombre }}</h3>
+                              <p  align="justify"><B>Descripcion:</B> {{ paquetes.descripcion[0:100] }}...</p>
+                              <p><B>Precio:</B> ${{ paquetes.preciototal|number_format( 0,'', '.') }}</p>
+                              <p><B>Estado:</B> {{ paquetes.estado }}</p>
+                            <p>
+                            <div class="btn-group">
+                            <a href="{{ path('paquete_verdetalles_cliente', { 'id': paquetes.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Detalles </a></div>
+                            <div class="btn-group">
+                              <a href="{{ path('servicios_add', {'id': paquetes.idpaqueteTuristico }) }}" class="btn btn-primary"> Añadir Servicios </a>                 
+                            </div>
+                            </p>
+                            <p>
+                              <a href="{{ path('enviarsolicitud_paquetecliente', {'id': paquetes.idpaqueteTuristico }) }}" class="btn btn-warning" onclick="return confirm('¿Esta seguro que desea enviar la solicitud de registro de este paquete?');"> Enviar Solicitud de Registro </a>                 
+                            
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagpaquetes) }}
+                  </div>
+              </div>
+              {% endif %}                     
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,233 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/frontend/css/bootstrap.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/css/misestilos.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('bundles/frontend/font-awesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css') }}" type="text/css" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}Disponibilidad Vehiculo{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well text-center ">
+
+  <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+    <li><a href="{{ path('producto_verdetalles', { 'id': producto.idproducto }) }}">Detalles Producto</a></li>
+    <li class="active">Disponibilidad Vehiculo</li>
+  </ol>
+
+{% for mensaje in app.session.flashbag.get('info') %}
+    <p class="alert alert-warning">{{ mensaje }}</p>
+{% endfor %}
+<br>
+<div class="row col-sm-12 bg-primary">
+<h2> <span class="glyphicon glyphicon-plus"></span> Modificar Disponibilidad :</h2>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br> 
+<div class="row col-sm-12 text-left ">
+<div class="col-sm-3 thumbnail" ><img src="{{ asset('uploads/images/vehiculo/' ~ servicio.foto) }}" /></div>
+<h4> Tipo : {{servicio.tipo}} </h4> <h4> Conductor : {{servicio.chofer}} </h4> <h4> Origen : ${{servicio.origen}} </h4> <h4> Destino : ${{servicio.destino}} </h4> <h4> Precio : ${{servicio.precio}} </h4>
+</div>
+<div class="row col-sm-12 ">
+
+<form class="form-horizontal" action="{{ path('disponible_Vehiculo', { 'id': id,'producto': producto.idproducto }) }}" method="post" {{ form_enctype(formulario) }}>
+
+    {{ form_errors(formulario) }}
+
+
+    <fieldset>
+    <legend class=" bg-info"> <span class="glyphicon glyphicon-briefcase"></span> Añadir Días no Disponibles:</legend>   
+    <br>
+    
+      
+  
+    <div class="row col-sm-6 text-left">
+       Calendario de Disponibles en este Servicio: <div id="txtFecha2"></div>
+    </div>
+
+
+  <div class="row col-sm-6">
+   <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.desde) }}</div>
+      <div class="col-sm-6 control-label" >{{ form_label(formulario.desde, 'Desde:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.desde, {'attr': {'class': 'form-control', 'placeholder': 'Desde que fecha'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.hasta) }}</div>
+      <div class="col-sm-6 control-label" >{{ form_label(formulario.hasta, 'Hasta:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.hasta, {'attr': {'class': 'form-control', 'placeholder': 'Hasta que fecha'}})  }}
+      </div>
+    </div>
+
+    
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.estado) }}</div>
+      <div class="col-sm-6 control-label" >{{ form_label(formulario.estado, 'Estado:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.estado, {'attr': {'class': 'form-control', 'placeholder': 'Estado no disponible'}})  }}
+      </div>
+    </div>
+   
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-md btn-primary " type="submit" name="" value=" Añadir Dias no Disponibiles" />
+
+    </div>
+
+    <BR>
+    <BR>
+    <BR>
+    <BR>  
+    <div class="col-sm-offset-6 col-sm-6">
+    <a href="{{ path('reiniciar_disponibilidadvehi', {'id': id }) }}" class="btn btn-warning" onclick="return confirm('¿Esta seguro que desea reiniciar la disponibilidad?');"> Reiniciiar Disponibilidad </a>
+    </div>
+
+    </fieldset>
+
+
+
+  {{ form_rest(formulario) }}
+
+</form>
+</div>
+
+{#<p>Date: <input type="text" id="txtFecha"></p>#}
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+{% block javascripts %}
+
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/jquery-1.11.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('//code.jquery.com/jquery-1.10.2.js') }}"></script>
+<script type="text/javascript" src="{{ asset('//code.jquery.com/ui/1.11.4/jquery-ui.js') }}"></script>
+
+<script>
+
+
+var desde = {{ desde|json_encode|raw }};
+var hasta = {{ hasta|json_encode|raw }};
+var arreglofechas;
+for(var i in desde){
+   arreglofechas='"'+desde[0] +','+ hasta[0];
+   arreglofechas2='"'+desde[1] +','+ hasta[1];
+   arreglofechas3='"'+desde[2] +','+ hasta[2];
+   arreglofechas4='"'+desde[3] +','+ hasta[3];
+   arreglofechas5='"'+desde[4] +','+ hasta[4];
+   arreglofechas6='"'+desde[5] +','+ hasta[5];
+   arreglofechas7='"'+desde[6] +','+ hasta[6];
+   arreglofechas8='"'+desde[7] +','+ hasta[7];
+   arreglofechas9='"'+desde[8] +','+ hasta[8];
+   arreglofechas10='"'+desde[9] +','+ hasta[9];
+   arreglofechas11='"'+desde[10] +','+ hasta[10];
+   arreglofechas12='"'+desde[11] +','+ hasta[11];
+   arreglofechas13='"'+desde[12] +','+ hasta[12];
+   arreglofechas14='"'+desde[13] +','+ hasta[13];
+   arreglofechas15='"'+desde[14] +','+ hasta[14];
+   arreglofechas16='"'+desde[15] +','+ hasta[15];
+   arreglofechas17=arreglofechas+','+arreglofechas2+','+arreglofechas3+','+arreglofechas4+','+arreglofechas5+','+arreglofechas6+','+arreglofechas7+','+arreglofechas8+','+arreglofechas9+','+arreglofechas10+','+arreglofechas11+','+arreglofechas12+','+arreglofechas13+','+arreglofechas14+','+arreglofechas15+','+arreglofechas16;
+  //alert(arreglofechas17)
+var array=arreglofechas17.split('"');
+
+}
+
+
+//alert(array);
+//var array = JSON.parse("[" + arreglofechas + "]");
+//alert(array);
+//var res = test.split();
+var RangeDates = array;
+var RangeDatesIsDisable = true;
+function DisableDays(date) {
+    var isd = RangeDatesIsDisable;
+    var rd = RangeDates;
+    var m = date.getMonth();
+    var d = date.getDate();
+    var y = date.getFullYear();
+    for (i = 0; i < rd.length; i++) {
+        var ds = rd[i].split(',');
+        var di, df;
+        var m1, d1, y1, m2, d2, y2;
+
+        if (ds.length == 1) {
+            di = ds[0].split('/');
+            m1 = parseInt(di[0]);
+            d1 = parseInt(di[1]);
+            y1 = parseInt(di[2]);
+            if (y1 == y && m1 == (m + 1) && d1 == d) return [!isd];
+        } else if (ds.length > 1) {
+            di = ds[0].split('/');
+            df = ds[1].split('/');
+            m1 = parseInt(di[0]);
+            d1 = parseInt(di[1]);
+            y1 = parseInt(di[2]);
+            m2 = parseInt(df[0]);
+            d2 = parseInt(df[1]);
+            y2 = parseInt(df[2]);
+
+            if (y1 >= y || y <= y2) {
+                if ((m + 1) >= m1 && (m + 1) <= m2) {
+                    if (m1 == m2) {
+                        if (d >= d1 && d <= d2) return [!isd];
+                    } else if (m1 == (m + 1)) {
+                        if (d >= d1) return [!isd];
+                    } else if (m2 == (m + 1)) {
+                        if (d <= d2) return [!isd];
+                    } else return [!isd];
+                }
+            }
+        }
+    }
+    return [isd];
+}
+ 
+
+</script>
+
+<script>
+$('#txtFecha2').datepicker({
+    maxDate:  '+2M',
+    minDate: new Date(),
+    beforeShowDay: DisableDays
+});
+</script>
+
+<script>
+$('#sitpac_extranetbundle_disponibilidadvehitype_desde').datepicker({
+    dateFormat: 'yy-mm-dd',
+    maxDate:  '+3M',
+    minDate: new Date(),
+});
+</script>
+
+<script>
+$('#sitpac_extranetbundle_disponibilidadvehitype_hasta').datepicker({
+    dateFormat: 'yy-mm-dd',
+    maxDate:  '+3M',
+    minDate: new Date(),
+});
+</script>
+
+{% endblock %}

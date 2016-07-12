@@ -1,0 +1,73 @@
+{% extends '::frontenda.html.twig' %}
+
+{% block title %}Administracion Paquetes{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadaa') }}">Home</a></li>
+        <li class="active ">Administracion Paquetes</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>Administracion Paquetes:</h2>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+                                          
+              {% if paquetes %}
+              <div class="row">                
+
+                   <a href="{{ path('paquete_new') }}" class="btn btn-lg btn-success"> Crear Nuevo</a>
+                       
+                    <table class="table table-striped">
+
+                      <thead>
+                        <tr class="info">
+                          <th>Nombre</th>
+                          <th>Precio</th>
+                          <th>Descripcion</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for paquetes in paquetes %}
+                        <tr>
+                          <td>{{ paquetes.nombre }}</td>
+                          <td>${{ paquetes.preciototal|number_format( 0,'', '.') }}</td>
+                          <td>{{ paquetes.descripcion[0:100] }}...</td>
+                          
+                          <td>
+                           <a href="{{ path('paquete_show', { 'id': paquetes.idpaqueteTuristico }) }}" class="btn btn-sm btn-success"> Ver </a>
+                           
+                           <a href="{{ path('paquete_edit', { 'id': paquetes.idpaqueteTuristico }) }}" class="btn btn-sm btn-primary">Editar
+                           </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %}                     
+
+</div>
+
+
+
+
+{% endblock %}

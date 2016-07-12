@@ -1,0 +1,56 @@
+{% extends '::frontendg.html.twig' %}
+
+{% block title %}Ver mas Servicio Alojamiento{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+
+<ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadag') }}">Portada Gerente</a></li>
+    <li><a href="{{ path('paquete_verdetallesgerente',{'id':paquete.idpaqueteTuristico}) }}">Detalles Paquete</a></li>
+    <li class="active">Ver mas Servicio Alojamiento</li>
+  </ol>
+
+ 
+{% for mensaje in app.session.flashbag.get('info') %}
+    <p class="bg-warning">{{ mensaje }}</p>
+{% endfor %}
+
+
+ {% for servicioaloj in servicioaloj %}
+
+
+<div class="col-xs-12 col-sm-9 bg-primary">
+<h2>Servicio: {{servicioaloj.tipoAlojamiento}}</h2>
+</div>
+
+
+
+<div class="col-xs-12 ">
+   <div class="thumbnail">
+      <img src="{{ asset('uploads/images/alojamiento/' ~ servicioaloj.foto) }}" alt="imagen" class="img-thumbnail col-xs-12 col-sm-5">
+      <div class="caption">
+
+            <h3>{{ servicioaloj.tipoAlojamiento }}</h3>
+            <p><B>Codigo del Servicio:</B> {{ servicioaloj.codigoAlojamiento }}</p>
+            <p><B>Tipo de Servicio:</B> {{ servicioaloj.tipoAlojamiento }}</p>
+            <p><B>Precio:</B> ${{ servicioaloj.precio|number_format( 0,'', '.') }}</p>              
+            <p><B>Detalles:</B> {{ servicioaloj.detalles }}</p>
+            <p><B>Fecha de Creacion:</B> {{ servicioaloj.fechaCreacion|date("m/d/Y") }}</p>
+          
+      </div>
+   </div>
+ </div>
+{% endfor %}
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

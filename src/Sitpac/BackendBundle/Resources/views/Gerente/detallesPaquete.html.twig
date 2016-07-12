@@ -1,0 +1,224 @@
+{% extends '::frontendg.html.twig' %}
+
+{% block title %}Detalles Paquete{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadag') }}">Portada Gerente</a></li>
+        <li><a href="{{ path('paquetespendientescliete') }}">Paquetes Pendientes Cliente</a></li>
+        <li class="active ">Detalles Paquete Cliente</li>
+        <a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+
+
+    <div class="row">
+            
+            <div class="col-xs-12 bg-primary" >
+            <h2>DETALLES DEL PAQUETE CLIENTE:</h2>
+            </div>
+            <br>
+            <div class="col-xs-12 bg-info">
+            <h3>PAQUETE:</h3>
+            </div>
+            <div class="col-xs-12  ">
+               <div class="thumbnail">
+                    {% if paquete.creadocliente == 0 %}
+                  <img src="{{ asset('uploads/images/paquetes/' ~ paquete.foto) }}" alt="imagen" class="img-thumbnail col-xs-12 col-sm-3">
+                  {% endif %}
+                        <h3><B>{{ paquete.nombre }}</B></h3>
+                        <h3 class="bg-info"><B>Precio total: ${{ paquete.preciototal|number_format( 0,'', '.') }}</B></h3>
+                        <p><B>DESCRIPCION:<br></B> {{ paquete.descripcion }}</p>
+                        {% if paquete.detalles %}
+                        <p><B>Detales:</B> {{ paquete.detalles }}</p>
+                        {% endif %}
+                        <p><B>Estado:</B> {{ paquete.estado }}</p>
+                        <p><B>Fecha de Crecion:</B> {{ paquete.fechaCreacion|date("d/m/Y") }}</p>
+                        <p><B>Fecha de Inicio:</B> {{ paquete.fechaInicio|date("d/m/Y") }}</p>
+                        <p><B>Fecha de Cierre:</B> {{ paquete.fechaCierre|date("d/m/Y") }}</p>
+                        <p><B>Fecha de Expiracion:</B> {{ paquete.fechaExpiracion|date("d/m/Y") }}</p>
+                        {% if paquete.observaciones %}
+                        <p><B>Observaciones:</B> {{ paquete.observaciones }}</p>
+                        {% endif %}
+               </div>
+             </div>
+              
+              {% if alojamiento %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS ALOJAMIENTO:</h3>
+                  </div> 
+
+                  {% for alojamiento in alojamiento %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/alojamiento/' ~ alojamiento.fotoservicio) }}" alt="imagen" class="thumbnail" style="height: 120px;">
+                              <h4>Servicio: {{alojamiento.tiposervicio}}</h4>
+                              <p>Fecha Inicio: {{ alojamiento.fechaInicio|date("d/m/Y") }}</p>
+                              <p>Fecha Fin: {{ alojamiento.fechaFin|date("d/m/Y") }}</p>
+                              <p>Precio: ${{ alojamiento.precioservicio|number_format( 0,'', '.')  }}</p>
+                              <p>Descuento: {{ alojamiento.descuento }}%</p>
+                              {% set duracion = duracion(alojamiento.fechaInicio|date("m/d/Y"),alojamiento.fechaFin|date("m/d/Y")) %}
+                              {% set descuento = alojamiento.descuento/100 %}
+                              {% set total = ((alojamiento.precioservicio - (alojamiento.precioservicio * descuento))) * duracion %}
+
+                              <p>Total: ${{ total|number_format( 0,'', '.')}}</p>
+                            <p>
+                            <a href="{{ path('ver_servicioalojg', { 'nombre': alojamiento.tiposervicio, 'idproducto': alojamiento.idproducto, 'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>       
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+              
+              {% if alimentacion %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS ALIMENTACION:</h3>
+                  </div> 
+                  
+
+            
+                  {% for alimentacion in alimentacion %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/alimentacion/' ~ alimentacion.fotoservicio) }}" alt="imagen" class="thumbnail" style="height: 120px;">
+                              <h3>{{ alimentacion.nombre }}</h3>
+                              <p>Fecha Inicio: {{ alimentacion.fechaInicio|date("d/m/Y") }}</p>
+                              <p>Fecha Fin: {{ alimentacion.fechaFin|date("d/m/Y") }}</p>
+                              <p>Precio: ${{ alimentacion.precioservicio|number_format( 0,'', '.')  }}</p>
+                              <p>Descuento: {{ alimentacion.descuento }}%</p>
+                              {% set duracion = duracion(alimentacion.fechaInicio|date("m/d/Y"),alimentacion.fechaFin|date("m/d/Y")) %}
+                              {% set descuento = alimentacion.descuento/100 %}
+                              {% set total = ((alimentacion.precioservicio - (alimentacion.precioservicio * descuento))) * duracion %}
+
+                              <p>Total: ${{ total|number_format( 0,'', '.')}}</p>
+                            <p>
+                            <a href="{{ path('ver_servicioalimg', { 'nombre': alimentacion.nombre, 'idproducto': alimentacion.idproducto, 'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>         
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+              {% if excursion %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS EXCURSION:</h3>
+                  </div> 
+                  
+
+            
+                  {% for excursion in excursion %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/excursion/' ~ excursion.fotoservicio) }}" alt="imagen" class="thumbnail" style="height: 120px;">
+                              <h3>{{ excursion.nombre }}</h3>
+                              <p>Fecha Inicio: {{ excursion.fechaInicio|date("d/m/Y") }}</p>
+                              <p>Fecha Fin: {{ excursion.fechaFin|date("d/m/Y") }}</p>
+                              <p>Precio: ${{ excursion.precioservicio|number_format( 0,'', '.')  }}</p>
+                              <p>Descuento: {{ excursion.descuento }}%</p>
+                              {% set duracion = duracion(excursion.fechaInicio|date("m/d/Y"),excursion.fechaFin|date("m/d/Y")) %}
+                              {% set descuento = excursion.descuento/100 %}
+                              {% set total = ((excursion.precioservicio - (excursion.precioservicio * descuento))) * duracion %}
+
+                              <p>Total: ${{ total|number_format( 0,'', '.')}}</p>
+                            <p>
+                            <a href="{{ path('ver_servicioexcug', { 'nombre': excursion.nombre, 'idproducto': excursion.idproducto, 'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>        
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+
+              {% if vehiculo %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS VEHICULO:</h3>
+                  </div> 
+                  
+
+            
+                  {% for vehiculo in vehiculo %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/vehiculo/' ~ vehiculo.fotoservicio) }}" alt="imagen" class="thumbnail" style="height: 120px;">
+                              <h3>{{ vehiculo.tiposervicio }}</h3>
+                              <p>Fecha Inicio: {{ vehiculo.fechaInicio|date("d/m/Y") }}</p>
+                              <p>Fecha Fin: {{ vehiculo.fechaFin|date("d/m/Y") }}</p>
+                              <p>Precio: ${{ vehiculo.precioservicio|number_format( 0,'', '.')  }}</p>
+                              <p>Descuento: {{ vehiculo.descuento }}%</p>
+                              {% set duracion = duracion(vehiculo.fechaInicio|date("m/d/Y"),vehiculo.fechaFin|date("m/d/Y")) %}
+                              {% set descuento = vehiculo.descuento/100 %}
+                              {% set total = ((vehiculo.precioservicio - (vehiculo.precioservicio * descuento))) * duracion %}
+
+                              <p>Total: ${{ total|number_format( 0,'', '.')}}</p>
+                            <p>
+                            <a href="{{ path('ver_serviciovehig', { 'nombre': vehiculo.tiposervicio, 'idproducto': vehiculo.idproducto, 'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>
+         
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+
+              {% if vuelo %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS VUELO:</h3>
+                  </div> 
+                  
+
+            
+                  {% for vuelo in vuelo %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/vuelo/' ~ vuelo.fotoservicio) }}" alt="imagen" class="thumbnail" style="height: 120px;">
+                              <h3>{{ vuelo.compania }}</h3>
+                              <p>Precio: ${{ vuelo.precioservicio|number_format( 0,'', '.')  }}</p>
+                              <p>Descuento: {{ vuelo.descuento }}%</p>
+                              {% set descuento = vuelo.descuento/100 %}
+                              {% set total = ((vuelo.precioservicio - (vuelo.precioservicio * descuento))) %}
+
+                              <p>Total: ${{ total|number_format( 0,'', '.')}}</p>
+                            <p>
+                            <a href="{{ path('ver_serviciovuelg', { 'nombre': vuelo.compania, 'idproducto': vuelo.idproducto, 'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>         
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}
+
+    </div>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

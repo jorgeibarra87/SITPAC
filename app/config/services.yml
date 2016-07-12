@@ -1,0 +1,17 @@
+# Configuración global de los servicios de la aplicación
+# Este archivo se importa desde app/config/config.yml
+services:
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.debug:
+        class: Twig_Extensions_Extension_Debug
+        tags:
+            - { name: twig.extension }
+
+    twig.extension.sitpac:
+        class: Sitpac\FrontendBundle\Twig\Extension\SitpacExtension
+        tags:
+            - { name: twig.extension }

@@ -1,0 +1,232 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Ver Servicios Producto{% endblock %}
+
+
+
+{% block article %} 
+
+
+<div class="container sha well ">
+
+<ol class="breadcrumb text-left alert alert-success">
+   <li><a href="{{ path('portada') }}">Portada</a></li>
+   <li><a href="{{ path('mis_Paquetesscliente') }}">Mis Paquetes  Creados</a></li>
+   <li><a href="{{ path('servicios_add',{'id':paquete.idpaqueteTuristico}) }}">Añadir Servicios al Paquete</a></li>
+   <li class="active ">Ver Servicios Producto</li>
+ </ol>
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+<div class="col-sm-12 bg-primary" >
+   <h2><strong>Añadir Servicios del Producto:</strong> {{producto.nombre}}</h2> 
+</div>
+
+<div class="col-sm-6 ">
+<h1><strong>Producto:</strong></h1>
+<div class="col-sm-2 thumbnail" ><img src="{{ asset('uploads/images/' ~ producto.foto) }}" /></div>
+<h4> Nombre : {{producto.nombre}} </h4> <h4> Tipo de Producto : {{producto.tipoProducto}} </h4>
+</div>
+
+<div class="col-sm-6 ">
+<h1><strong>Mi Paquete:</strong></h1>
+<h4> Nombre : {{paquete.nombre}} </h4>
+<h4>Precio : ${{paquete.preciototal|number_format( 0,'', '.')}}</h4>
+</div>
+
+             {% if alojamientos %}
+              <div class="row">                
+                    <div class="col-sm-12 bg-primary" >
+                       <h2><strong>Servicios de Alojamiento:</strong></h2> 
+                    </div>
+                    <table class="the-table table table-striped">
+
+                      <thead>
+                        <tr class="success">
+                          <th>Foto</th>
+                          <th>Tipo de Alojamiento</th>
+                          <th>Detalles</th>
+                          <th>Precio</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for alojamientos in alojamientos %}
+                        <tr>
+                          <td><div class="col-xs-12 col-sm-6 thumbnail" ><img src="{{ asset('uploads/images/alojamiento/' ~ alojamientos.foto) }}" /></div></td>
+                          <td>{{ alojamientos.tipoAlojamiento }}</td>
+                          <td>{{ alojamientos.detalles[0:100] }}...</td>
+                          <td>${{ alojamientos.precio|number_format( 0,'', '.') }}</td>
+                          
+                          <td>
+                           <a href="{{ path('verservicioalojcliente', { 'nombre': alojamientos.tipoAlojamiento, 'idproducto': alojamientos.productoproducto.idproducto,'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>
+                           <a href="{{ path('paqaloaddcliente', { 'paquete': paquete.idpaqueteTuristico, 'alojamiento': alojamientos.idservicioAlojamiento }) }}" class="btn btn-success"> Añadir este servicio </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %}
+
+
+
+              {% if alimentos %}
+              <div class="row">                
+                    <div class="col-sm-12 bg-primary" >
+                       <h2><strong>Servicios de Alimentacion:</strong></h2> 
+                    </div>
+                    <table class="the-table table table-striped">
+
+                      <thead>
+                        <tr class="success">
+                          <th>Foto</th>
+                          <th>Nombre</th>
+                          <th>Tipo de Alimento</th>
+                          <th>Precio</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for alimentos in alimentos %}
+                        <tr>
+                          <td><div class="col-xs-12 col-sm-6 thumbnail" ><img src="{{ asset('uploads/images/alimentacion/' ~ alimentos.foto) }}" /></div></td>
+                          <td>{{ alimentos.nombre }}</td>
+                          <td>{{ alimentos.tipo }}</td>
+                          <td>${{ alimentos.precio|number_format( 0,'', '.') }}</td>
+                          
+                          <td>
+                           <a href="{{ path('verservicioalimcliente', { 'nombre': alimentos.nombre, 'idproducto': alimentos.productoproducto.idproducto,'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>
+                           <a href="{{ path('paqaliaddcliente', { 'paquete': paquete.idpaqueteTuristico, 'alimento': alimentos.idalimentacion }) }}" class="btn btn-success"> Añadir este servicio </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %}
+
+
+              {% if excursiones %}
+              <div class="row">                
+                    <div class="col-sm-12 bg-primary" >
+                       <h2><strong>Servicios de Excursion:</strong></h2> 
+                    </div>
+                    <table class="the-table table table-striped">
+
+                      <thead>
+                        <tr class="success">
+                          <th>Foto</th>
+                          <th>Nombre</th>
+                          <th>Tipo</th>
+                          <th>Precio</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for excursiones in excursiones %}
+                        <tr>
+                          <td><div class="col-xs-12 col-sm-6 thumbnail" ><img src="{{ asset('uploads/images/excursion/' ~ excursiones.foto) }}" /></div></td>
+                          <td>{{ excursiones.nombre }}</td>
+                          <td>{{ excursiones.tipo }}</td>
+                          <td>${{ excursiones.precio|number_format( 0,'', '.') }}</td>
+                          
+                          <td>
+                           <a href="{{ path('verservicioexcucliente', { 'nombre': excursiones.nombre, 'idproducto': excursiones.productoproducto.idproducto,'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>
+                           <a href="{{ path('paqexcuaddcliente', { 'paquete': paquete.idpaqueteTuristico, 'excursion': excursiones.idexcursiones }) }}" class="btn btn-success"> Añadir este servicio </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %}
+
+
+              {% if vehiculos %}
+              <div class="row">                
+                    <div class="col-sm-12 bg-primary" >
+                       <h2><strong>Servicios de Transporte:</strong></h2> 
+                    </div>
+                    <table class="the-table table table-striped">
+
+                      <thead>
+                        <tr class="success">
+                          <th>Foto</th>
+                          <th>Tipo</th>
+                          <th>Origen</th>
+                          <th>Destino</th>
+                          <th>Precio</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for vehiculos in vehiculos %}
+                        <tr>
+                          <td><div class="col-xs-12 col-sm-6 thumbnail" ><img src="{{ asset('uploads/images/vehiculo/' ~ vehiculos.foto) }}" /></div></td>
+                          <td>{{ vehiculos.tipo }}</td>
+                          <td>{{ vehiculos.origen }}</td>
+                          <td>{{ vehiculos.destino }}</td>
+                          <td>${{ vehiculos.precio|number_format( 0,'', '.') }}</td>
+                          
+                          <td>
+                           <a href="{{ path('verserviciovehicliente', { 'nombre': vehiculos.tipo, 'idproducto': vehiculos.productoproducto.idproducto,'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>
+                           <a href="{{ path('paqvehiaddcliente', { 'paquete': paquete.idpaqueteTuristico, 'vehiculo': vehiculos.idservicioVehiculo }) }}" class="btn btn-success"> Añadir este servicio </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %}
+
+
+              {% if vuelos %}
+              <div class="row">                
+                    <div class="col-sm-12 bg-primary" >
+                       <h2><strong>Servicios de Vuelo:</strong></h2> 
+                    </div>
+                    <table class="the-table table table-striped">
+
+                      <thead>
+                        <tr class="success">
+                          <th>Foto</th>
+                          <th>Compañia</th>
+                          <th>Fecha</th>
+                          <th>Origen</th>
+                          <th>Precio</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for vuelos in vuelos %}
+                        <tr>
+                          <td><div class="col-xs-12 col-sm-6 thumbnail" ><img src="{{ asset('uploads/images/vuelo/' ~ vuelos.foto) }}" /></div></td>
+                          <td>{{ vuelos.compania }}</td>
+                          <td>{{ vuelos.fecha|date("m/d/Y") }}</td>
+                          <td>{{ vuelos.origen }}</td>
+                          <td>${{ vuelos.precio|number_format( 0,'', '.') }}</td>
+                          
+                          <td>
+                           <a href="{{ path('verserviciovuelcliente', { 'nombre': vuelos.compania, 'idproducto': vuelos.productoproducto.idproducto,'paquete': paquete.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Servicio </a>
+                           <a href="{{ path('paqvueladdcliente', { 'paquete': paquete.idpaqueteTuristico, 'vuelo': vuelos.idservicioVuelo }) }}" class="btn btn-success"> Añadir este servicio </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %} 
+
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+ {% endblock %}
+
+	

@@ -1,0 +1,59 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Ver mas Servicio Vuelo{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+
+<ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadao') }}">Portada Operador</a></li>
+    <li><a href="{{ path('paquete_verdetalleso',{'id':paquete.idpaqueteTuristico}) }}">Detalles Paquete</a></li>
+    <li class="active">Ver mas Servicio Vuelo</li>
+  </ol>
+
+ 
+{% for mensaje in app.session.flashbag.get('info') %}
+    <p class="bg-warning">{{ mensaje }}</p>
+{% endfor %}
+
+
+ {% for serviciovuel in serviciovuel %}
+
+
+<div class="col-xs-12 col-sm-9 bg-primary">
+<h2>Servicio: {{serviciovuel.compania}}</h2>
+</div>
+
+
+
+<div class="col-xs-12 ">
+   <div class="thumbnail">
+      <img src="{{ asset('uploads/images/vuelo/' ~ serviciovuel.foto) }}" alt="imagen" class="img-thumbnail col-xs-12 col-sm-5">
+      <div class="caption">
+
+            <h3>{{ serviciovuel.compania }}</h3>
+            <p><B>Fecha de Vuelo:</B> {{ serviciovuel.fecha|date("m/d/Y") }}</p>
+            <p><B>Origen:</B> {{ serviciovuel.origen }}</p>
+            <p><B>Hora de Salida:</B> {{ serviciovuel.horaSalida|date("g:ia") }}</p>              
+            <p><B>Destino:</B> {{ serviciovuel.destino }}</p>
+            <p><B>Categoria:</B> {{ serviciovuel.categoria }}</p>
+            <p><B>Precio:</B> ${{ serviciovuel.precio|number_format( 0,'', '.') }}</p>
+            <p><B>Detalles:</B> {{ serviciovuel.detalles }}</p>
+            <p><B>Fecha de Creacion:</B> {{ serviciovuel.fechaCreacion|date("m/d/Y") }}</p>              
+          
+      </div>
+   </div>
+ </div>
+{% endfor %}
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

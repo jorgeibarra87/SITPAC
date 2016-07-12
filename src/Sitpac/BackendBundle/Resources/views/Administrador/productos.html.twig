@@ -1,0 +1,77 @@
+{% extends '::frontenda.html.twig' %}
+
+{% block title %}Administracion Productos{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadaa') }}">Home</a></li>
+        <li class="active ">Administracion Productos</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>Administracion Productos:</h2>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+                                          
+              {% if productos %}
+              <div class="row">                
+
+                   <a href="#" class="btn btn-lg btn-success"> Crear Nuevo</a>
+                  <br>
+                  <br>
+                  <br>
+
+                    
+                    <table class="table table-striped">
+
+                      <thead>
+                        <tr class="info">
+                          <th>Nombre</th>
+                          <th>Estado</th>
+                          <th>Descripcion</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for productos in productos %}
+                        <tr>
+                          <td>{{ productos.nombre }}</td>
+                          <td>{{ productos.estado }}</td>
+                          <td>{{ productos.descripcion[0:100] }}...</td>
+                          
+                          <td>
+                           <a href="#" class="btn btn-sm btn-success"> Ver</a>
+                           <a href="#" class="btn btn-sm btn-primary"> Editar</a>
+                           <a href="#" class="btn btn-sm btn-danger"> Borrar</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                      </table>
+              </div>
+              {% endif %}                     
+
+</div>
+
+
+
+
+{% endblock %}

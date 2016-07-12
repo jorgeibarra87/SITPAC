@@ -1,0 +1,58 @@
+{% extends '::frontendo.html.twig' %}
+{% block title %}Añadir Servicios al paquete{% endblock %}
+
+
+
+{% block article %} 
+
+
+<div class="container sha well ">
+
+<ol class="breadcrumb text-left alert alert-success">
+   <li><a href="{{ path('portadao') }}">Portada</a></li>
+   <li><a href="{{ path('mis_Paquetesso') }}">Mis Paquetes  Solicitados</a></li>
+   <li class="active ">Añadir Servicios al paquete</li>
+ </ol>
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+
+<div class="col-sm-12 bg-primary" >
+   <h2><strong>Añadir Servicios al Paquete:</strong> {{paquete.nombre}} --- Precio : ${{paquete.preciototal|number_format( 0,'', '.')}}</h2> 
+</div>
+
+
+                  {% if productos %}
+
+                  <div class="col-xs-12 bg-info">
+                  <h1>Productos: </h1>
+                  </div> 
+                 
+                  {% for productos in pagproductos %}
+                  <div class="col-xs-12 col-sm-2">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/' ~ productos.foto) }}" alt="imagen" class="thumbnail" style="height: 120px;">
+                              <h3>{{ productos.nombre }}</h3>
+                              <h5><strong>Tipo de Producto:</strong> {{ productos.tipoProducto }}.</h5>
+                            <p>
+                             <a href="{{ path('servicios_vero', { 'id': paquete.idpaqueteTuristico, 'prod': productos.idproducto }) }}" class="btn btn-success"> Ver Servicios </a>         
+                            </p>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+              {% endif %}
+
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+ {% endblock %}
+
+	

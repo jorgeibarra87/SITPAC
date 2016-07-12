@@ -1,0 +1,88 @@
+{% extends '::frontenda.html.twig' %}
+{% block title %}Portada{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+<div class="col-sm-12 text-right"><a href="{{ path('todoslosserviciosalojamiento') }}" class="btn btn-sm btn-success">Lista de Alojamientos</a></div> 
+
+<h1 class="col-xs-12 bg-primary">Editar Servicio Alojamiento</h1>
+
+<div class="col-sm-12 ">
+<form class="form-horizontal" action="{{ path('alojamiento_update', { 'id': entity.idservicioAlojamiento }) }}" method="post" {{ form_enctype(edit_form) }}>
+
+    {{ form_errors(edit_form) }}
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.codigoAlojamiento) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.codigoAlojamiento) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.codigoAlojamiento) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.tipoAlojamiento) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.tipoAlojamiento) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.tipoAlojamiento) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.precio) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.precio) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.precio) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.foto) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.foto) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.foto) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.detalles) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.detalles) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.detalles) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.fechaCreacion) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.fechaCreacion) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.fechaCreacion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.estado) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.estado) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.estado) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(edit_form.productoproducto) }}</div>
+        <div class="bg-danger">{{ form_errors(edit_form.productoproducto) }}</div>
+        <div class="col-sm-8">{{ form_widget(edit_form.productoproducto) }}</div>
+    </div>
+
+
+    <p>
+        <div class="col-sm-12 text-center"><button class="btn btn-md btn-success" type="submit">Guardar Cambios</button></div>
+    </p>
+ {{ form_rest(edit_form) }}
+</form>
+</div>
+
+<ul class="record_actions">
+    
+        <div class="col-sm-12 text-right"><a href="{{ path('todoslosserviciosalojamiento') }}" class="btn btn-md btn-success">Lista de Alojamientos</a></div>
+       
+        <div class="col-sm-12 text-right">
+        <form action="{{ path('alojamiento_delete', { 'id': entity.idservicioAlojamiento }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="btn btn-md btn-danger" type="submit" onclick="return confirm('¿Esta seguro que desea borrar este alojamiento?');">Borrar</button>
+        </form>
+        </div>
+    
+</ul>
+
+</div>
+{% endblock %}

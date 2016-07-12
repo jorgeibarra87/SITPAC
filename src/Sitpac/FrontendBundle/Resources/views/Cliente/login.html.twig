@@ -1,0 +1,62 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Formulario de acceso{% endblock %}
+
+
+
+{% block article %}
+
+
+
+
+
+<div class="container sha well text-center ">
+
+  <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portada') }}">Portada</a></li>
+    <li class="active">Login Cliente</li>
+  </ol>
+<li><a href="{{ path('cliente_registro') }}" ><i class="fa fa-user-plus"></i> Registrate gratis</a></li>
+<h1><span class="glyphicon glyphicon-user "></span> INICIAR SESION: </h1>  
+
+{% if error %}
+<div>{{ error.message }}</div>
+{% endif %}
+
+<form class="form-horizontal" action="{{ path('cliente_login_check') }}" method="post">
+  <div class="form-group">
+    <label for="username" class="col-sm-3 control-label" >Email:</label>
+    <div class="col-sm-6">
+      <input type="email" class="form-control" id="username" name="_username"
+          value="{{ last_username }}" placeholder="Email" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-3 control-label">Contraseña:</label>
+    <div class="col-sm-6">
+      <input type="password" class="form-control" id="password" name="_password" placeholder="Password" />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="no_cerrar" name="_remember_me" checked /> No cerrar sesion
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-primary " type="submit" name="login" value="   Accede a tu cuenta  " />
+    </div>
+  </div>
+</form>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

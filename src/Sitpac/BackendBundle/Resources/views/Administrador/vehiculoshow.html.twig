@@ -1,0 +1,100 @@
+{% extends '::frontenda.html.twig' %}
+{% block title %}Portada{% endblock %}
+
+
+
+{% block article %} 
+
+
+<div class="container sha well ">
+
+
+        <a href="{{ path('todoslosserviciosvehiculo') }}" class="col-sm-2 btn btn-sm btn-success">
+            Lista de Vehiculos
+        </a>
+
+        <a href="{{ path('vehiculo_edit', { 'id': entity.idservicioVehiculo }) }}" class="col-sm-2 btn btn-sm btn-primary">
+            Editar
+        </a>
+
+        <form action="{{ path('vehiculo_delete', { 'id': entity.idservicioVehiculo }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="col-sm-2 btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Esta seguro que desea borrar este servicio?');">Borrar</button>
+        </form>
+ 
+
+<h1 class="col-sm-12 bg-primary">Vehiculo</h1>
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.idservicioVehiculo }}</td>
+        </tr>
+        <tr>
+            <th>Tipo </th>
+            <td>{{ entity.tipo }}</td>
+        </tr>
+        <tr>
+            <th>Conductor </th>
+            <td>{{ entity.chofer }}</td>
+        </tr>
+        <tr>
+            <th>Foto</th>
+            <td>{{ entity.foto }}</td>
+        </tr>
+        <tr>
+            <th>Modelo</th>
+            <td>{{ entity.modelo }}</td>
+        </tr>
+        <tr>
+            <th>Placa</th>
+            <td>{{ entity.placa }}</td>
+        </tr>
+        <tr>
+            <th>Origen</th>
+            <td>{{ entity.origen }}</td>
+        </tr>
+        <tr>
+            <th>Destino</th>
+            <td>{{ entity.destino }}</td>
+        </tr>
+        <tr>
+            <th>Precio</th>
+            <td>{{ entity.precio }}</td>
+        </tr>
+        <tr>
+            <th>Detalles</th>
+            <td>{{ entity.detalles }}</td>
+        </tr>
+        <tr>
+            <th>Fechacreacion</th>
+            <td>{{ entity.fechaCreacion|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Estado</th>
+            <td>{{ entity.estado }}</td>
+        </tr>
+        <tr>
+            <th>Producto</th>
+            <td>{{ entity.productoproducto }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+        <a href="{{ path('todoslosserviciosvehiculo') }}" class="col-sm-2 btn btn-sm btn-success">
+            Lista de Vehiculos
+        </a>
+   
+        <a href="{{ path('vehiculo_edit', { 'id': entity.idservicioVehiculo }) }}" class="col-sm-2 btn btn-sm btn-primary">
+            Editar
+        </a>
+   
+        <form action="{{ path('vehiculo_delete', { 'id': entity.idservicioVehiculo }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button class="col-sm-2 btn btn-sm btn-danger" type="submit" onclick="return confirm('¿Esta seguro que desea borrar este servicio?');">Borrar</button>
+        </form>
+ 
+</div>
+{% endblock %}

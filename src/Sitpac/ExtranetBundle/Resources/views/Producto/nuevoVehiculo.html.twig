@@ -1,0 +1,135 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block title %}Servicios{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+ <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadap') }}">Mis Productos</a></li>
+    <li class="active">Nuevo Servicio Vehiculo</li>
+  </ol>
+
+
+<br>
+<h2 class="bg-primary text-center"><span class="glyphicon glyphicon-plus "></span> Añadir un Nuevo Servicio Vehiculo :</h2>
+<br>
+<br> 
+   
+<form class="form-horizontal" action="{{ path('nuevo_Vehiculo', { 'id': id }) }}" method="post" {{ form_enctype(formulario) }}>
+    {{ form_errors(formulario) }}
+
+
+    <fieldset>
+    <legend class="text-center"> <span class="glyphicon glyphicon-briefcase"></span> Servicio Vehiculo Nuevo:</legend>
+    <br>
+    
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.tipo) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.tipo, 'Tipo de Vehiculo:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.tipo, {'attr': {'class': 'form-control', 'placeholder': 'tipo'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.chofer) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.chofer, 'Conductor:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.chofer, {'attr': {'class': 'form-control', 'placeholder': 'conductor'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.foto) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.foto, 'Foto del Servicio:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.foto, {'attr': {'class': 'form-control'}})  }}
+         <p class="bg-info small">Imagen en formato jpg del Servicio (maximo 10mb)</p>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.modelo) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.modelo, 'Modelo del Vehiculo:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.modelo, {'attr': {'class': 'form-control', 'placeholder': 'modelo del vehiculo (año en numeros) ej: 2000'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.placa) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.placa, 'Placa del Vehiculo:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.placa, {'attr': {'class': 'form-control', 'placeholder': 'placa'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.origen) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.origen, 'Origen:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.origen, {'attr': {'class': 'form-control', 'placeholder': 'origen de la ruta'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.destino) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.destino, 'Destino:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.destino, {'attr': {'class': 'form-control', 'placeholder': 'destino de la ruta'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.precio) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.precio, 'Precio del Servicio:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.precio, {'attr': {'class': 'form-control', 'placeholder': 'Precio del Servicio'}})  }}
+         <div class="input-group-addon">$</div>
+      </div>
+    </div>  
+    
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.detalles) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.detalles, 'Detalles:') }}</div>
+      <div class="col-sm-6">
+
+         {{ form_widget(formulario.detalles, {'attr': {'class': 'form-control', 'placeholder': 'Detalles'}})  }}
+      </div>
+    </div>
+
+
+    </fieldset>
+    <br>
+
+   
+    <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-lg btn-primary " type="submit" name="" value="  Crear nuevo servicio  " />
+    </div>
+  </div>
+
+  {{ form_rest(formulario) }}
+
+</form>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+{% endblock %}
+
+
+

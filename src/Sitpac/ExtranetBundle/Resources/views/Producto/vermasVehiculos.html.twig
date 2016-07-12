@@ -1,0 +1,57 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block title %}Ver mas Servicio Vehiculo{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+
+<ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+    <li><a href="{{  path('actualizar_retirar_producto') }}">Actualizar Retirar Producto</a></li>
+    <li><a href="{{ path('actualizar_retirar_servicios', { 'id': producto.idproducto }) }}">Actualizar Retirar Servicios</a></li>
+    <li class="active">Ver mas Servicio Vehiculo</li>
+  </ol>
+
+ 
+{% for mensaje in app.session.flashbag.get('info') %}
+    <p class="bg-warning">{{ mensaje }}</p>
+{% endfor %}
+
+
+
+<div class="col-xs-12 col-sm-9 bg-primary">
+<h2>Servicio: {{vehiculo.tipo}}</h2>
+</div>
+
+
+
+<div class="col-xs-12 ">
+   <div class="thumbnail">
+      <img src="{{ asset('uploads/images/vehiculo/' ~ vehiculo.foto) }}" alt="imagen" class="img-thumbnail col-xs-12 col-sm-5">
+      <div class="caption">
+
+            <h3>{{ vehiculo.tipo }}</h3>
+            <p><B>Conductor:</B> {{ vehiculo.chofer }}</p>
+            <p><B>Modelo del Vehiculo:</B> {{ vehiculo.modelo }}</p>              
+            <p><B>Placa del Vehiculo:</B> {{ vehiculo.placa }}</p>
+            <p><B>Origen:</B> {{ vehiculo.origen }}</p>
+            <p><B>Destino:</B> {{ vehiculo.destino }}</p>
+            <p><B>Precio:</B> ${{ vehiculo.precio }}</p>
+            <p><B>Detalles:</B> {{ vehiculo.detalles }}</p>
+            <p><B>Fecha de Creacion:</B> {{ vehiculo.fechaCreacion|date("m/d/Y") }}</p>
+          
+      </div>
+   </div>
+ </div>
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,53 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Productos solicitados{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadao') }}">Paquetes recientes</a></li>
+        <li class="active ">Productos solicitados</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>TODOS LOS PRODUCTOS SOLICITADOS:</h2>
+            </div>
+                                           
+              {% if prods %}
+              <div class="row">                
+
+                  {% for prods in prods %}
+                  <div class="col-xs-12 col-sm-3 ">
+                   <div class="thumbnail">
+                      <img src="{{ asset('uploads/images/' ~ prods.foto) }}" alt="imagen" class="img-thumbnail col-xs-12 " style="height: 180px;">
+                      <div class="caption">
+                            <h3>{{ prods.nombre }}</h3>
+                            <p>{{ prods.descripcion[0:150] }}...</p>
+                        <p> 
+                         <a href="{{ path('producto_operador_verdetalles', { 'id': prods.idproducto }) }}" class="btn btn-primary"> Ver Detalles </a>                                                
+                         <a href="{{ path('producto_apendiente', { 'id': prods.idproducto }) }}" class="btn btn-success" onclick="return confirm('¿Esta seguro que desea cambiar el estado del producto?');"> Cambiar Estado a Pendiente </a>          
+                        </p> 
+                      </div>
+                   </div>
+                 </div>
+                 {% endfor %}                     
+              </div>
+            {% endif %}
+
+</div>           
+
+
+{% endblock %}
+

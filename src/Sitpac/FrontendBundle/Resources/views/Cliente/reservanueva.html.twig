@@ -1,0 +1,100 @@
+{% extends '::frontend.html.twig' %}
+
+{% block title %}Solicitar Reserva{% endblock %}
+
+
+
+{% block article %}
+
+
+
+
+<div class="container sha well text-center ">
+
+  <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portada') }}">Portada</a></li>
+    <li class="active"> reserva</li>
+  </ol>
+
+
+<br>
+<div class="col-sm-12 bg-primary">
+<h2> <span class="glyphicon glyphicon-plus"></span>Nueva Solicitud de Reserva :</h2>
+</div>
+ 
+
+<div class="row col-sm-12 ">
+<form class="form-horizontal" action="{{ path('reserva_nueva', { 'paquete': paquete.idpaqueteTuristico }) }}" method="post" {{ form_enctype(formulario) }}>
+
+    {{ form_errors(formulario) }}
+
+
+    <fieldset>
+    
+ <div class="row col-sm-6 ">
+
+  <div class="col-sm-12 bg-info">
+  <div class="thumbnail" >
+<h1><strong>Paquete:</strong></h1>
+<div class="col-sm-4 thumbnail" ><img src="{{ asset('uploads/images/paquetes/' ~ paquete.foto) }}" /></div>
+<h4> Nombre : {{paquete.nombre}} </h4> <h4> Precio : ${{paquete.preciototal|number_format( 0,'', '.')}} </h4>
+<h5>Fecha de inicio del paquete: {{paquete.fechaInicio|date("m/d/Y")}} </h5>
+<h5> Fecha de cierre del paquete: {{paquete.fechaCierre|date("m/d/Y")}} </h5>
+</div>
+</div>
+
+</div>
+
+<div class="row col-sm-6 text-center">
+
+  <div class="alert alert-warning " role="alert"><strong>Informacion : </strong> La reserva tiene un tiempo de expiración</div>
+
+   <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.origen) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.origen, 'Lugar de Origen:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.origen, {'attr': {'class': 'form-control', 'placeholder': 'Lugar de Origen'}})  }}
+      </div>
+    </div>
+
+   <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.adultos) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.adultos, 'Numero de Adultos:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.adultos, {'attr': {'class': 'form-control', 'placeholder': 'Numero de Adultos'}})  }}
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.ninos) }}</div>
+      <div class="col-sm-4 control-label" >{{ form_label(formulario.ninos, 'Numero de Niños:') }}</div>
+      <div class="col-sm-8">
+         {{ form_widget(formulario.ninos, {'attr': {'class': 'form-control', 'placeholder': 'Numero de Niños'}})  }}
+      </div>
+    </div>
+
+    
+    </fieldset>
+    <br>
+
+   
+    <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-md btn-success " type="submit" name="" value=" Enviar Solcitud de Reserva " />
+    </div>
+  </div>
+
+  {{ form_rest(formulario) }}
+
+</form>
+</div>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+
+

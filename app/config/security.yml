@@ -1,0 +1,103 @@
+security:
+    firewalls:
+
+        administrador:
+            pattern: ^/administrador
+            provider: administradores
+            anonymous: ~
+            form_login:
+                login_path: /administrador/login
+                check_path: /administrador/login_check
+                default_target_path: portadaa
+            logout:
+                path: administrador_logout
+                target: /
+
+        gerente:
+            pattern: ^/gerente
+            provider: administradores
+            anonymous: ~
+            form_login:
+                login_path: /gerente/login
+                check_path: /gerente/login_check
+                default_target_path: portadag
+            logout:
+                path: gerente_logout
+                target: /
+
+        operador:
+            pattern: ^/operador
+            provider: operadores
+            anonymous: ~
+            form_login:
+                login_path: /operador/login
+                check_path: /operador/login_check
+                default_target_path: portadao
+            logout:
+                path: operador_logout
+                target: /        
+
+        proveedor:
+            pattern: ^/proveedor
+            provider: proveedores
+            anonymous: ~
+            form_login:
+                login_path: /proveedor/login
+                check_path: /proveedor/login_check
+            logout:
+                path: proveedor_logout
+                target: /
+        frontend:
+            pattern: ^/*
+            provider: clientes
+            anonymous: ~
+            form_login:
+                login_path: /cliente/login
+                check_path: /cliente/login_check 
+                default_target_path: portada
+            logout:
+                path: cliente_logout
+                target: /
+            remember_me:
+                key: sitpac1234
+                lifetime: 604800 # 7 * 24 * 3600 = 604.800 = 1 semana
+
+
+
+    access_control:
+        - { path: ^/cliente/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/cliente/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/cliente/*, roles: ROLE_CLIENTE }
+
+        - { path: ^/proveedor/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/proveedor/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/proveedor/*, roles: ROLE_PROVEEDOR }
+
+        - { path: ^/operador/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/operador/*, roles: ROLE_OPERADOR }
+
+        - { path: ^/gerente/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/gerente/*, roles: ROLE_GERENTE }
+
+        - { path: ^/administrador/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/administrador/*, roles: ROLE_ADMIN }
+
+    providers:
+        clientes:
+            entity: { class: Sitpac\FrontendBundle\Entity\Cliente, property: email }
+        proveedores:
+            entity: { class: Sitpac\ExtranetBundle\Entity\Proveedor, property: email }
+        operadores:
+            entity: { class: Sitpac\ExtranetBundle\Entity\Operador, property: email }
+        administradores:
+            memory:
+                users:
+                    gerente: { password: 1234, roles: ROLE_GERENTE }
+                    admin: { password: admin, roles: ROLE_ADMIN }
+
+
+    encoders:
+        Sitpac\FrontendBundle\Entity\Cliente: plaintext
+        Sitpac\ExtranetBundle\Entity\Proveedor: plaintext
+        Sitpac\ExtranetBundle\Entity\Operador: plaintext
+        Symfony\Component\Security\Core\User\User: plaintext

@@ -1,0 +1,240 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block title %}Actualizar o Retirar Servicios{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+        <li><a href="{{  path('actualizar_retirar_producto') }}">Actualizar Retirar Producto</a></li>
+        <li class="active ">Actializar o Retirar Servicios</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="alert alert-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+
+
+    <div class="row">
+            
+            <div class="col-xs-12 bg-primary" >
+            <h2>SOLICITUDES DE SERVICIOS DEL PRODUCTO:</h2>
+            </div>
+            <br>
+            <div class="col-xs-12 bg-info">
+            <h3>PRODUCTO:</h3>
+            </div>
+            <div class="col-xs-12 col-sm-12 ">
+               <div class="thumbnail">
+                  <img src="{{ asset('uploads/images/' ~ producto.foto) }}" alt="imagen" class="img-thumbnail col-sm-2" >
+                  <div class="caption">
+                        <h4><B>{{ producto.nombre }}</B></h4>
+                        <p><B>DESCRIPCION:<br></B> {{ producto.descripcion[0:280] }}...</p>
+                        
+                  </div>
+               </div>
+             </div>
+              
+              {% if alojamiento %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS ALOJAMIENTO:</h3>
+                  </div> 
+                  
+
+
+                  {% for alojamiento in pagalojamiento %}
+                  <div class="col-xs-12 col-sm-2">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/alojamiento/' ~ alojamiento.foto) }}" alt="imagen" class="thumbnail" style="height: 100px;">
+                        <div class="caption">
+                            {% if alojamiento.estado == 'Creando' %}{#es diferente de creando solo por prueba se le deja igual#}
+                              <p>SOLICITUDES:</p> 
+                               <a href="{{ path('actualizar_alojamiento', {'id': alojamiento.idservicioAlojamiento, 'producto':producto.idproducto }) }}" class="btn btn-warning">Actualizar Servicio</a>
+                                <a href="{{ path('retirar_alojamiento', {'id': alojamiento.idservicioAlojamiento, 'producto':producto.idproducto }) }}" class="btn btn-danger">Retirar Servicio</a>
+                            {% endif %}
+                              <h4>{{ alojamiento.tipoAlojamiento }}</h4>
+                              <p>Precio: ${{ alojamiento.precio }}</p>
+                            <p>
+                              <a href="{{ path('producto_vermasalojs', {'id': alojamiento.idservicioAlojamiento,'producto': producto.idproducto }) }}" class="btn btn-primary"> Ver Mas </a>
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagalojamiento) }}
+                  </div>
+              </div>
+              {% endif %}
+              
+              {% if alimentacion %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS ALIMENTACION:</h3>
+                  </div> 
+                  
+
+            
+                  {% for alimentacion in pagalimentacion %}
+                  <div class="col-xs-12 col-sm-2  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/alimentacion/' ~ alimentacion.foto) }}" alt="imagen" class="thumbnail" style="height: 100px;">
+                        <div class="caption">
+                              {% if alimentacion.estado == 'Creando' %}{#es diferente de creando solo por prueba se le deja igual#}
+                            <p>SOLICITUDES:</p>
+                            <a href="{{ path('actualizar_alimentacion', {'id': alimentacion.idalimentacion, 'producto':producto.idproducto }) }}" class="btn btn-warning">Actualizar Servicio</a>
+                            <a href="{{ path('retirar_alimentacion', {'id': alimentacion.idalimentacion, 'producto':producto.idproducto }) }}" class="btn btn-danger">Retirar Servicio</a>
+                            {% endif %}
+                              <h4>{{ alimentacion.nombre }}</h4>
+                              <p>Tipo: {{ alimentacion.tipo }}</p>
+                              <p>Precio: ${{ alimentacion.precio }}</p>
+                            <p>
+                            <a href="{{ path('producto_vermasalims', {'id': alimentacion.idalimentacion,'producto': producto.idproducto }) }}" class="btn btn-primary" > Ver Mas </a>
+                            
+                            </p>
+                            
+                        </div>
+                     </div>
+                   </div>
+
+                  {% endfor %}
+
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagalimentacion) }}
+                  </div>
+                  
+
+              </div>
+                
+
+
+              {% endif %}
+
+              {% if excursion %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS EXCURSION:</h3>
+                  </div> 
+                  
+
+            
+                  {% for excursion in pagexcursion %}
+                  <div class="col-xs-12 col-sm-2  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/excursion/' ~ excursion.foto) }}" alt="imagen" class="thumbnail" style="height: 100px;">
+                        <div class="caption">
+                            {% if excursion.estado == 'Creando' %}{#es diferente de creando solo por prueba se le deja igual#}
+                                <p>SOLICITUDES:</p>
+                                <a href="{{ path('actualizar_excursion', {'id': excursion.idexcursiones, 'producto':producto.idproducto }) }}" class="btn btn-warning">Actualizar Servicio</a>
+                                <a href="{{ path('retirar_excursion', {'id': excursion.idexcursiones, 'producto':producto.idproducto }) }}" class="btn btn-danger">Retirar Servicio</a>
+                            {% endif %}
+                              <h4>{{ excursion.nombre }}</h4>
+                              <p>Tipo: {{ excursion.tipo }}</p>
+                              <p>Precio: ${{ excursion.precio }}</p>
+                            <p>
+                            <a href="{{ path('producto_vermasexcus', {'id': excursion.idexcursiones,'producto': producto.idproducto }) }}" class="btn btn-primary" > Ver Mas </a>
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagexcursion) }}
+                  </div>
+              </div>
+              {% endif %}
+
+
+              {% if vehiculo %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS VEHICULO:</h3>
+                  </div> 
+                  
+
+            
+                  {% for vehiculo in pagvehiculo %}
+                  <div class="col-xs-12 col-sm-2  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/vehiculo/' ~ vehiculo.foto) }}" alt="imagen" class="thumbnail" style="height: 100px;">
+                        <div class="caption">
+                            {% if vehiculo.estado == 'Creando' %}{#es diferente de creando solo por prueba se le deja igual#}
+                                <p>SOLICITUDES:</p>         
+                                <a href="{{ path('actualizar_vehiculo', {'id': vehiculo.idservicioVehiculo, 'producto':producto.idproducto }) }}" class="btn btn-warning">Actualizar Servicio</a>
+                                <a href="{{ path('retirar_vehiculo', {'id': vehiculo.idservicioVehiculo, 'producto':producto.idproducto }) }}" class="btn btn-danger">Retirar Servicio</a>
+                            {% endif %}
+                              <h4>{{ vehiculo.tipo }}</h4>
+                              <p>Origen: {{ vehiculo.origen }}</p>
+                              <p>Destino: {{ vehiculo.destino }}</p>
+                              <p>Precio: ${{ vehiculo.precio }}</p>
+                            <p>
+                            <a href="{{ path('producto_vermasvehis', {'id': vehiculo.idservicioVehiculo,'producto': producto.idproducto }) }}" class="btn btn-primary"> Ver Mas </a>
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagvehiculo) }}
+                  </div>
+              </div>
+              {% endif %}
+
+
+              {% if vuelo %}
+              <div class="row">
+
+                  <div class="col-xs-12 bg-info">
+                  <h3>SERVICIOS VUELO:</h3>
+                  </div> 
+                  
+
+            
+                  {% for vuelo in pagvuelo %}
+                  <div class="col-xs-12 col-sm-2  ">
+                     <div class="thumbnail">
+                        <img src="{{ asset('uploads/images/vuelo/' ~ vuelo.foto) }}" alt="imagen" class="thumbnail" style="height: 100px;">
+                        <div class="caption">
+                            {% if vuelo.estado == 'Creando' %}{#es diferente de creando solo por prueba se le deja igual#}
+                                <p>SOLICITUDES:</p>         
+                                <a href="{{ path('actualizar_vuelo', {'id': vuelo.idservicioVuelo, 'producto':producto.idproducto }) }}" class="btn btn-warning">Actualizar Servicio</a>
+                                <a href="{{ path('retirar_vuelo', {'id': vuelo.idservicioVuelo, 'producto':producto.idproducto }) }}" class="btn btn-danger">Retirar Servicio</a>
+                            {% endif %}
+                              <h4>{{ vuelo.compania }}</h4>
+                              <p>Origen: {{ vuelo.origen }}</p>
+                              <p>Destino: {{ vuelo.destino }}</p>
+                              <p>Precio: ${{ vuelo.precio }}</p>
+                            <p>
+                            <a href="{{ path('producto_vermasvuels', {'id': vuelo.idservicioVuelo,'producto': producto.idproducto }) }}" class="btn btn-primary"> Ver Mas </a>
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagvuelo) }}
+                  </div>
+              </div>
+              {% endif %}
+
+    </div>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,458 @@
+zona_admin:
+    pattern: zonaadmin
+    defaults: { _controller: BackendBundle:Default:zonaadmin }
+
+
+administrador_login:
+    pattern: administrador/login
+    defaults: { _controller: BackendBundle:Administrador:login }
+
+administrador_login_check:
+    pattern: administrador/login_check
+
+administrador_logout:
+    pattern: administrador/logout
+
+
+todoslospaquetes:
+    pattern: administrador/todoslospaquetes
+    defaults: { _controller: BackendBundle:administrador:todoslospaquetes }
+
+portadaa:
+    pattern: administrador/portada
+    defaults: { _controller: BackendBundle:Administrador:portadaa }
+
+paquete_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BackendBundle:Administrador:show" }
+
+paquete_new:
+    pattern:  /new
+    defaults: { _controller: "BackendBundle:Administrador:new" }
+
+paquete_create:
+    pattern:  /create
+    defaults: { _controller: "BackendBundle:Administrador:create" }
+    requirements: { _method: post }
+
+paquete_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BackendBundle:Administrador:edit" }
+
+paquete_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BackendBundle:Administrador:update" }
+    requirements: { _method: post }
+
+paquete_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BackendBundle:Administrador:delete" }
+    requirements: { _method: post }
+
+
+
+
+todoslosserviciosalojamiento:
+    pattern: administrador/todoslosserviciosalojamiento
+    defaults: { _controller: BackendBundle:administrador:todoslosserviciosalojamiento }
+
+
+alojamiento_show:
+    pattern:  /{id}/alojamientoshow
+    defaults: { _controller: "BackendBundle:Administrador:alojamientoshow" }
+
+alojamiento_new:
+    pattern:  /alojamientonew
+    defaults: { _controller: "BackendBundle:Administrador:alojamientonew" }
+
+alojamiento_create:
+    pattern:  /alojamientocreate
+    defaults: { _controller: "BackendBundle:Administrador:alojamientocreate" }
+    requirements: { _method: post }
+
+alojamiento_edit:
+    pattern:  /{id}/alojamientoedit
+    defaults: { _controller: "BackendBundle:Administrador:alojamientoedit" }
+
+alojamiento_update:
+    pattern:  /{id}/alojamientoupdate
+    defaults: { _controller: "BackendBundle:Administrador:alojamientoupdate" }
+    requirements: { _method: post }
+
+alojamiento_delete:
+    pattern:  /{id}/alojamientodelete
+    defaults: { _controller: "BackendBundle:Administrador:alojamientodelete" }
+    requirements: { _method: post }
+
+
+
+
+
+todoslosserviciosalimentacion:
+    pattern: administrador/todoslosserviciosalimentacion
+    defaults: { _controller: BackendBundle:administrador:todoslosserviciosalimentacion }
+
+alimentacion_show:
+    pattern:  /{id}/alimentacionshow
+    defaults: { _controller: "BackendBundle:Administrador:alimentacionshow" }
+
+alimentacion_new:
+    pattern:  /alimentacionnew
+    defaults: { _controller: "BackendBundle:Administrador:alimentacionnew" }
+
+alimentacion_create:
+    pattern:  /alojamientocreate
+    defaults: { _controller: "BackendBundle:Administrador:alojamientocreate" }
+    requirements: { _method: post }
+
+alimentacion_edit:
+    pattern:  /{id}/alimentacionedit
+    defaults: { _controller: "BackendBundle:Administrador:alimentacionedit" }
+
+alimentacion_update:
+    pattern:  /{id}/alimentacionupdate
+    defaults: { _controller: "BackendBundle:Administrador:alimentacionupdate" }
+    requirements: { _method: post }
+
+alimentacion_delete:
+    pattern:  /{id}/alimentaciondelete
+    defaults: { _controller: "BackendBundle:Administrador:alimentaciondelete" }
+    requirements: { _method: post }
+
+
+
+
+todoslosserviciosexcursion:
+    pattern: administrador/todoslosserviciosexcursion
+    defaults: { _controller: BackendBundle:administrador:todoslosserviciosexcursion }
+
+excursion_show:
+    pattern:  /{id}/excursionshow
+    defaults: { _controller: "BackendBundle:Administrador:excursionshow" }
+
+excursion_new:
+    pattern:  /excursionnew
+    defaults: { _controller: "BackendBundle:Administrador:excursionnew" }
+
+excursion_create:
+    pattern:  /excursioncreate
+    defaults: { _controller: "BackendBundle:Administrador:excursioncreate" }
+    requirements: { _method: post }
+
+excursion_edit:
+    pattern:  /{id}/excursionedit
+    defaults: { _controller: "BackendBundle:Administrador:excursionedit" }
+
+excursion_update:
+    pattern:  /{id}/excursionupdate
+    defaults: { _controller: "BackendBundle:Administrador:excursionupdate" }
+    requirements: { _method: post }
+
+excursion_delete:
+    pattern:  /{id}/excursiondelete
+    defaults: { _controller: "BackendBundle:Administrador:excursiondelete" }
+    requirements: { _method: post }
+
+
+
+
+todoslosserviciosvehiculo:
+    pattern: administrador/todoslosserviciosvehiculo
+    defaults: { _controller: BackendBundle:administrador:todoslosserviciosvehiculo }
+
+vehiculo_show:
+    pattern:  /{id}/vehiculoshow
+    defaults: { _controller: "BackendBundle:Administrador:vehiculoshow" }
+
+vehiculo_new:
+    pattern:  /vehiculonew
+    defaults: { _controller: "BackendBundle:Administrador:vehiculonew" }
+
+vehiculo_create:
+    pattern:  /vehiculocreate
+    defaults: { _controller: "BackendBundle:Administrador:vehiculocreate" }
+    requirements: { _method: post }
+
+vehiculo_edit:
+    pattern:  /{id}/vehiculoedit
+    defaults: { _controller: "BackendBundle:Administrador:vehiculoedit" }
+
+vehiculo_update:
+    pattern:  /{id}/vehiculoupdate
+    defaults: { _controller: "BackendBundle:Administrador:vehiculoupdate" }
+    requirements: { _method: post }
+
+vehiculo_delete:
+    pattern:  /{id}/vehiculodelete
+    defaults: { _controller: "BackendBundle:Administrador:vehiculodelete" }
+    requirements: { _method: post }
+
+
+
+
+todoslosserviciosvuelo:
+    pattern: administrador/todoslosserviciosvuelo
+    defaults: { _controller: BackendBundle:administrador:todoslosserviciosvuelo }
+
+vuelo_show:
+    pattern:  /{id}/vueloshow
+    defaults: { _controller: "BackendBundle:Administrador:vueloshow" }
+
+vuelo_new:
+    pattern:  /vuelonew
+    defaults: { _controller: "BackendBundle:Administrador:vuelonew" }
+
+vuelo_create:
+    pattern:  /vuelocreate
+    defaults: { _controller: "BackendBundle:Administrador:vuelocreate" }
+    requirements: { _method: post }
+
+vuelo_edit:
+    pattern:  /{id}/vueloedit
+    defaults: { _controller: "BackendBundle:Administrador:vueloedit" }
+
+vuelo_update:
+    pattern:  /{id}/vueloupdate
+    defaults: { _controller: "BackendBundle:Administrador:vueloupdate" }
+    requirements: { _method: post }
+
+vuelo_delete:
+    pattern:  /{id}/vuelodelete
+    defaults: { _controller: "BackendBundle:Administrador:vuelodelete" }
+    requirements: { _method: post }
+
+
+
+
+
+
+todoslosproveedores:
+    pattern: administrador/todoslosproveedores
+    defaults: { _controller: BackendBundle:administrador:todoslosproveedores }
+
+
+todoslosproductos:
+    pattern: administrador/todoslosproductos
+    defaults: { _controller: BackendBundle:administrador:todoslosproductos }
+
+
+nuevo_Paqueteadmin:
+    pattern: administrador/paquete/nuevo
+    defaults: { _controller: BackendBundle:administrador:paqueteNuevo }
+
+
+
+
+
+gerente_login:
+    pattern: gerente/login
+    defaults: { _controller: BackendBundle:Gerente:login }
+
+gerente_login_check:
+    pattern: gerente/login_check
+
+gerente_logout:
+    pattern: gerente/logout
+
+portadag:
+    pattern: gerente/portada
+    defaults: { _controller: BackendBundle:Default:portadag }
+
+
+paquetespendientescliete:
+    pattern: gerente/paquetespendientescliete
+    defaults: { _controller: BackendBundle:administrador:paquetespendientescliete }
+
+paquetesaprobadoscliete:
+    pattern: gerente/paquetesaprobadoscliete
+    defaults: { _controller: BackendBundle:administrador:paquetesaprobadoscliete }
+
+paquetespendientesoperador:
+    pattern: gerente/paquetespendientesoperador
+    defaults: { _controller: BackendBundle:administrador:paquetespendientesoperador }
+
+paquetesaprobadosoperador:
+    pattern: gerente/paquetesaprobadosoperador
+    defaults: { _controller: BackendBundle:administrador:paquetesaprobadosoperador }
+
+paquete_aprobar:
+    pattern: gerente/paquete/aprobar/{id}
+    defaults: { _controller: BackendBundle:administrador:aprobarPaquete }
+
+
+paquete_verdetallesgerente:
+    pattern: gerente/paquete/detalles/{id}
+    defaults: { _controller: BackendBundle:administrador:detallesPaquetes }
+
+paquete_verdetallesogerente:
+    pattern: gerente/paquete/detalleso/{id}
+    defaults: { _controller: BackendBundle:administrador:detallesPaqueteso }
+
+
+ver_servicioalojg:
+    pattern: gerente/paquete/servicioalojg/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verservicioaloj }
+
+ver_servicioalimg:
+    pattern: gerente/paquete/servicioalimg/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verservicioalim }
+
+ver_servicioexcug:
+    pattern: gerente/paquete/servicioexcug/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verservicioexcu }
+
+ver_serviciovehig:
+    pattern: gerente/paquete/serviciovehig/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verserviciovehi }
+
+ver_serviciovuelg:
+    pattern: gerente/paquete/serviciovuelg/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verserviciovuel }
+
+
+
+
+verservicioalojg:
+    pattern: gerente/paqueteo/servicioalojg/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verservicioalojoperador }
+
+verservicioalimg:
+    pattern: gerente/paqueteo/servicioalimg/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verservicioalimoperador }
+
+verservicioexcug:
+    pattern: gerente/paqueteo/servicioexcug/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verservicioexcuoperador }
+
+verserviciovehig:
+    pattern: gerente/paqueteo/serviciovehig/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verserviciovehioperador }
+
+verserviciovuelg:
+    pattern: gerente/paqueteo/serviciovuelg/{nombre}/{idproducto}/{paquete}
+    defaults: { _controller: BackendBundle:administrador:verserviciovueloperador }
+
+
+
+
+proveedorespendientes:
+    pattern: gerente/proveedorespendientes
+    defaults: { _controller: BackendBundle:administrador:proveedorespendientes }
+
+proveedoresaprobados:
+    pattern: gerente/proveedoresaprobados
+    defaults: { _controller: BackendBundle:administrador:proveedoresaprobados }
+
+proveedor_aprobar:
+    pattern: gerente/proveedores/proveedoraprobar/{id}
+    defaults: { _controller: BackendBundle:administrador:aprobarProveedor }
+
+
+productospendientes:
+    pattern: gerente/productospendientes
+    defaults: { _controller: BackendBundle:administrador:productospendientes }
+
+productosaprobados:
+    pattern: gerente/productosaprobados
+    defaults: { _controller: BackendBundle:administrador:productosaprobados }
+
+producto_gerente_verdetalles:
+    pattern: gerente/productodetalles/{id}
+    defaults: { _controller: BackendBundle:administrador:detallesproducto }
+
+producto_aprobar:
+    pattern: gerente/producto/aprobar/{id}
+    defaults: { _controller: BackendBundle:administrador:AprobarProducto }
+
+
+
+alojamiento_gerente_vermas:
+    pattern: gerente/alojamiento/vermas/{id}
+    defaults: { _controller: BackendBundle:administrador:vermasAlojamiento }
+
+
+alimentacion_gerente_vermas:
+    pattern: gerente/alimentacion/vermas/{id}
+    defaults: { _controller: BackendBundle:administrador:vermasAlimentacion }
+
+
+excursion_gerente_vermas:
+    pattern: gerente/excursion/vermas/{id}
+    defaults: { _controller: BackendBundle:administrador:vermasExcursion }
+
+
+vehiculo_gerente_vermas:
+    pattern: gerente/vehiculo/vermas/{id}
+    defaults: { _controller: EBackendBundle:administrador:vermasVehiculo }
+
+
+vuelo_gerente_vermas:
+    pattern: gerente/vuelo/vermas/{id}
+    defaults: { _controller: BackendBundle:administrador:vermasVuelo }
+
+
+ver_solicitudespg:
+    pattern: gerente/versolicitudespg
+    defaults: { _controller: BackendBundle:administrador:verTodasSolicitudespg }
+
+
+ver_solicitudesag:
+    pattern: gerente/versolicitudesag
+    defaults: { _controller: BackendBundle:administrador:verTodasSolicitudesag }
+
+
+vermas_solicitudesg:
+    pattern: gerente/vermassolicitudesg/{id}
+    defaults: { _controller: BackendBundle:administrador:vermasSolicitudesg }
+
+
+respuesta_solicitudg:
+    pattern: gerente/respuestasolicitudg/{id}
+    defaults: { _controller: BackendBundle:administrador:respuestasolicitudg }
+
+
+ver_todaspqrspg:
+    pattern: gerente/vertodaspqrspg
+    defaults: { _controller: BackendBundle:administrador:vertodaspqrspg }
+
+
+ver_todaspqrsag:
+    pattern: gerente/vertodaspqrsag
+    defaults: { _controller: BackendBundle:administrador:vertodaspqrsag }
+
+vermas_pqrg:
+    pattern: gerente/vermaspqrg/{id}
+    defaults: { _controller: BackendBundle:administrador:vermaspqrg }
+
+respuesta_pqrg:
+    pattern: gerente/respuestapqrg/{id}
+    defaults: { _controller: BackendBundle:administrador:respuestapqrg }
+
+
+ver_todosclientesg:
+    pattern: gerente/vertodosclientesg
+    defaults: { _controller: BackendBundle:administrador:vertodosclientesg }
+
+vertodas_reservasg:
+    pattern: gerente/vertodasreservasg
+    defaults: { _controller: BackendBundle:administrador:vertodasreservasg }
+
+detalles_reservag:
+    pattern: gerente/detallesreservag/{id}
+    defaults: { _controller: BackendBundle:administrador:detallesreservag }
+
+reservas_pagadasg:
+    pattern: gerente/reservaspagadasg
+    defaults: { _controller: BackendBundle:administrador:reservaspagadasg }
+
+detalles_comprag:
+    pattern: gerente/detallescomprag/{id}
+    defaults: { _controller: BackendBundle:administrador:detallescomprag }
+
+
+
+
+
+
+
+

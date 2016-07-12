@@ -1,0 +1,59 @@
+{% extends '::frontendp.html.twig' %}
+
+{% block title %}Actualizar Retirar Producto{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+ <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+    <li class="active">Actualizar Retirar Producto</li>
+  </ol>
+
+
+   
+
+{% for mensaje in app.session.flashbag.get('info') %}
+    <p class="info">{{ mensaje }}</p>
+{% endfor %}
+
+
+{% if productos %}
+<div class="col-xs-12 col-sm-12 bg-primary">
+<h2>SOLICITUDES PARA MIS PRODUCTOS O SERVICIOS:</h2>
+</div>
+{% for producto in productos %}
+<div class="col-xs-12 col-sm-6 ">
+   <div class="thumbnail">
+      <img src="{{ asset('uploads/images/' ~ producto.foto) }}" alt="imagen" class="img-thumbnail col-sm-3  ">
+      <div class="caption">
+            <h3>{{ producto.nombre }}</h3>
+            <p>{{ producto.descripcion[0:280] }}...</p>
+         {% if producto.estado == 'Creando' %}{#es diferente de creando solo por prueba se le deja igual#}
+         <a href="{{ path('actualizar_retirar_servicios', { 'id': producto.idproducto }) }}" class="btn btn-primary"> Solicitudes Servicios </a>
+         <a href="{{ path('actualizar_producto', {'id': producto.idproducto }) }}" class="btn btn-warning"> Actualizar Producto </a>
+         <a href="{{ path('retirar_producto', {'id': producto.idproducto }) }}" class="btn btn-danger"> Retirar Producto </a>
+        {% endif %}
+          
+      </div>
+   </div>
+ </div>
+{% endfor %}
+{% else %}
+<div class="col-xs-10 bg-primary">
+<h2>AUN NO SE HAN CREADO PRODUCTOS:</h2>
+</div>
+
+{% endif %}
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

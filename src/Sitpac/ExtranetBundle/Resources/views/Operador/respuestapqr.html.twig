@@ -1,0 +1,59 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Respuesta y cambio de estado de pqr{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+ <ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadao') }}">Portada Operador</a></li>
+    <li class="active">Respuesta y cambio de estado de paqr</li>
+  </ol>
+
+
+<div class="col-sm-12 text-left ">
+<h4> Tipo PQR : {{pqr.tipo}} </h4> <h4> Fecha : {{pqr.fecha|date("m/d/Y")}} </h4>
+<h4> Cliente : {{pqr.clientecliente.nombres}} {{pqr.clientecliente.apellidos}} </h4>
+<h4> Descripcion : {{pqr.descripcion}} </h4> 
+</div>
+
+<div class="col-sm-12 ">
+<h2 class="bg-primary text-center"><i class="fa fa-pencil-square-o"></i> Responder PQR y cambiar estado a pendiente:</h2>
+</div>
+
+
+<div class="col-sm-12 ">
+<form class="form-horizontal" action="{{ path('respuesta_pqr', {'id': pqr.idpqr }) }}" method="post" {{ form_enctype(formulario) }}>
+    {{ form_errors(formulario) }}
+
+
+    <fieldset>
+    <div class="form-group">
+      <div class="bg-danger">{{ form_errors(formulario.respuesta) }}</div>
+      <div class="col-sm-3 control-label" >{{ form_label(formulario.respuesta, 'Añadir una respuesta:') }}</div>
+      <div class="col-sm-6">
+         {{ form_widget(formulario.respuesta, {'attr': {'class': 'form-control', 'placeholder': 'añadir una respuesta.'}})  }}
+      </div>
+    </div>
+    </fieldset>
+   
+    <div class="form-group">
+    <div class="col-sm-offset-6 col-sm-6">
+       <input class="btn btn-md btn-success " type="submit" name="" value="Responder PQR y cambiar estado a pendiente" />
+    </div>
+  </div>
+
+  {{ form_rest(formulario) }}
+
+</form>
+</div>
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+{% endblock %}
+
+
+

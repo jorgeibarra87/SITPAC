@@ -1,0 +1,58 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Ver Todas las Solicitudes Aprobadas{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+
+<ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadap') }}">Portada Proveedor</a></li>
+    <li class="active">Ver Todas las Solicitudes Aprobadas</li>
+  </ol>
+
+ 
+{% for mensaje in app.session.flashbag.get('info') %}
+    <p class="bg-warning">{{ mensaje }}</p>
+{% endfor %}
+
+
+<div class="col-xs-12 bg-primary">
+<h3>SOLICITUDES APROBADAS:</h3>
+</div> 
+
+{% if solicitudes %}
+              <div class="row">              
+            
+                  {% for solicitudes in pagsolicitudes %}
+                  <div class="col-xs-12 col-sm-3 cuadrosolicitudes ">
+                     <div class="thumbnail">
+                        <div class="caption">
+                              <h4><strong>Solicitud:</strong> {{ solicitudes.solicitud }}</h4>
+                              <h5><strong>Solicitante:</strong> {{ solicitudes.nomsolicitante }}</h5>
+                              <h5><strong>Elemento:</strong> {{ solicitudes.nomelemento }}</h5>
+                              <h5><strong>Estado:</strong> {{ solicitudes.estado }}</h5>
+                              <h5><strong>Fecha:</strong> {{ solicitudes.fecha|date("d/m/Y") }}</h5>
+                            <p>
+                            <a href="{{ path('vermas_solicitudeso', {'id': solicitudes.idSolicitud }) }}" class="btn btn-primary"> Ver </a>         
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagsolicitudes) }}
+                  </div>
+              </div>
+              {% endif %}
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,64 @@
+{% extends '::frontend.html.twig' %}
+{% block title %}Ver mas Paquetes Recientes{% endblock %}
+
+
+
+{% block article %} 
+
+
+<div class="container sha well ">
+
+    <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portada') }}">Portada</a></li>
+        <li class="active ">Paquetes Recientes</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+
+
+
+              <div class="row">
+
+                  {% if paquetesr == null %}
+                  <div class="col-xs-12 alert alert-warning text-justify">
+                    <h2><strong>No se obtuvieron  Paquetes.</strong> </h2>
+                  </div> 
+                  {% endif %} 
+
+                  {% if paquetesr %}
+ 
+                  <div class="col-xs-12 bg-info">
+                  <h1>Paquetes Recientes: </h1>
+                  </div> 
+                 
+                  {% for paquetes in pagpaquetesr %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/paquetes/' ~ paquetes.foto) }}" alt="imagen" class="thumbnail" style="height: 180px;">
+                        <div class="caption">
+                              <h3>{{ paquetes.nombre }}</h3>
+                              <p>Descripcion: {{ paquetes.descripcion[0:100] }}...</p>
+                            <p>
+                            <a href="{{ path('paquete_verdetalles_cliente', { 'id': paquetes.idpaqueteTuristico }) }}" class="btn btn-primary"> Detalles </a>
+                            <a href="#" class="btn btn-success"> Reservar </a>         
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+                  <div class="col-sm-12  text-center ">
+                  {{ knp_pagination_render(pagpaquetesr) }}
+                  </div>
+              </div>
+              {% endif %}
+
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+ {% endblock %}
+
+	

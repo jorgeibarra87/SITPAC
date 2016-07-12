@@ -1,0 +1,54 @@
+{% extends '::frontendg.html.twig' %}
+
+{% block title %}Ver Mas Solicitudes{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+
+<ol class="breadcrumb text-left alert alert-success">
+    <li><a href="{{ path('portadag') }}">Portada Gerente</a></li>
+    <li><a href="{{ path('ver_solicitudespg') }}">Solicitudes Pendientes</a></li>
+    <li class="active">Ver Mas Solicitudes</li>
+  </ol>
+
+ 
+{% for mensaje in app.session.flashbag.get('info') %}
+    <p class="bg-warning">{{ mensaje }}</p>
+{% endfor %}
+
+
+<div class="col-xs-12 bg-prymary">
+<h3>SOLICITUD:</h3>
+</div> 
+
+{% if solicitud %}
+              <div class="row">                
+
+                  <div class="col-xs-12 col-sm-6  ">
+                     <div class="thumbnail">
+                        <div class="caption">
+                            <h4><strong>Solicitud:</strong> {{ solicitud.solicitud }}</h4>
+                            <p><strong>Solicitante:</strong> {{ solicitud.nomsolicitante }}</p>
+                            <p><strong>Elemento:</strong> {{ solicitud.nomelemento }}</p>
+                            <p><strong>Estado:</strong> {{ solicitud.estado }}</p>
+                            <p><strong>Fecha:</strong> {{ solicitud.fecha|date("d/m/Y") }}</p>
+                            <p><strong>Descripcion:</strong> {{ solicitud.descripcion }}</p>
+                            <p><strong>Respuesta:</strong> {{ solicitud.respuesta }}</p>
+
+                        </div>
+                     </div>
+                   </div>
+              </div>
+{% endif %}
+
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+

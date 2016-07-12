@@ -1,0 +1,58 @@
+{% extends '::frontendg.html.twig' %}
+
+{% block title %}Paquetes pendientes Home{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadag') }}">Portada Gerente</a></li>
+        <li class="active ">Paquetes pendientes operador</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>TODOS LOS PAQUETES PENDIENTES OPERADOR:</h2>
+            </div>
+                                           
+              {% if paquetesp %}
+              <div class="row">                
+
+                  {% for paquetesp in paquetesp %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/paquetes/' ~ paquetesp.foto) }}" alt="imagen" class="thumbnail" style="height: 180px;">
+                        <div class="caption">
+                              <h6><strong>{{ paquetesp.nombre }}</strong></h6>
+                              <h6>Duracion: {{ paquetesp.duracion }}</h6>
+                              <h6>Fecha de Inicio: {{ paquetesp.fechaInicio|date("d/m/Y") }}</h6>
+                              <h6>Fecha de Cierre: {{ paquetesp.fechaCierre|date("d/m/Y") }}</h6>
+                              <h6>Precio: ${{ paquetesp.preciototal|number_format( 0,'', '.') }}</h6>
+                              <h6>Estado: {{ paquetesp.estado }}</h6>
+                            <p>
+                            <a href="{{ path('paquete_verdetallesogerente', { 'id': paquetesp.idpaqueteTuristico }) }}" class="btn btn-primary"> Ver Detalles </a>
+                            <a href="{{ path('paquete_aprobar', { 'id': paquetesp.idpaqueteTuristico }) }}" class="btn btn-success" onclick="return confirm('¿Esta seguro que desea cambiar el estado del paquete?');"> Aprobar Paquete </a>          
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}                     
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}

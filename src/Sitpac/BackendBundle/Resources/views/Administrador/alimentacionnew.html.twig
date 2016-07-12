@@ -1,0 +1,101 @@
+
+{% extends '::frontenda.html.twig' %}
+{% block title %}Portada{% endblock %}
+
+
+
+{% block article %}
+
+<div class="container sha well ">
+
+<ul class="record_actions">
+ 		<div class="col-sm-12 text-right">   
+        <a class="btn btn-sm btn-success" href="{{ path('todoslosserviciosalimentacion') }}">
+            Lista de Alimentacion
+        </a>
+        </div>
+</ul> 
+
+<h1 class="col-xs-12 bg-primary">Crear Servicio Alimentacion</h1>
+
+<div class="col-sm-12 ">
+<form class="form-horizontal" action="{{ path('alimentacion_create') }}" method="post" {{ form_enctype(form) }}>
+     {{ form_errors(form) }}
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.nombre) }}</div>
+        <div class="bg-danger">{{ form_errors(form.nombre) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.nombre) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.tipo) }}</div>
+        <div class="bg-danger">{{ form_errors(form.tipo) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.tipo) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.foto) }}</div>
+        <div class="bg-danger">{{ form_errors(form.foto) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.foto) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.hora) }}</div>
+        <div class="bg-danger">{{ form_errors(form.hora) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.hora) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.direccion) }}</div>
+        <div class="bg-danger">{{ form_errors(form.direccion) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.direccion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.detalles) }}</div>
+        <div class="bg-danger">{{ form_errors(form.detalles) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.detalles) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.precio) }}</div>
+        <div class="bg-danger">{{ form_errors(form.precio) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.precio) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.fechaCreacion) }}</div>
+        <div class="bg-danger">{{ form_errors(form.fechaCreacion) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.fechaCreacion) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.estado) }}</div>
+        <div class="bg-danger">{{ form_errors(form.estado) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.estado) }}</div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-4 control-label" >{{ form_label(form.productoproducto) }}</div>
+        <div class="bg-danger">{{ form_errors(form.productoproducto) }}</div>
+        <div class="col-sm-8">{{ form_widget(form.productoproducto) }}</div>
+    </div>
+
+    <p>
+        <div class="col-sm-12 text-center"><button class="btn btn-lg btn-primary" type="submit">Crear</button></div>
+    </p>
+ {{ form_rest(form) }}
+</form>
+</div>
+
+<ul class="record_actions">
+ 		<div class="col-sm-12 text-right">   
+        <a class="btn btn-sm btn-success" href="{{ path('todoslosserviciosalimentacion') }}">
+            Lista de Alimentacion
+        </a>
+        </div>
+</ul>
+
+</div>
+{% endblock %}

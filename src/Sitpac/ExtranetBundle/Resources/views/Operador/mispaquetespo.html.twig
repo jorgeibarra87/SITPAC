@@ -1,0 +1,58 @@
+{% extends '::frontendo.html.twig' %}
+
+{% block title %}Mis Paquetes pendientes{% endblock %}
+
+
+
+{% block article %}
+
+
+<div class="container sha well ">
+
+
+     <ol class="breadcrumb text-left alert alert-success">
+        <li><a href="{{ path('portadao') }}">Portada Operador</a></li>
+        <li class="active ">Mis Paquetes Pendientes</li>
+      </ol>
+
+
+    {% for mensaje in app.session.flashbag.get('info') %}
+        <p class="bg-warning">{{ mensaje }}</p>
+    {% endfor %}
+
+        
+            <div class="col-xs-12 bg-primary" >
+            <h2>MIS PAQUETES PENDIENTES:</h2>
+            </div>
+                                           
+              {% if paquetes %}
+              <div class="row">                
+
+                  {% for paquetes in paquetes %}
+                  <div class="col-xs-12 col-sm-3">
+                     <div class="thumbnail" >
+                        <img src="{{ asset('uploads/images/paquetes/' ~ paquetes.foto) }}" alt="imagen" class="thumbnail" style="height: 180px;">
+                        <div class="caption">
+                              <h6><strong>{{ paquetes.nombre }}</strong></h6>
+                              <h6>Duracion: {{ paquetes.duracion }}</h6>
+                              <h6>Fecha de Inicio: {{ paquetes.fechaInicio|date("d/m/Y") }}</h6>
+                              <h6>Fecha de Cierre: {{ paquetes.fechaCierre|date("d/m/Y") }}</h6>
+                              <h6>Precio: ${{ paquetes.preciototal|number_format( 0,'', '.') }}</h6>
+                              <h6>Estado: {{ paquetes.estado }}</h6>
+                            <p>
+                            <a href="{{ path('paquete_verdetalleso', { 'id': paquetes.idpaqueteTuristico }) }}" class="btn btn-sm btn-primary"> Ver Detalles </a>
+                            </p>
+                        </div>
+                     </div>
+                   </div>
+                  {% endfor %}
+              </div>
+              {% endif %}                     
+<a href="javascript:history.go(-1)" class="col-sm-12 text-center"><i class="fa fa-reply"></i> Regresar</a>
+</div>
+
+
+
+
+{% endblock %}
+
